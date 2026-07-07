@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDC 대외활동 모음 — 초·중·고 대회·공모전·프로그램</title>
+<meta name="description" content="공신력 있는 초·중·고 대상 대회·공모전·프로그램을 매월 모아 보여드립니다. 조건을 걸러 나에게 맞는 활동을 찾아보세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SDC 대외활동 모음">
+<meta property="og:description" content="초·중·고 대회·공모전·프로그램을 매월 업데이트. 신청 전 공식 페이지에서 최종 확인하세요.">
+<meta property="og:image" content="og-image.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{ --blue:#eaf1ff; --blue-d:#3b5ba5; --mint:#e6fbf1; --peach:#fff0e6; --lav:#f0ebff;
+    --ink:#2b3a67; --sub:#5a6b8c; --line:#e7ecf5; --card:#ffffff; --bg:#fbfcff; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:16px}
+  header{padding:24px 0 8px}
+  h1{font-size:26px;margin:0 0 4px}
+  .lead{color:var(--sub);font-size:14px;margin:0}
+  .notice{background:var(--blue);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:13px;color:var(--sub)}
+  .notice strong{color:var(--ink)}
+  .controls{background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+  input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px}
+  .filters{margin-top:8px}
+  .fgroup{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+  .glabel{flex:0 0 74px;white-space:nowrap;text-align:center;font-size:15px;font-weight:700;color:var(--blue-d);letter-spacing:.02em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 auto;min-width:0}
+  .datein{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;user-select:none;transition:.12s}
+  .chip:hover{border-color:var(--blue-d)}
+  .chip.on{background:var(--blue-d);color:#fff;border-color:var(--blue-d);font-weight:600;box-shadow:0 1px 5px rgba(59,91,165,.35)}
+  .chip.kw.on{background:#7c5fd3;color:#fff;border-color:#7c5fd3}
+  .chip.star.on{background:#e6a532;color:#fff;border-color:#e6a532}
+  .toggle{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .count{color:var(--sub);font-size:13px;margin:10px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+  .card h3{margin:0;font-size:17px}
+  .meta{font-size:13px;color:var(--sub)}
+  .badges{display:flex;flex-wrap:wrap;gap:5px}
+  .b{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--mint)}
+  .b.field{background:var(--blue)}
+  .b.subject{background:var(--peach)}
+  .b.kw{background:var(--lav)}
+  .b.sangsi{background:#ffe9ec;color:#b0455a}
+  .stars{color:#e6a532;font-size:14px}
+  .desc{font-size:14px}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+  .btn{display:inline-block;background:var(--blue-d);color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-size:13px}
+  .thumb{width:100%;max-height:180px;object-fit:cover;border-radius:10px;cursor:zoom-in;border:1px solid var(--line)}
+  .deadline{font-weight:600}
+  .deadline.soon{color:#c0392b}
+  footer{color:var(--sub);font-size:12px;text-align:center;padding:28px 0}
+  .lightbox{position:fixed;inset:0;background:rgba(20,26,45,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:100%;max-height:100%;border-radius:12px}
+  .empty{padding:40px;text-align:center;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>SDC 대외활동 모음</h1>
+    <p class="lead">초·중·고 대회·공모전·프로그램 · 매월 업데이트</p>
+  </header>
+
+  <div class="notice"><strong>안내.</strong> 본 정보는 수집 시점 기준이며, 일정·요강은 변경될 수 있습니다. 신청 전 반드시 공식 페이지에서 최종 확인하세요.</div>
+  <div class="notice">이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다.</div>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="활동명으로 검색">
+    <div class="filters" id="filters"></div>
+    <div class="fgroup">
+      <span class="glabel">신청가능일</span>
+      <div class="chips" style="align-items:center">
+        <input type="date" id="dateStart" class="datein" aria-label="시작일">
+        <span class="meta">~</span>
+        <input type="date" id="dateEnd" class="datein" aria-label="종료일">
+        <button id="dateClear" class="chip" type="button">해제</button>
+        <span class="meta">설정한 날짜/기간에 아직 신청 가능한(마감 전) 활동만 표시 · 상시모집은 항상 포함</span>
+      </div>
+    </div>
+    <div class="fgroup">
+      <span class="glabel">옵션</span>
+      <div class="chips">
+        <label class="toggle"><input type="checkbox" id="kwAnd"> 키워드 모두 만족(AND)</label>
+        <label class="toggle"><input type="checkbox" id="showPast"> 지난 것도 보기</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">조건에 맞는 활동이 없습니다. 필터를 줄여보세요.</div>
+</div>
+
+<div class="lightbox" id="lightbox"><img id="lightboxImg" alt="포스터"></div>
+
+<footer>SDC · 이 페이지의 정보는 참고용이며 신청 전 공식 페이지 확인이 필요합니다.</footer>
+
+<script>
+const DATA = [{"id":"the-concord-review-2026","활동명":"The Concord Review (역사 연구논문 저널) 투고","분야":"글쓰기·논문·인문사회","과목태그":["인문","역사"],"키워드":["에세이·논문","연구","인문·철학","개인","국제대회"],"대상_학년":["고"],"대상_원문":"중등교육(고교) 졸업 이전에 논문을 완성한 학생","주최":"The Concord Review, Inc.","마감일":"2026-08-01","신청기간_원문":"분기별 마감(상시 투고). August 1 (Winter호), November 1 (Spring호), February 1 (Summer호), May 1 (Fall호). 제출한 논문은 이후 3개 호까지 심사 대상.","비용_구분":"유료","핵심내용":"고교생 역사 연구논문을 심사·게재하는 국제 학술지. 게재율 약 5%.","웹사이트":"https://tcr.org/submit","미국입시_관련도":"높음","SDC_적합도":4},{"id":"environment-love-contest-2026","활동명":"2026 대한민국 환경사랑공모전","분야":"환경·예술·공익","과목태그":["환경","예술"],"키워드":["공모전","환경","예술·디자인","무료","전국규모"],"대상_학년":["초","중","고"],"대상_원문":"신청자격 제한 없음(대한민국 국민 누구나). 일러스트레이션 부문은 학생부(초등부/중·고등부) 별도 운영.","주최":"한국환경공단 (공식 페이지 연관 기관)","마감일":"2026-08-03","신청기간_원문":"2026년 6월 8일(월) ~ 8월 3일(월) 18시 까지","비용_구분":"무료","핵심내용":"사진·에코디자인·일러스트레이션 부문으로 환경 인식을 겨루는 전국 규모 환경 공모전.","웹사이트":"https://xn--289a5d925ap8c64jnzlpiz.kr/","미국입시_관련도":"보통","SDC_적합도":4},{"id":"hir-academic-writing-contest-2026","활동명":"Harvard International Review Academic Writing Contest 2026","분야":"글쓰기·논문·인문사회","과목태그":["인문","사회"],"키워드":["에세이·논문","국제·외교","사회·정책","개인","국제대회"],"대상_학년":["중","고"],"대상_원문":"7~12학년 학생(미국 외 국가 학생 포함)","주최":"Harvard International Review (HIR)","마감일":"2026-08-24","신청기간_원문":"Summer 2026 마감 August 24, 2026 / Fall-Winter 2026 마감 January 2, 2027 (Spring 2026 마감 May 31, 2026은 종료)","비용_구분":"유료","핵심내용":"국제관계·외교 주제의 단편 학술 아티클을 겨루는 하버드국제리뷰 주최 글쓰기 대회.","웹사이트":"https://hir.harvard.edu/contest/","미국입시_관련도":"높음","SDC_적합도":4},{"id":"breakthrough-junior-challenge-2026","활동명":"Breakthrough Junior Challenge 2026","분야":"과학·공학·수학생명·AI","과목태그":["과학","수학"],"키워드":["공모전","과학","생명·의학","미디어·영상","무료","개인","국제대회"],"대상_학년":["중","고"],"대상_원문":"만 13~18세 학생(2026-05-11 기준 13세 이상, 2026-10-01 기준 만 19세 미만). 개인 참가만 가능.","주최":"Breakthrough Prize Foundation","마감일":"2026-09-15","신청기간_원문":"제출 마감: September 15, 2026 (동료평가는 September 30, 2026까지 최소 5개 이상 평가 필요)","비용_구분":"무료","핵심내용":"생명과학·물리·수학 개념을 2분 이내 영상으로 설명하는 국제 대회(개인전).","웹사이트":"https://breakthroughjuniorchallenge.org/","미국입시_관련도":"높음","SDC_적합도":5},{"id":"amc-2026","활동명":"AMC (American Mathematics Competitions) 2026","분야":"과학·공학·수학생명·AI","과목태그":["수학"],"키워드":["올림피아드","수학","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"중·고등학생 (AMC 8: 8학년 이하 / AMC 10: 10학년 이하 / AMC 12: 12학년 이하)","주최":"MAA (Mathematical Association of America)","마감일":"2026-10-28","신청기간_원문":"AMC 10/12 등록 마감: Early Bird September 30, 2026 ($55) / Regular October 15, 2026 ($75) / Late October 28, 2026 ($115). AMC 8 등록 마감: Early Bird October 28, 2026 ($55) / Regular January 5, 2027 ($75) / Late January 14, 2027 ($115).","비용_구분":"유료","핵심내용":"MAA가 주최하는 국제 수학경시대회. AMC 8/10/12로 나뉘며 상위자는 AIME·USA(J)MO 선발 경로로 이어진다.","웹사이트":"https://maa.org/amcreg/","미국입시_관련도":"높음","SDC_적합도":3},{"id":"1365-volunteer-portal","활동명":"1365 자원봉사포털 청소년 자원봉사","분야":"스포츠·문화·봉사","과목태그":[],"키워드":["봉사","무료","상시모집","전국규모"],"대상_학년":["초","중","고"],"대상_원문":"청소년(초·중·고 포함) 및 일반 국민","주최":"행정안전부 (재단법인 한국중앙자원봉사센터 운영)","마감일":null,"신청기간_원문":"상시모집","비용_구분":"무료","핵심내용":"전국 자원봉사 정보를 통합 제공하는 정부 포털. 검색·신청·실적 확인·확인서 발급을 원스톱 제공하며 NEIS 연계로 학생부 반영.","웹사이트":"https://www.1365.go.kr/vols/main.do","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"iearn","활동명":"iEARN (International Education and Resource Network) 글로벌 협업 프로젝트","분야":"국제·리더십·사회참여","과목태그":["국제","사회"],"키워드":["온라인","국제·외교","사회·정책","팀","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 학생·교사(초·중·고 및 청소년 기관)","주최":"iEARN (International Education and Resource Network, 1988년 설립 비영리 국제교육네트워크)","마감일":null,"신청기간_원문":"상시모집(정규 수업·방과후 프로그램으로 연중 참여)","비용_구분":"유료","핵심내용":"140개국 학교가 참여하는 국제 협업·가상교류 프로젝트 네트워크. 학생이 사회문제 해결형 글로벌 프로젝트를 기획·참여.","웹사이트":"https://iearn.org/","미국입시_관련도":"낮음","SDC_적합도":2},{"id":"nasa-citizen-science","활동명":"NASA Citizen Science (시민과학 프로젝트)","분야":"과학·공학·수학생명·AI","과목태그":["과학"],"키워드":["연구","온라인","과학","무료","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"누구나(시민권 불필요). 청소년 포함 전 세계 참여자.","주최":"NASA (미국 항공우주국)","마감일":null,"신청기간_원문":"상시모집(프로젝트별 연중 참여)","비용_구분":"무료","핵심내용":"NASA 연구진과 함께 천문·지구과학 등 실제 과학 프로젝트에 자원 참여하는 시민과학 프로그램(46개 프로젝트 운영).","웹사이트":"https://science.nasa.gov/citizen-science/","미국입시_관련도":"보통","SDC_적합도":4},{"id":"roots-and-shoots","활동명":"Roots & Shoots (제인 구달 청소년 봉사·환경 프로그램)","분야":"스포츠·문화·봉사","과목태그":["환경"],"키워드":["봉사","환경","무료","팀","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 청소년(young people). 초·중·고 포함.","주최":"Jane Goodall Institute (제인 구달 박사 설립)","마감일":null,"신청기간_원문":"상시모집(커뮤니티 프로젝트 연중 기획·참여)","비용_구분":"무료","핵심내용":"제인구달연구소가 운영하는 청소년 주도 지역사회 봉사·환경·동물복지 프로젝트 프로그램(글로벌 챕터).","웹사이트":"https://rootsandshoots.org/","미국입시_관련도":"낮음","SDC_적합도":2},{"id":"globe-program","활동명":"The GLOBE Program (국제 환경 관측·교육 프로그램)","분야":"환경·예술·공익","과목태그":["환경","과학"],"키워드":["연구","온라인","환경","과학","무료","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"초등~고등 학생 및 상위 교육단계(환경 데이터 수집 참여)","주최":"NASA 후원, NSF·NOAA·미 국무부 지원","마감일":null,"신청기간_원문":"상시모집(학교·교사 등록을 통한 연중 데이터 수집)","비용_구분":"무료","핵심내용":"전 세계 학생이 표준 프로토콜로 환경 데이터를 관측·공유하는 NASA 후원 국제 환경 과학·교육 프로그램.","웹사이트":"https://www.globe.gov/","미국입시_관련도":"보통","SDC_적합도":4},{"id":"wharton-investment-competition-2027","활동명":"Wharton Global High School Investment Competition (2026-2027)","분야":"국제·리더십·사회참여","과목태그":["경제","금융"],"키워드":["공모전","경제·금융","팀","국제대회"],"대상_학년":["고"],"대상_원문":"고등학생(9~12학년), 교사 지도 하 4~6인 팀","주최":"Wharton Global Youth Program, University of Pennsylvania","마감일":null,"신청기간_원문":"Registration for the 2026-2027 Competition will open on August 10.","비용_구분":"유료","핵심내용":"모의 주식 포트폴리오를 운용하고 투자전략 보고서를 겨루는 와튼 주최 글로벌 고교 투자대회(팀전).","웹사이트":"https://globalyouth.wharton.upenn.edu/competitions/investment-competition/","미국입시_관련도":"높음","SDC_적합도":4},{"id":"zooniverse","활동명":"Zooniverse (온라인 시민과학 연구 참여)","분야":"과학·공학·수학생명·AI","과목태그":["과학"],"키워드":["연구","온라인","과학","무료","개인","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"누구나(전문 배경·훈련 불필요). 초·중·고 포함 전 연령.","주최":"The Zooniverse (Adler Planetarium, University of Minnesota, University of Oxford 파트너)","마감일":null,"신청기간_원문":"상시모집(계정 생성 후 언제든 참여)","비용_구분":"무료","핵심내용":"천문·생태·기후 등 실제 연구 데이터를 자원자가 분류·분석하는 세계 최대 시민과학 플랫폼.","웹사이트":"https://www.zooniverse.org/","미국입시_관련도":"낮음","SDC_적합도":3}];
+const TODAY = "2026-07-07";
+const FIELDS = ["과학·공학·수학생명·AI","국제·리더십·사회참여","글쓰기·논문·인문사회","스포츠·문화·봉사","환경·예술·공익"];
+const GRADES = ["초","중","고"];
+const COSTS = ["무료","소액","유료"];
+const STAR_LABELS = {5:"매우 높음",4:"높음",3:"보통",2:"낮음",1:"매우 낮음"};
+const state = { q:"", grade:new Set(), field:new Set(), star:new Set(), cost:new Set(), term:new Set(), kw:new Set(), dateStart:"", dateEnd:"", kwAnd:false, showPast:false };
+
+function uniq(arr){ return [...new Set(arr)]; }
+// 분야 필터 = 대분류 5개 + 데이터에 등장한 과목태그 (통합)
+const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
+const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
+const allKeywords = uniq(DATA.flatMap(d=>d.키워드||[])).filter(k=>k!=='상시모집').sort(); // 상시모집은 '신청기한' 그룹으로 이동
+
+function chip(label, on, onClick, cls){
+  const el = document.createElement('span');
+  el.className = 'chip ' + (cls||'') + (on?' on':'');
+  el.textContent = label;
+  el.onclick = ()=>{ onClick(); el.classList.toggle('on'); render(); }; // 클릭 시 선택 표시 즉시 토글
+  return el;
+}
+function buildFilters(){
+  const f = document.getElementById('filters'); f.innerHTML='';
+  const mk = (title, values, set, cls, labelFn)=>{
+    const g=document.createElement('div'); g.className='fgroup';
+    const l=document.createElement('span'); l.className='glabel'; l.textContent=title; g.appendChild(l);
+    const wrap=document.createElement('div'); wrap.className='chips'; // 버튼은 라벨 칸을 침범하지 않는 별도 영역에서만 줄바꿈
+    values.forEach(v=> wrap.appendChild(chip(labelFn?labelFn(v):v, set.has(v), ()=> set.has(v)?set.delete(v):set.add(v), cls)) );
+    g.appendChild(wrap); f.appendChild(g);
+  };
+  mk('학년', GRADES, state.grade);
+  mk('분야', FIELD_OPTIONS, state.field);
+  mk('별점', [5,4,3,2,1], state.star, 'star', v=>'★'+v+' '+STAR_LABELS[v]);
+  mk('비용', COSTS, state.cost);
+  mk('신청기한', ['상시','임박'], state.term, '', v=> v==='상시'?'상시모집':'마감 임박(2주)');
+  if(allKeywords.length) mk('키워드', allKeywords, state.kw, 'kw');
+}
+
+function isPast(d){ return d && d < TODAY; }
+function matches(d){
+  if(state.q && !(d.활동명||'').toLowerCase().includes(state.q.toLowerCase())) return false;
+  if(!state.showPast && isPast(d.마감일)) return false;
+  if(state.grade.size && !(d.대상_학년||[]).some(g=>state.grade.has(g))) return false;
+  if(state.field.size){ // 대분류 또는 과목태그 어느 쪽이든 걸리면 통과
+    const inField = state.field.has(d.분야) || (d.과목태그||[]).some(s=>state.field.has(s));
+    if(!inField) return false;
+  }
+  if(state.star.size && !state.star.has(Number(d.SDC_적합도))) return false;
+  if(state.cost.size && !state.cost.has(d.비용_구분)) return false;
+  if(state.term.size){ // 신청기한: 상시모집(마감일 null) / 마감 임박(2주 이내)
+    const isS = !d.마감일;
+    const isSoon = d.마감일 && !isPast(d.마감일) && d.마감일 <= addDays(TODAY,14);
+    if(!((state.term.has('상시') && isS) || (state.term.has('임박') && isSoon))) return false;
+  }
+  // 날짜/기간: 설정한 날(또는 기간 시작일)에 아직 신청 가능한(마감 전) 것만. 상시(null)는 항상 통과.
+  const ws = state.dateStart || state.dateEnd;
+  if(ws && d.마감일 && d.마감일 < ws) return false;
+  if(state.kw.size){
+    const kws = d.키워드||[];
+    if(state.kwAnd){ for(const k of state.kw) if(!kws.includes(k)) return false; }
+    else { if(!kws.some(k=>state.kw.has(k))) return false; }
+  }
+  return true;
+}
+function sortFn(a,b){
+  const da=a.마감일||'9999-99-99', db=b.마감일||'9999-99-99';
+  if(da!==db) return da<db?-1:1;
+  return (a.활동명||'').localeCompare(b.활동명||'','ko');
+}
+function stars(n){ n=Number(n)||0; return '★'.repeat(n)+'☆'.repeat(5-n); }
+
+function card(d){
+  const el=document.createElement('div'); el.className='card';
+  let poster='';
+  if(d.포스터){ poster='<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터" data-full="'+d.포스터+'">'; }
+  const dl = d.마감일 ? ('<span class="deadline'+(!isPast(d.마감일)&&d.마감일<=addDays(TODAY,14)?' soon':'')+'">마감 '+d.마감일+'</span>')
+                      : '<span class="b sangsi">상시</span>';
+  const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+s+'</span>').join('');
+  const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+s+'</span>').join('');
+  el.innerHTML =
+    poster +
+    '<h3>'+(d.활동명||'')+'</h3>'+
+    '<div class="badges"><span class="b field">'+(d.분야||'')+'</span>'+subj+'</div>'+
+    '<div class="meta">주최 '+(d.주최||'-')+' · 대상 '+(d.대상_원문||'-')+'</div>'+
+    '<div class="stars" title="'+"이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다."+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+(d.미국입시_관련도||'-')+'</span></div>'+
+    '<div class="desc">'+(d.핵심내용||'')+'</div>'+
+    '<div class="badges">'+kw+'</div>'+
+    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">링크</a>':'')+'</div>';
+  const t=el.querySelector('.thumb');
+  if(t) t.onclick=()=>openLightbox(t.dataset.full);
+  return el;
+}
+function addDays(ymd,n){ const dt=new Date(ymd+'T00:00:00Z'); dt.setUTCDate(dt.getUTCDate()+n);
+  return dt.toISOString().slice(0,10); }
+
+function openLightbox(src){ const lb=document.getElementById('lightbox'); document.getElementById('lightboxImg').src=src; lb.classList.add('on'); }
+document.getElementById('lightbox').onclick=function(){ this.classList.remove('on'); };
+
+function render(){
+  const grid=document.getElementById('grid'); grid.innerHTML='';
+  const list=DATA.filter(matches).sort(sortFn);
+  document.getElementById('count').textContent='총 '+list.length+'개 활동';
+  document.getElementById('empty').style.display=list.length?'none':'block';
+  const frag=document.createDocumentFragment();
+  list.forEach(d=>frag.appendChild(card(d)));
+  grid.appendChild(frag);
+}
+document.getElementById('q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
+document.getElementById('kwAnd').addEventListener('change', e=>{ state.kwAnd=e.target.checked; render(); });
+document.getElementById('showPast').addEventListener('change', e=>{ state.showPast=e.target.checked; render(); });
+const dStart=document.getElementById('dateStart'), dEnd=document.getElementById('dateEnd');
+dStart.addEventListener('change', e=>{ state.dateStart=e.target.value; render(); });
+dEnd.addEventListener('change', e=>{ state.dateEnd=e.target.value; render(); });
+document.getElementById('dateClear').onclick=()=>{ dStart.value=''; dEnd.value=''; state.dateStart=''; state.dateEnd=''; render(); };
+buildFilters(); render();
+</script>
+</body>
+</html>

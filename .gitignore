@@ -1,0 +1,11 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# 임시 파일
+scratchpad/
+*.tmp
+
+# 리포트 (병합/링크검증 결과는 매 실행 재생성)
+data/reports/*.json

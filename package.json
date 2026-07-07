@@ -1,0 +1,19 @@
+{
+  "name": "sdc-eca",
+  "version": "1.0.0",
+  "description": "SDC ECA 자동 리서치·게시 시스템",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "merge": "node scripts/merge.js",
+    "check-links": "node scripts/check-links.js",
+    "fetch-posters": "node scripts/fetch-posters.js",
+    "export-excel": "node scripts/export-excel.js",
+    "build": "node scripts/build.js",
+    "pipeline": "node scripts/merge.js && node scripts/check-links.js && node scripts/fetch-posters.js && node scripts/export-excel.js && node scripts/build.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "sharp": "^0.33.5"
+  }
+}
