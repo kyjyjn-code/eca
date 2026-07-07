@@ -1,32 +1,102 @@
 [
   {
+    "id": "children-product-safety-drawing-contest-2026",
+    "활동명": "2026 어린이 제품안전 그림공모전",
+    "분야": "환경·예술·공익",
+    "과목태그": [
+      "예술·디자인"
+    ],
+    "키워드": [
+      "공모전",
+      "무료",
+      "개인"
+    ],
+    "대상_원문": "유치부(2020~2022년생), 초등부(2014~2019년생)",
+    "대상_학년": [
+      "초"
+    ],
+    "지원자격_확인": "국적 제한 문구 없이 국내 유치부·초등부 아동 대상 공모(참가자격에 거주 요건 관련 제한 없음). 한국 거주 초등학생(대안경로 포함) 참가 가능. 근거: '유치부(20~22년생), 초등부(14~19년생)'.",
+    "주최": "산업통상부 국가기술표준원, 한국제품안전관리원",
+    "신청기간_원문": "2026년 5월 26일(화) ~ 7월 24일(금)",
+    "근거_원문": "공모기간: 2026. 5. 26.(화) ~ 7. 24.(금). 참가대상: 유치부(20~22년생), 초등부(14~19년생).",
+    "마감일": "2026-07-24",
+    "주요일정": "접수 마감 2026-07-24",
+    "비용_원문": "무료",
+    "비용_구분": "무료",
+    "핵심내용": "제품안전을 주제로 한 그림(8절 도화지 손그림, 포스터·만화 등 자유형식)을 겨루는 정부 주최 어린이 그림공모전.",
+    "웹사이트": "https://kips.kr/kips.do",
+    "미국입시_관련도": "낮음",
+    "SDC_적합도": 3,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "게시"
+  },
+  {
+    "id": "global-citizen-photo-essay-2026",
+    "활동명": "지금, 세계시민 ON 포토에세이 공모전",
+    "분야": "국제·리더십·사회참여",
+    "과목태그": [
+      "사회·정책",
+      "국제·외교",
+      "예술·디자인"
+    ],
+    "키워드": [
+      "공모전",
+      "에세이·논문",
+      "무료",
+      "전국규모",
+      "개인"
+    ],
+    "대상_원문": "국적과 관계없이 국내에 거주하는 초·중·고생 또는 동일 연령대 청소년",
+    "대상_학년": [
+      "초",
+      "중",
+      "고"
+    ],
+    "지원자격_확인": "국적 무관 국내 거주 청소년 대상으로 명시되어 한국 거주 학생(검정고시·대안경로 포함) 지원 가능. 근거: '국적과 관계없이 국내에 거주하는 초·중·고생이나 같은 연령대 청소년'.",
+    "주최": "외교부, 유네스코 아시아태평양 국제이해교육원(유네스코 아태교육원)",
+    "신청기간_원문": "2026년 7월 13일 ~ 7월 26일",
+    "근거_원문": "외교부·유네스코 아태교육원 공동 개최 '지금, 세계시민 ON 포토에세이 공모전' 접수기간 7월 13일부터 26일까지. 참가 대상: 국적과 관계없이 국내에 거주하는 초·중·고생이나 같은 연령대 청소년.",
+    "마감일": "2026-07-26",
+    "주요일정": "접수 2026-07-13~07-26, 시상식(제11회 세계시민교육 국제회의) 2026-08-27",
+    "비용_원문": "무료(공식 안내에 참가비 언급 없음)",
+    "비용_구분": "무료",
+    "핵심내용": "세계시민 가치를 사진과 에세이로 표현하는 외교부·유네스코 아태교육원 공동 주최 청소년 공모전.",
+    "웹사이트": "https://www.unescoapceiu.org/",
+    "미국입시_관련도": "낮음",
+    "SDC_적합도": 3,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "게시"
+  },
+  {
     "id": "the-concord-review-2026",
     "활동명": "The Concord Review (역사 연구논문 저널) 투고",
     "분야": "글쓰기·논문·인문사회",
     "과목태그": [
-      "인문",
-      "역사"
+      "인문·철학",
+      "사회·정책"
     ],
     "키워드": [
       "에세이·논문",
       "연구",
-      "인문·철학",
-      "개인",
-      "국제대회"
+      "국제대회",
+      "개인"
     ],
     "대상_원문": "중등교육(고교) 졸업 이전에 논문을 완성한 학생",
     "대상_학년": [
+      "중",
       "고"
     ],
-    "지원자격_확인": "전 세계 학생 투고 가능(46개국 게재 이력). 한국 학생 투고 가능. 근거: 'You may submit a paper to The Concord Review if you completed the paper before finishing secondary school.'",
+    "지원자격_확인": "전 세계 학생 투고 가능. 근거: 'You may submit a paper to The Concord Review if you completed the paper before finishing secondary school.' 한국 학생 투고 가능.",
     "주최": "The Concord Review, Inc.",
-    "신청기간_원문": "분기별 마감(상시 투고). August 1 (Winter호), November 1 (Spring호), February 1 (Summer호), May 1 (Fall호). 제출한 논문은 이후 3개 호까지 심사 대상.",
-    "근거_원문": "Deadlines to be considered for specific issues are August 1 (Winter), November 1 (Spring), February 1 (Summer) and May 1 (Fall).",
+    "신청기간_원문": "분기별 마감(상시 투고). August 1 (Winter호), November 1 (Spring호), February 1 (Summer호), May 1 (Fall호).",
+    "근거_원문": "Deadlines to be considered for specific issues are August 1 (Winter), November 1 (Spring), February 1 (Summer) and May 1 (Fall). You must be the sole author. The paper must be in English.",
     "마감일": "2026-08-01",
     "주요일정": "다음 마감 2026-08-01 (Winter호)",
-    "비용_원문": "제출비 $70(eBook) / $110(미국 인쇄본) / $150(국제 인쇄본). 각 제출비에 1년 구독 포함.",
+    "비용_원문": "제출비 $70(eBook) / $110(미국 인쇄본) / $150(국제 인쇄본). 1년 구독 포함.",
     "비용_구분": "유료",
-    "핵심내용": "고교생 역사 연구논문을 심사·게재하는 국제 학술지. 게재율 약 5%.",
+    "핵심내용": "고교생 역사 연구논문을 심사·게재하는 국제 학술지.",
     "웹사이트": "https://tcr.org/submit",
     "미국입시_관련도": "높음",
     "SDC_적합도": 4,
@@ -40,14 +110,13 @@
     "분야": "환경·예술·공익",
     "과목태그": [
       "환경",
-      "예술"
+      "예술·디자인"
     ],
     "키워드": [
       "공모전",
-      "환경",
-      "예술·디자인",
       "무료",
-      "전국규모"
+      "전국규모",
+      "개인"
     ],
     "대상_원문": "신청자격 제한 없음(대한민국 국민 누구나). 일러스트레이션 부문은 학생부(초등부/중·고등부) 별도 운영.",
     "대상_학년": [
@@ -55,8 +124,8 @@
       "중",
       "고"
     ],
-    "지원자격_확인": "대한민국 국민 누구나 참가('신청자격 제한 없음'). 일러스트레이션 부문에 '학생부(초등부/중·고등부)'가 있어 초·중·고 학생 참가 가능.",
-    "주최": "한국환경공단 (공식 페이지 연관 기관)",
+    "지원자격_확인": "대한민국 국민 누구나 참가('신청자격 제한 없음'). 일러스트레이션 부문에 '학생부(초등부/중·고등부)'가 있어 초·중·고 학생(검정고시·대안경로 포함) 참가 가능.",
+    "주최": "한국환경공단",
     "신청기간_원문": "2026년 6월 8일(월) ~ 8월 3일(월) 18시 까지",
     "근거_원문": "접수기간: 2026년 6월 8일(월) ~ 8월 3일(월) 18시 까지. 신청자격: 제한 없음. 일러스트레이션 부문 학생부(초등부/중·고등부).",
     "마감일": "2026-08-03",
@@ -65,39 +134,75 @@
     "비용_구분": "무료",
     "핵심내용": "사진·에코디자인·일러스트레이션 부문으로 환경 인식을 겨루는 전국 규모 환경 공모전.",
     "웹사이트": "https://xn--289a5d925ap8c64jnzlpiz.kr/",
-    "미국입시_관련도": "보통",
-    "SDC_적합도": 4,
+    "미국입시_관련도": "낮음",
+    "SDC_적합도": 3,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
     "게시상태": "게시"
+  },
+  {
+    "id": "seoul-environmental-education-content-contest-2026",
+    "활동명": "2026년 제3회 서울특별시 환경교육 콘텐츠 공모전",
+    "분야": "환경·예술·공익",
+    "과목태그": [
+      "환경",
+      "미디어·영상"
+    ],
+    "키워드": [
+      "공모전",
+      "무료",
+      "팀",
+      "개인"
+    ],
+    "대상_원문": "환경교육에 관심이 있는 전 국민 누구나(개인 또는 팀). 학생 포함.",
+    "대상_학년": [
+      "초",
+      "중",
+      "고"
+    ],
+    "지원자격_확인": "참가자격 제한 없이 '전 국민 누구나(개인 또는 팀)' 참가 가능하여 한국 거주 초·중·고 학생(검정고시·대안경로 포함) 참가 가능. 근거: '환경교육에 관심이 있는 전 국민 누구나(개인 또는 팀)'.",
+    "주최": "서울특별시환경교육센터 (후원: 기후에너지환경부, 서울특별시)",
+    "신청기간_원문": "2026년 3월 31일(화) ~ 8월 4일(화) 18시까지",
+    "근거_원문": "공모 기간: 3월 31일(화) ~ 8월 4일(화) 18시까지. 참가자격: 환경교육에 관심이 있는 전 국민 누구나(개인 또는 팀).",
+    "마감일": "2026-08-04",
+    "주요일정": "접수 마감 2026-08-04",
+    "비용_원문": "무료",
+    "비용_구분": "무료",
+    "핵심내용": "자원순환(생활폐기물 감축·지속가능한 소비 실천)을 주제로 한 교구·영상(롱폼/숏폼) 콘텐츠를 겨루는 서울시 환경교육 공모전.",
+    "웹사이트": "https://seec.or.kr/bbs/board.php?bo_table=notice&wr_id=264",
+    "미국입시_관련도": "낮음",
+    "SDC_적합도": 3,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "제외(링크오류: UNABLE_TO_VERIFY_LEAF_SIGNATURE)"
   },
   {
     "id": "hir-academic-writing-contest-2026",
     "활동명": "Harvard International Review Academic Writing Contest 2026",
     "분야": "글쓰기·논문·인문사회",
     "과목태그": [
-      "인문",
-      "사회"
+      "인문·철학",
+      "사회·정책",
+      "국제·외교"
     ],
     "키워드": [
       "에세이·논문",
-      "국제·외교",
-      "사회·정책",
-      "개인",
-      "국제대회"
+      "공모전",
+      "국제대회",
+      "개인"
     ],
     "대상_원문": "7~12학년 학생(미국 외 국가 학생 포함)",
     "대상_학년": [
       "중",
       "고"
     ],
-    "지원자격_확인": "미국 외 국가 학생도 투고 가능. 한국 학생 지원 가능. 근거: 'Students in countries outside of the United States (grades 7-12) are also welcome to submit.' 제출은 영어(미국식 철자).",
+    "지원자격_확인": "미국 외 국가 학생도 투고 가능. 근거: 'Students in countries outside of the United States (grades 7-12) are also welcome to submit.' 한국 학생 지원 가능.",
     "주최": "Harvard International Review (HIR)",
-    "신청기간_원문": "Summer 2026 마감 August 24, 2026 / Fall-Winter 2026 마감 January 2, 2027 (Spring 2026 마감 May 31, 2026은 종료)",
+    "신청기간_원문": "Summer 2026 마감 August 24, 2026 / Fall-Winter 2026 마감 January 2, 2027",
     "근거_원문": "Summer 2026: Article Submission Deadline: August 24, 2026. Fall/Winter 2026: Article Submission Deadline: January 2, 2027. Students in countries outside of the United States (grades 7-12) are also welcome to submit.",
     "마감일": "2026-08-24",
     "주요일정": "Summer 2026호 마감 2026-08-24",
-    "비용_원문": "공식 페이지에서 참가비 확인 안 됨(추후 확인 필요)",
+    "비용_원문": "등록·참가비 존재('contestants are requested to register and pay before becoming eligible to submit'), 구체적 금액은 등록 페이지에서 확인 필요",
     "비용_구분": "유료",
     "핵심내용": "국제관계·외교 주제의 단편 학술 아티클을 겨루는 하버드국제리뷰 주최 글쓰기 대회.",
     "웹사이트": "https://hir.harvard.edu/contest/",
@@ -108,36 +213,73 @@
     "게시상태": "게시"
   },
   {
+    "id": "fss-financial-contest-2026",
+    "활동명": "제21회 금융공모전 (청소년 금융창작물 부문 등)",
+    "분야": "환경·예술·공익",
+    "과목태그": [
+      "경제·금융",
+      "미디어·영상"
+    ],
+    "키워드": [
+      "공모전",
+      "무료",
+      "전국규모",
+      "개인"
+    ],
+    "대상_원문": "초·중·고등학교 재학생과 동일 연령대 청소년 (청소년 부문). 대학생·성인·기관 부문도 별도 운영.",
+    "대상_학년": [
+      "초",
+      "중",
+      "고"
+    ],
+    "지원자격_확인": "국적 제한 없이 초·중·고 재학생 및 동일 연령대 청소년을 대상으로 명시. 한국 거주 학생(검정고시·대안경로 포함) 참가 가능. 근거: '청소년 금융창작물은 초·중·고 재학생과 동일 연령 청소년을 대상으로 하며, 일상생활 속 금융 경험과 금융의 중요성 등을 주제로 글짓기·동영상·포스터·만화 작품을 공모한다.'",
+    "주최": "금융감독원",
+    "신청기간_원문": "2026년 6월 17일 ~ 9월 2일 오후 5시까지",
+    "근거_원문": "공모 기간은 오는 17일부터 9월 2일 오후 5시까지다. 청소년 금융창작물은 초·중·고 재학생과 동일 연령 청소년을 대상으로 한다. 금융감독원 e-금융교육센터를 통해 참가 신청과 함께 작품을 제출할 수 있다.",
+    "마감일": "2026-09-02",
+    "주요일정": "접수 마감 2026-09-02, 시상 2026년 11월 하순",
+    "비용_원문": "무료",
+    "비용_구분": "무료",
+    "핵심내용": "금융에 대한 관심과 이해를 높이기 위해 글짓기·UCC·포스터·만화 등으로 참여하는 금융감독원 주최 전 국민 대상 공모전(청소년 부문 별도 운영).",
+    "웹사이트": "https://www.fss.or.kr/edu",
+    "미국입시_관련도": "낮음",
+    "SDC_적합도": 3,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "게시"
+  },
+  {
     "id": "breakthrough-junior-challenge-2026",
     "활동명": "Breakthrough Junior Challenge 2026",
     "분야": "과학·공학·수학생명·AI",
     "과목태그": [
       "과학",
-      "수학"
+      "물리·화학",
+      "생명·의학",
+      "수학",
+      "미디어·영상"
     ],
     "키워드": [
       "공모전",
-      "과학",
-      "생명·의학",
-      "미디어·영상",
-      "무료",
+      "국제대회",
       "개인",
-      "국제대회"
+      "무료",
+      "미디어·영상"
     ],
     "대상_원문": "만 13~18세 학생(2026-05-11 기준 13세 이상, 2026-10-01 기준 만 19세 미만). 개인 참가만 가능.",
     "대상_학년": [
       "중",
       "고"
     ],
-    "지원자격_확인": "국제 참가 허용. 미국의 포괄적 경제제재 대상 국가·지역 거주자만 배제되며 그 외 해외 학생은 지원 가능. 한국 학생 지원 가능. 근거: 규정상 'individuals in any country or region that is subject to comprehensive U.S. economic sanctions'만 제외.",
+    "지원자격_확인": "글로벌 대회(global science video competition)로 국제 학생 참가 가능. 근거: 'The Breakthrough Junior Challenge is an annual, global science video competition for high-school students.' 한국 학생도 지원 가능.",
     "주최": "Breakthrough Prize Foundation",
-    "신청기간_원문": "제출 마감: September 15, 2026 (동료평가는 September 30, 2026까지 최소 5개 이상 평가 필요)",
-    "근거_원문": "ALL ENTRIES MUST BE RECEIVED BY September 15, 2026 at 11:59 PM PDT. Participants must be between the ages of 13 and 18 ... 13 years of age by May 11, 2026 ... cannot be older than 18 years of age (not yet 19) on October 1, 2026.",
+    "신청기간_원문": "제출 마감: September 15, 2026",
+    "근거_원문": "All applications and submission videos must be received by September 15, 2026 at 11:59 PM PDT.",
     "마감일": "2026-09-15",
-    "주요일정": "제출 마감 2026-09-15, 동료평가(Peer-to-Peer Review) 2026-09-30",
-    "비용_원문": "공식 요강에 참가비 명시 없음(무료)",
+    "주요일정": "제출 마감 2026-09-15",
+    "비용_원문": "공식 페이지에 참가비 명시 없음(무료로 추정)",
     "비용_구분": "무료",
-    "핵심내용": "생명과학·물리·수학 개념을 2분 이내 영상으로 설명하는 국제 대회(개인전).",
+    "핵심내용": "생명과학·물리·수학 개념을 짧은 영상으로 설명하는 국제 대회(개인전).",
     "웹사이트": "https://breakthroughjuniorchallenge.org/",
     "미국입시_관련도": "높음",
     "SDC_적합도": 5,
@@ -154,7 +296,6 @@
     ],
     "키워드": [
       "올림피아드",
-      "수학",
       "국제대회",
       "개인"
     ],
@@ -163,18 +304,18 @@
       "중",
       "고"
     ],
-    "지원자격_확인": "공식 페이지에 국적·거주 제한 문구 없음(참가는 학교·기관 등 공인 시험장의 competition manager가 등록하는 방식). 한국은 국내 공인 시험장을 통해 응시 가능. 개인이 직접 등록하지 않음.",
+    "지원자격_확인": "미국·캐나다 외 거주자는 AMC International 프로그램의 International Group Leader(IGL)를 통해 등록. 한국은 국가별 공인 파트너(IGL)를 통해 응시 가능. 근거: 'For the 2025-2026 competition cycle, the MAA AMC competitions will only be offered to schools with USA, Canada, APO/FPO/DPO mailing addresses, and schools registered with one of our AMC international partners.' (AMC International 페이지 안내)",
     "주최": "MAA (Mathematical Association of America)",
     "신청기간_원문": "AMC 10/12 등록 마감: Early Bird September 30, 2026 ($55) / Regular October 15, 2026 ($75) / Late October 28, 2026 ($115). AMC 8 등록 마감: Early Bird October 28, 2026 ($55) / Regular January 5, 2027 ($75) / Late January 14, 2027 ($115).",
-    "근거_원문": "AMC 12 A / AMC 10 A: November 5, 2026; AMC 12 B / AMC 10 B: November 13, 2026. Registration Deadlines — Early Bird: September 30, 2026 ($55 registration fee); Regular: October 15, 2026 ($75 registration fee); Late: October 28, 2026 ($115 registration fee). AMC 8: January 21 - 27, 2027.",
-    "마감일": "2026-10-28",
-    "주요일정": "AMC 10/12 A: 2026-11-05, AMC 10/12 B: 2026-11-13, AMC 8: 2027-01-21~27",
-    "비용_원문": "등록비(학교·기관 단위) 시험당 $55~$115. 학생 개인 응시료는 시험장별 상이.",
+    "근거_원문": "AMC 12 A Competition Date: November 5, 2026; AMC 10 A: Nov. 5, 2026; AMC 8 Competition Dates: January 21 - 27, 2027. Registration deadlines — Early Bird: September 30, 2026 ($55); Regular: October 15, 2026 ($75); Late: October 28, 2026 ($115).",
+    "마감일": "2026-09-30",
+    "주요일정": "AMC 10/12 A: 2026-11-05, AMC 10/12 B: 2026-11-13(추정), AMC 8: 2027-01-21~27",
+    "비용_원문": "등록비(학교·기관 단위) 시험당 $55~$115. 개인 응시료는 시험장(IGL)별 상이.",
     "비용_구분": "유료",
     "핵심내용": "MAA가 주최하는 국제 수학경시대회. AMC 8/10/12로 나뉘며 상위자는 AIME·USA(J)MO 선발 경로로 이어진다.",
     "웹사이트": "https://maa.org/amcreg/",
     "미국입시_관련도": "높음",
-    "SDC_적합도": 3,
+    "SDC_적합도": 4,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
     "게시상태": "게시"
@@ -183,12 +324,15 @@
     "id": "1365-volunteer-portal",
     "활동명": "1365 자원봉사포털 청소년 자원봉사",
     "분야": "스포츠·문화·봉사",
-    "과목태그": [],
+    "과목태그": [
+      "사회·정책"
+    ],
     "키워드": [
       "봉사",
-      "무료",
+      "온라인",
       "상시모집",
-      "전국규모"
+      "무료",
+      "개인"
     ],
     "대상_원문": "청소년(초·중·고 포함) 및 일반 국민",
     "대상_학년": [
@@ -196,36 +340,71 @@
       "중",
       "고"
     ],
-    "지원자격_확인": "한국 거주 청소년 상시 참여 가능. NEIS(교육행정정보시스템) 연계로 학생부 반영. 근거: '청소년자원봉사활동' 별도 메뉴 제공 및 '자원봉사실적 나이스 연계' 서비스.",
+    "지원자격_확인": "한국 거주 청소년 상시 참여 가능. 청소년자원봉사 두볼(Dovol) 별도 시스템으로 NEIS(학생부) 실적 전송 가능. 근거: '두볼(Dovol)은 Do Volunteer의 약자로 국내 유일 청소년을 위한 자원봉사시스템이며, 봉사활동 정보검색, 신청, 확인서 출력은 물론 1365나눔포털을 통해 나이스(학생생활기록부)로 실적 전송이 가능하다.'",
     "주최": "행정안전부 (재단법인 한국중앙자원봉사센터 운영)",
     "신청기간_원문": "상시모집",
-    "근거_원문": "운영기관: 행정안전부, 재단법인 한국중앙자원봉사센터. 포털은 '청소년자원봉사활동' 섹션을 별도 제공하며 청소년도 지속적으로 봉사활동을 검색·신청할 수 있고, '자원봉사실적 나이스 연계(NEIS 연계 서비스)'를 제공한다.",
+    "근거_원문": "1365 자원봉사포털은 전국의 봉사활동 정보를 한곳에 모아 신청부터 실적확인까지 원스톱으로 제공하는 국가 공식 플랫폼. 청소년, 성인, 기업·단체용 봉사활동이 구분되어 있으며 청소년의 경우 소속학교와 활동내역을 선택하여 NEIS로 실적을 전송할 수 있다.",
     "마감일": null,
     "주요일정": "상시(지역·분야·시간·자격별 검색 후 개별 신청)",
     "비용_원문": "무료",
     "비용_구분": "무료",
-    "핵심내용": "전국 자원봉사 정보를 통합 제공하는 정부 포털. 검색·신청·실적 확인·확인서 발급을 원스톱 제공하며 NEIS 연계로 학생부 반영.",
+    "핵심내용": "전국 자원봉사 정보를 통합 제공하는 정부 포털. 청소년자원봉사 두볼(Dovol) 시스템으로 NEIS 연계 실적 전송을 지원한다.",
     "웹사이트": "https://www.1365.go.kr/vols/main.do",
     "미국입시_관련도": "낮음",
     "SDC_적합도": 3,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
-    "게시상태": "게시"
+    "게시상태": "제외(링크오류: UND_ERR_CONNECT_TIMEOUT)"
+  },
+  {
+    "id": "duke-of-edinburgh-award-korea",
+    "활동명": "국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)",
+    "분야": "스포츠·문화·봉사",
+    "과목태그": [
+      "사회·정책"
+    ],
+    "키워드": [
+      "봉사",
+      "캠프·체험",
+      "상시모집",
+      "국제대회",
+      "개인"
+    ],
+    "대상_원문": "14세 이상 24세 이하 청소년",
+    "대상_학년": [
+      "중",
+      "고"
+    ],
+    "지원자격_확인": "한국청소년활동진흥원(여성가족부 산하 공공기관)이 국내 운영기관으로 지정되어 한국 거주 청소년(검정고시·대안경로 포함) e청소년 포털을 통해 상시 신청 가능. 근거: '14세 이상 24세 이하 청소년' 참가 대상, 'e청소년 포탈 홈페이지(www.youth.go.kr)를 통해 접수'.",
+    "주최": "The Duke of Edinburgh's International Award Foundation(국제본부) / 한국청소년활동진흥원(국내 운영기관)",
+    "신청기간_원문": "상시모집(e청소년 포털을 통한 연중 접수)",
+    "근거_원문": "14세 이상 24세 이하 청소년이 참여할 수 있다. e청소년 포탈 홈페이지(www.youth.go.kr)를 통해 접수. 한국청소년활동진흥원이 국내 운영 기관으로 지정되어 있다.",
+    "마감일": null,
+    "주요일정": "상시(봉사·자기개발·신체단련·탐험·합숙활동 등급별 6~18개월 수행)",
+    "비용_원문": "가입비 20,000원(최초 1회) + 등급별 참가비(동장 10,000원/은장 20,000원/금장 30,000원)",
+    "비용_구분": "소액",
+    "핵심내용": "1956년 영국에서 창설되어 130여 개국에서 운영되는 국제 청소년 자기성장 프로그램. 봉사·자기개발·신체단련·탐험 활동을 등급별로 수행해 포상을 받는다.",
+    "웹사이트": "https://www.youth.go.kr/youth/youth/contents/intrlSccesRwardIntroForm.yt",
+    "미국입시_관련도": "보통",
+    "SDC_적합도": 4,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "제외(링크오류: UND_ERR_CONNECT_TIMEOUT)"
   },
   {
     "id": "iearn",
     "활동명": "iEARN (International Education and Resource Network) 글로벌 협업 프로젝트",
     "분야": "국제·리더십·사회참여",
     "과목태그": [
-      "국제",
-      "사회"
+      "사회·정책",
+      "국제·외교",
+      "문화"
     ],
     "키워드": [
       "온라인",
-      "국제·외교",
-      "사회·정책",
+      "상시모집",
       "팀",
-      "상시모집"
+      "국제대회"
     ],
     "대상_원문": "전 세계 학생·교사(초·중·고 및 청소년 기관)",
     "대상_학년": [
@@ -233,18 +412,18 @@
       "중",
       "고"
     ],
-    "지원자격_확인": "140개국 학교·청소년기관이 참여하는 국제 네트워크로 한국 학생·학교 참여 가능. 근거: 'over 30,000 schools and youth organizations' / '140 countries' (페이지에 한국 명시는 없으나 글로벌 네트워크).",
+    "지원자격_확인": "140개국 학교·청소년기관이 참여하는 국제 네트워크. 국가 목록에 'iEARN-South Korea'가 확인되어 한국 학교·학생 참여 가능. 근거: 'Since 1988, iEARN has grown to include over 30,000 schools and youth organizations in more than 140 countries.' + 국가 선택 목록에 iEARN-South Korea 확인.",
     "주최": "iEARN (International Education and Resource Network, 1988년 설립 비영리 국제교육네트워크)",
     "신청기간_원문": "상시모집(정규 수업·방과후 프로그램으로 연중 참여)",
-    "근거_원문": "Learn with the world, not just about it. iEARN enables students and educators to participate in global project-based learning and virtual exchange activities ... since 1988 ... 140 countries.",
+    "근거_원문": "Since 1988, iEARN has grown to include over 30,000 schools and youth organizations in more than 140 countries. Learn with the world, not just about it.",
     "마감일": null,
     "주요일정": "상시(글로벌 협업 프로젝트 기획·참여)",
     "비용_원문": "공식 페이지 미확인(회원·프로젝트별 상이)",
     "비용_구분": "유료",
-    "핵심내용": "140개국 학교가 참여하는 국제 협업·가상교류 프로젝트 네트워크. 학생이 사회문제 해결형 글로벌 프로젝트를 기획·참여.",
+    "핵심내용": "140개국 학교가 참여하는 국제 협업·가상교류 프로젝트 네트워크. 한국(iEARN-South Korea)도 참여국.",
     "웹사이트": "https://iearn.org/",
     "미국입시_관련도": "낮음",
-    "SDC_적합도": 2,
+    "SDC_적합도": 3,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
     "게시상태": "게시"
@@ -254,14 +433,15 @@
     "활동명": "NASA Citizen Science (시민과학 프로젝트)",
     "분야": "과학·공학·수학생명·AI",
     "과목태그": [
-      "과학"
+      "과학",
+      "공학"
     ],
     "키워드": [
       "연구",
       "온라인",
-      "과학",
       "무료",
-      "상시모집"
+      "국제대회",
+      "개인"
     ],
     "대상_원문": "누구나(시민권 불필요). 청소년 포함 전 세계 참여자.",
     "대상_학년": [
@@ -269,7 +449,7 @@
       "중",
       "고"
     ],
-    "지원자격_확인": "국적·시민권 무관하게 참여 가능. 다국어 지원. 한국 학생 참여 가능. 근거: 'These 46 NASA science projects below are open to everyone (no citizenship required).'",
+    "지원자격_확인": "국적·시민권 무관하게 참여 가능. 한국 학생 참여 가능. 근거: 'These 46 NASA science projects below are open to everyone (no citizenship required).'",
     "주최": "NASA (미국 항공우주국)",
     "신청기간_원문": "상시모집(프로젝트별 연중 참여)",
     "근거_원문": "These 46 NASA science projects below are open to everyone (no citizenship required).",
@@ -277,7 +457,7 @@
     "주요일정": "상시(프로젝트별 관측·데이터 분석 참여)",
     "비용_원문": "무료(참가비 언급 없음)",
     "비용_구분": "무료",
-    "핵심내용": "NASA 연구진과 함께 천문·지구과학 등 실제 과학 프로젝트에 자원 참여하는 시민과학 프로그램(46개 프로젝트 운영).",
+    "핵심내용": "NASA 연구진과 함께 천문·지구과학 등 실제 과학 프로젝트에 자원 참여하는 시민과학 프로그램.",
     "웹사이트": "https://science.nasa.gov/citizen-science/",
     "미국입시_관련도": "보통",
     "SDC_적합도": 4,
@@ -331,27 +511,26 @@
     ],
     "키워드": [
       "연구",
-      "온라인",
-      "환경",
-      "과학",
+      "캠프·체험",
+      "상시모집",
       "무료",
-      "상시모집"
+      "국제대회"
     ],
-    "대상_원문": "초등~고등 학생 및 상위 교육단계(환경 데이터 수집 참여)",
+    "대상_원문": "초등~고등 학생 및 교사(환경 데이터 수집 참여)",
     "대상_학년": [
       "초",
       "중",
       "고"
     ],
-    "지원자격_확인": "전 세계 지역(Africa, Asia and Pacific 등) 참여 구조. 한국 학생 참여는 GLOBE 파트너 학교·교사 등록을 통해 가능(페이지에 한국 명시는 없음, 아시아·태평양 지역 참여 확인).",
+    "지원자격_확인": "국가 선택 목록에 'Republic of Korea'가 'ASIA AND PACIFIC' 지역 참여국으로 명시되어 한국 학교·학생 참여 가능. 근거: 국가 목록에서 'Republic of Korea'는 'ASIA AND PACIFIC' 지역에 포함된 참여국으로 확인됨.",
     "주최": "NASA 후원, NSF·NOAA·미 국무부 지원",
     "신청기간_원문": "상시모집(학교·교사 등록을 통한 연중 데이터 수집)",
-    "근거_원문": "Global Learning and Observations to Benefit the Environment - A Worldwide Science and Education Program. Sponsored by NASA and supported by the National Science Foundation, NOAA, and the U.S. Department of State.",
+    "근거_원문": "Global Learning and Observations to Benefit the Environment - A Worldwide Science and Education Program. Sponsored by NASA and supported by the National Science Foundation, NOAA, and the U.S. Department of State. 1,287,232 GLOBE Citizen Scientists 중 918,085명이 학생이며 43,319개 학교·기관이 참여.",
     "마감일": null,
-    "주요일정": "상시(대기·생물권·수권·토양 프로토콜 기반 관측)",
+    "주요일정": "상시(대기·생물권·수권·토양 프로토콜 기반 관측, GLOBE Observer 앱 활용)",
     "비용_원문": "무료(참가비 언급 없음)",
     "비용_구분": "무료",
-    "핵심내용": "전 세계 학생이 표준 프로토콜로 환경 데이터를 관측·공유하는 NASA 후원 국제 환경 과학·교육 프로그램.",
+    "핵심내용": "전 세계 학생이 표준 프로토콜로 환경 데이터를 관측·공유하는 NASA 후원 국제 환경 과학·교육 프로그램. 한국(Republic of Korea)도 참여국.",
     "웹사이트": "https://www.globe.gov/",
     "미국입시_관련도": "보통",
     "SDC_적합도": 4,
@@ -364,31 +543,66 @@
     "활동명": "Wharton Global High School Investment Competition (2026-2027)",
     "분야": "국제·리더십·사회참여",
     "과목태그": [
-      "경제",
-      "금융"
+      "경제·금융"
     ],
     "키워드": [
       "공모전",
-      "경제·금융",
-      "팀",
-      "국제대회"
+      "국제대회",
+      "팀"
     ],
     "대상_원문": "고등학생(9~12학년), 교사 지도 하 4~6인 팀",
     "대상_학년": [
       "고"
     ],
-    "지원자격_확인": "전 세계 팀 대상('teams from around the world', 다수 국가 참가). 한국 고교 팀 참가 가능(글로벌 대회). 근거: 'high school students (9th to 12th grade)' ... 'against teams from around the world'.",
+    "지원자격_확인": "전 세계 팀 대상('teams from around the world'). 한국 고교 팀 참가 가능(글로벌 대회). 근거: 'a free, experiential investment challenge for high school students (9th to 12th grade) and teachers' ... 'Teams from around the world'.",
     "주최": "Wharton Global Youth Program, University of Pennsylvania",
     "신청기간_원문": "Registration for the 2026-2027 Competition will open on August 10.",
-    "근거_원문": "Registration for the 2026-2027 Competition will open on August 10. The competition is for high school students (9th to 12th grade) who work in teams of four to six, guided by a teacher as their advisor.",
+    "근거_원문": "Registration for the 2026-2027 Competition will open on August 10. It's free and fun!",
     "마감일": null,
     "주요일정": "2026-2027 시즌 등록 개시 2026-08-10",
-    "비용_원문": "공식 페이지에서 참가비 확인 안 됨(추후 확인 필요)",
-    "비용_구분": "유료",
+    "비용_원문": "무료('It's free and fun!')",
+    "비용_구분": "무료",
     "핵심내용": "모의 주식 포트폴리오를 운용하고 투자전략 보고서를 겨루는 와튼 주최 글로벌 고교 투자대회(팀전).",
     "웹사이트": "https://globalyouth.wharton.upenn.edu/competitions/investment-competition/",
     "미국입시_관련도": "높음",
-    "SDC_적합도": 4,
+    "SDC_적합도": 5,
+    "수집월": "2026-07",
+    "갱신일": "2026-07-07",
+    "게시상태": "게시"
+  },
+  {
+    "id": "world-scholars-cup-2026",
+    "활동명": "World Scholar's Cup 2026 (Korea Round, Seoul Global Round)",
+    "분야": "국제·리더십·사회참여",
+    "과목태그": [
+      "인문·철학",
+      "사회·정책",
+      "국제·외교"
+    ],
+    "키워드": [
+      "토론·스피치",
+      "공모전",
+      "국제대회",
+      "팀"
+    ],
+    "대상_원문": "초·중·고 학생(팀 참가), 국가/지역별 라운드 참가",
+    "대상_학년": [
+      "초",
+      "중",
+      "고"
+    ],
+    "지원자격_확인": "전 세계 학생 대상 국제 대회로 한국에서 지역 라운드(Korea University, Seoul Global Round)가 열려 한국 학생 참가 가능. 근거: 'Seoul Global Round - Korea University, July 24-29, 2026' 및 온라인 등록 폼에 국가/지역 선택란 존재.",
+    "주최": "World Scholar's Cup",
+    "신청기간_원문": "공식 웹사이트를 통한 상시 등록(라운드별 조기 마감 가능)",
+    "근거_원문": "Seoul Global Round · Korea University, July 24-29, 2026 (scholarscup.org 캘린더 페이지)",
+    "마감일": null,
+    "주요일정": "Korea (Seoul Global) Round: 2026-07-24 ~ 2026-07-29",
+    "비용_원문": "공식 페이지에서 구체 참가비 확인 안 됨(라운드·팀 등록비 존재, 문의 필요)",
+    "비용_구분": "유료",
+    "핵심내용": "토론·에세이·퀴즈·협동 프레젠테이션 등을 겨루는 국제 학술 대회. 한국(서울) 라운드가 매년 개최된다.",
+    "웹사이트": "https://www.scholarscup.org/",
+    "미국입시_관련도": "보통",
+    "SDC_적합도": 3,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
     "게시상태": "게시"
@@ -398,23 +612,23 @@
     "활동명": "Zooniverse (온라인 시민과학 연구 참여)",
     "분야": "과학·공학·수학생명·AI",
     "과목태그": [
-      "과학"
+      "과학",
+      "생명·의학"
     ],
     "키워드": [
       "연구",
       "온라인",
-      "과학",
       "무료",
-      "개인",
-      "상시모집"
+      "국제대회",
+      "개인"
     ],
-    "대상_원문": "누구나(전문 배경·훈련 불필요). 초·중·고 포함 전 연령.",
+    "대상_원문": "누구나(전문 배경·훈련 불필요). 16세 미만은 보호자 동의 하 계정 생성 가능.",
     "대상_학년": [
       "초",
       "중",
       "고"
     ],
-    "지원자격_확인": "전 세계 누구나 온라인 참여 가능. 한국 학생 참여 가능. 근거: 'You don't need any specialized background, training, or expertise to participate in Zooniverse projects.' / 자신의 컴퓨터에서 원하는 시간에 참여.",
+    "지원자격_확인": "전 세계 누구나 온라인 참여 가능(국적 제한 없음). 16세 미만은 부모/보호자가 계정을 등록해줄 수 있음. 근거: 'You don't need any specialized background, training, or expertise to participate in Zooniverse projects.' / 'children under the age of 16 need parent or guardian approval before creating their own Zooniverse account.'",
     "주최": "The Zooniverse (Adler Planetarium, University of Minnesota, University of Oxford 파트너)",
     "신청기간_원문": "상시모집(계정 생성 후 언제든 참여)",
     "근거_원문": "The Zooniverse is the world's largest and most popular platform for people-powered research. You don't need any specialized background, training, or expertise to participate in Zooniverse projects.",
@@ -424,8 +638,8 @@
     "비용_구분": "무료",
     "핵심내용": "천문·생태·기후 등 실제 연구 데이터를 자원자가 분류·분석하는 세계 최대 시민과학 플랫폼.",
     "웹사이트": "https://www.zooniverse.org/",
-    "미국입시_관련도": "낮음",
-    "SDC_적합도": 3,
+    "미국입시_관련도": "보통",
+    "SDC_적합도": 4,
     "수집월": "2026-07",
     "갱신일": "2026-07-07",
     "게시상태": "게시"
