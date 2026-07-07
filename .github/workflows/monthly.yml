@@ -43,7 +43,7 @@ jobs:
       # --- LLM 단계: 리서치 (사실 정보 수집) ---
       - name: 리서치
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: |
           claude -p "당신은 SDC ECA 리서치 에이전트입니다. .claude/agents/researcher.md 를 읽고 그대로 따르세요. data/sources.json, data/keywords.json, CLAUDE.md 도 읽고 준수하세요. 이번 달은 ${SDC_MONTH} 입니다. 마감이 이번 달 1일 이후이거나 상시모집인 활동만, 각 활동을 공식 페이지 WebFetch로 확인하고 근거_원문을 남겨 data/raw/${SDC_MONTH}.json (객체 배열)로 저장하세요. 사실 정보 칸만 채우고 판정 칸은 비웁니다. id는 영문슬러그-연도. 결과 보장 표현 금지, HSS/Holyseas 언급 절대 금지, 한국 학생 지원 자격 확인. 오직 data/raw 에만 쓰세요." \
@@ -52,7 +52,7 @@ jobs:
       # --- LLM 단계: 큐레이션 (판정·가공) ---
       - name: 큐레이션
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: |
           claude -p "당신은 SDC ECA 큐레이터 에이전트입니다. .claude/agents/curator.md 를 읽고 그대로 따르세요. data/keywords.json, CLAUDE.md(별점 계산식) 도 준수하세요. data/raw/${SDC_MONTH}.json 을 읽어 판정 칸(대상_학년·마감일·비용_구분·과목태그·키워드·미국입시_관련도·SDC_적합도)을 채워 data/curated/${SDC_MONTH}.json (객체 배열)로 저장하세요. 키워드는 keywords.json 사전 안에서만. 별점은 4기준 계산식 그대로. HSS/Holyseas 금지. 웹검색·git 금지, 오직 data/curated 에만 쓰세요." \
