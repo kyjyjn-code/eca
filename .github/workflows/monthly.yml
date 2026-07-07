@@ -75,14 +75,29 @@ jobs:
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: node scripts/pr-summary.js > pr-body.md
 
+      # --- 안전장치: 게시 건수 확인. 기준(10건) 미만이면 PR을 초안(Draft)으로 만들어 실수 머지 방지 ---
+      - name: 게시 건수 게이트
+        id: gate
+        run: |
+          CNT=$(node -e "const fs=require('fs'); let d=[]; try{ d=JSON.parse(fs.readFileSync('docs/data.json','utf8')); }catch(e){}; process.stdout.write(String(d.length))")
+          echo "count=$CNT" >> "$GITHUB_OUTPUT"
+          if [ "$CNT" -lt 10 ]; then
+            echo "draft=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️ 게시 $CNT 건 — 기준(10건) 미만이라 PR을 초안(Draft)으로 만듭니다."
+          else
+            echo "draft=false" >> "$GITHUB_OUTPUT"
+            echo "게시 $CNT 건 — 정상."
+          fi
+
       # --- 게시용 PR (라이브 직접 배포 아님. 사람이 승인·머지해야 반영) ---
       - name: 게시용 PR 생성
         uses: peter-evans/create-pull-request@v6
         with:
           branch: eca/update-${{ steps.month.outputs.value }}
-          title: "ECA 월간 업데이트 — ${{ steps.month.outputs.value }}"
+          title: "ECA 월간 업데이트 — ${{ steps.month.outputs.value }} (게시 ${{ steps.gate.outputs.count }}건)"
           body-path: pr-body.md
           commit-message: "chore(eca): ${{ steps.month.outputs.value }} 월간 업데이트"
+          draft: ${{ steps.gate.outputs.draft }}
           add-paths: |
             data/master.json
             data/raw

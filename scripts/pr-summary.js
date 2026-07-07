@@ -7,7 +7,7 @@ const m = month();
 const master = readJson(P.master, []);
 const published = master.filter((x) => typeof x.게시상태 === 'string' && x.게시상태.startsWith('게시'));
 const merge = readJson(path.join(P.reports, `merge-${m}.json`), { 신규: [], 갱신: [], 제거_마감경과: [] });
-const links = readJson(path.join(P.reports, `links-${m}.json`), { 제외: [], 복구후보: [] });
+const links = readJson(path.join(P.reports, `links-${m}.json`), { 제외: [], 복구후보: [], 확인필요: [] });
 
 const GATE = 10;
 const out = [];
@@ -33,6 +33,12 @@ out.push('');
 out.push(`## 🔗 링크 이상으로 게시 제외 ${links.제외.length}건`);
 out.push('_(삭제가 아니라 게시상태만 변경 — 오탐이면 다음 실행에서 자동 복구됩니다.)_');
 if (links.제외.length) for (const x of links.제외) out.push(`- ${x.활동명} — ${x.사유}`);
+else out.push('_없음_');
+out.push('');
+
+out.push(`## ⚠️ 링크 확인 필요 ${(links.확인필요 || []).length}건`);
+out.push('_(신뢰 도메인이라 게시는 유지했으나 접속 확인이 안 됨 — 봇 차단·일시 오류일 수 있음. 담당자 눈으로 확인 권장.)_');
+if ((links.확인필요 || []).length) for (const x of links.확인필요) out.push(`- ${x.활동명} — ${x.사유} (${x.웹사이트})`);
 else out.push('_없음_');
 out.push('');
 
