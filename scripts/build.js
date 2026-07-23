@@ -59,9 +59,17 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root{ --blue:#eaf1ff; --blue-d:#3b5ba5; --mint:#e6fbf1; --peach:#fff0e6; --lav:#f0ebff;
-    --ink:#2b3a67; --sub:#5a6b8c; --line:#e7ecf5; --card:#ffffff; --bg:#fbfcff; }
+    --ink:#2b3a67; --sub:#5a6b8c; --line:#e7ecf5; --card:#ffffff; --bg:#fbfcff;
+    /* 조작 요소의 경계는 3:1 이상이어야 한다 — --line(1.15:1)은 장식용 테두리에만 쓴다 */
+    --line-ui:#7B8AA6;
+    /* 흰 글자를 얹거나 본문으로 쓰는 앰버 — #e6a532는 2.1:1로 미달 */
+    --amber-d:#8A6100; }
   *{box-sizing:border-box}
-  body{margin:0;font-family:"Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  body{margin:0;font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  :focus-visible{outline:2px solid var(--blue-d);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;scroll-behavior:auto !important} }
   .wrap{max-width:1080px;margin:0 auto;padding:16px}
   header{padding:24px 0 8px}
   h1{font-size:26px;margin:0 0 4px}
@@ -69,19 +77,29 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   .notice{background:var(--blue);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:13px;color:var(--sub)}
   .notice strong{color:var(--ink)}
   .controls{background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
-  input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px}
+  input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line-ui);border-radius:12px;font-size:16px;
+    font-family:inherit;min-height:48px}
+  .flabel{display:block;font-size:13px;font-weight:700;color:var(--blue-d);margin:0 0 5px}
   .filters{margin-top:8px}
   .fgroup{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
   .glabel{flex:0 0 74px;white-space:nowrap;text-align:center;font-size:15px;font-weight:700;color:var(--blue-d);letter-spacing:.02em}
   .chips{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 auto;min-width:0}
-  .datein{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit}
-  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;user-select:none;transition:.12s}
-  .chip:hover{border-color:var(--blue-d)}
-  .chip.on{background:var(--blue-d);color:#fff;border-color:var(--blue-d);font-weight:600;box-shadow:0 1px 5px rgba(59,91,165,.35)}
-  .chip.kw.on{background:#7c5fd3;color:#fff;border-color:#7c5fd3}
-  .chip.star.on{background:#e6a532;color:#fff;border-color:#e6a532}
-  .toggle{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:6px;cursor:pointer}
-  .count{color:var(--sub);font-size:13px;margin:10px 0}
+  .datein{padding:9px 10px;border:1px solid var(--line-ui);border-radius:8px;font-size:14px;font-family:inherit;min-height:44px}
+  .chip{border:1px solid var(--line-ui);background:#fff;color:var(--ink);border-radius:999px;padding:0 15px;
+    min-height:44px;display:inline-flex;align-items:center;font-size:14px;font-family:inherit;
+    cursor:pointer;user-select:none;transition:.12s}
+  .chip:hover{border-color:var(--blue-d);background:var(--blue)}
+  .chip[aria-pressed="true"]{background:var(--blue-d);color:#fff;border-color:var(--blue-d);font-weight:600}
+  .chip[aria-pressed="true"]::before{content:"✓ ";font-weight:700}
+  .chip.kw[aria-pressed="true"]{background:#5b3fa8;border-color:#5b3fa8}
+  .chip.star[aria-pressed="true"]{background:var(--amber-d);border-color:var(--amber-d)}
+  .toggle{font-size:14px;color:var(--ink);display:flex;align-items:center;gap:8px;cursor:pointer;min-height:44px}
+  .toggle input{width:20px;height:20px}
+  .countrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+  .count{color:var(--sub);font-size:14px}
+  .btn-reset{border:1px solid var(--line-ui);background:#fff;color:var(--ink);border-radius:999px;
+    min-height:44px;padding:0 16px;font-size:14px;font-family:inherit;cursor:pointer}
+  .btn-reset:hover{border-color:var(--blue-d);background:var(--blue)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
   .card h3{margin:0;font-size:17px}
@@ -92,18 +110,25 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   .b.subject{background:var(--peach)}
   .b.kw{background:var(--lav)}
   .b.sangsi{background:#ffe9ec;color:#b0455a}
-  .stars{color:#e6a532;font-size:14px}
+  .stars{color:var(--amber-d);font-size:14px}
   .desc{font-size:14px}
   .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
   .btn{display:inline-block;background:var(--blue-d);color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-size:13px}
-  .thumb{width:100%;max-height:180px;object-fit:cover;border-radius:10px;cursor:zoom-in;border:1px solid var(--line)}
+  .thumb-btn{padding:0;border:0;background:none;cursor:zoom-in;display:block;width:100%}
+  .thumb{width:100%;max-height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
   .deadline{font-weight:600}
-  .deadline.soon{color:#c0392b}
-  footer{color:var(--sub);font-size:12px;text-align:center;padding:28px 0}
+  .deadline.soon{color:#B02A1B}
+  .b.soon{background:#ffe9ec;color:#8E2417}
+  .b.past{background:#eef0f4;color:#4A5568}
+  .btn{min-height:44px;display:inline-flex;align-items:center}
+  footer{color:var(--sub);font-size:13px;text-align:center;padding:28px 0}
   .lightbox{position:fixed;inset:0;background:rgba(20,26,45,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
-  .lightbox.on{display:flex}
-  .lightbox img{max-width:100%;max-height:100%;border-radius:12px}
+  .lightbox.on{display:flex;flex-direction:column;gap:12px}
+  .lightbox img{max-width:100%;max-height:calc(100% - 60px);border-radius:12px}
+  .lightbox .close{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid #fff;
+    background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-family:inherit;cursor:pointer}
   .empty{padding:40px;text-align:center;color:var(--sub)}
+  .empty .btn-reset{margin-top:14px}
 </style>
 </head>
 <body>
@@ -117,15 +142,16 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   <div class="notice">${DISCLAIMER_별점}</div>
 
   <div class="controls">
-    <input id="q" type="search" placeholder="활동명으로 검색">
+    <label class="flabel" for="q">활동명 검색</label>
+    <input id="q" type="search" placeholder="예: 올림피아드" autocomplete="off">
     <div class="filters" id="filters"></div>
     <div class="fgroup">
       <span class="glabel">신청가능일</span>
       <div class="chips" style="align-items:center">
-        <input type="date" id="dateStart" class="datein" aria-label="시작일">
+        <input type="date" id="dateStart" class="datein" aria-label="신청 시작일">
         <span class="meta">~</span>
-        <input type="date" id="dateEnd" class="datein" aria-label="종료일">
-        <button id="dateClear" class="chip" type="button">해제</button>
+        <input type="date" id="dateEnd" class="datein" aria-label="신청 종료일">
+        <button id="dateClear" class="chip" type="button">날짜 해제</button>
         <span class="meta">설정한 날짜/기간에 아직 신청 가능한(마감 전) 활동만 표시 · 상시모집은 항상 포함</span>
       </div>
     </div>
@@ -138,18 +164,34 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
     </div>
   </div>
 
-  <div class="count" id="count"></div>
+  <div class="countrow">
+    <span class="count" id="count" role="status" aria-live="polite"></span>
+    <button type="button" class="btn-reset" id="resetAll" hidden>필터 전체 해제</button>
+  </div>
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none">조건에 맞는 활동이 없습니다. 필터를 줄여보세요.</div>
+  <div class="empty" id="empty" style="display:none">
+    조건에 맞는 활동이 없습니다.<br>
+    <button type="button" class="btn-reset" id="resetEmpty">필터 전체 해제</button>
+  </div>
 </div>
 
-<div class="lightbox" id="lightbox"><img id="lightboxImg" alt="포스터"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="포스터 크게 보기">
+  <img id="lightboxImg" alt="">
+  <button type="button" class="close" id="lightboxClose">닫기 (Esc)</button>
+</div>
 
-<footer>SDC · 이 페이지의 정보는 참고용이며 신청 전 공식 페이지 확인이 필요합니다.</footer>
+<footer>
+  <div>SDC · 이 페이지의 정보는 참고용이며 신청 전 공식 페이지 확인이 필요합니다.</div>
+  <div>최종 갱신 ${today()}</div>
+</footer>
 
 <script>
 const DATA = ${dataJson};
-const TODAY = "${today()}";
+const BUILT_ON = "${today()}";   // 이 페이지를 만든 날 (매월 1일 자동 빌드)
+// 오늘은 '보는 시점'에서 구한다. 빌드 시각으로 고정하면 마감이 지난 활동이
+// 한 달 내내 정상 목록에 남고 '마감 임박' 판정도 어긋난다.
+const TODAY = (function(){ const d=new Date();
+  return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10); })();
 const FIELDS = ["과학·공학·수학생명·AI","국제·리더십·사회참여","글쓰기·논문·인문사회","스포츠·문화·봉사","환경·예술·공익"];
 const GRADES = ["초","중","고"];
 const COSTS = ["무료","소액","유료"];
@@ -162,11 +204,19 @@ const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
 const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
 const allKeywords = uniq(DATA.flatMap(d=>d.키워드||[])).filter(k=>k!=='상시모집').sort(); // 상시모집은 '신청기한' 그룹으로 이동
 
+// 칩은 실제 버튼이어야 한다. span+onclick이면 키보드로 필터를 하나도 걸 수 없다.
+// 선택 상태는 aria-pressed로 노출하고, 색 외에 체크 글리프(CSS ::before)로도 표시한다.
 function chip(label, on, onClick, cls){
-  const el = document.createElement('span');
-  el.className = 'chip ' + (cls||'') + (on?' on':'');
+  const el = document.createElement('button');
+  el.type = 'button';
+  el.className = 'chip ' + (cls||'');
+  el.setAttribute('aria-pressed', on ? 'true' : 'false');
   el.textContent = label;
-  el.onclick = ()=>{ onClick(); el.classList.toggle('on'); render(); }; // 클릭 시 선택 표시 즉시 토글
+  el.onclick = ()=>{
+    onClick();
+    el.setAttribute('aria-pressed', el.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
+    render();
+  };
   return el;
 }
 function buildFilters(){
@@ -222,9 +272,14 @@ function stars(n){ n=Number(n)||0; return '★'.repeat(n)+'☆'.repeat(5-n); }
 function card(d){
   const el=document.createElement('div'); el.className='card';
   let poster='';
-  if(d.포스터){ poster='<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터" data-full="'+d.포스터+'">'; }
-  const dl = d.마감일 ? ('<span class="deadline'+(!isPast(d.마감일)&&d.마감일<=addDays(TODAY,14)?' soon':'')+'">마감 '+d.마감일+'</span>')
-                      : '<span class="b sangsi">상시</span>';
+  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+d.포스터+'">'+
+    '<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
+  // 마감 상태는 색만으로 구분하지 않는다. 임박·마감은 배지 텍스트를 함께 단다.
+  let dl;
+  if(!d.마감일){ dl = '<span class="b sangsi">상시</span>'; }
+  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+d.마감일+'</span> <span class="b past">마감됨</span>'; }
+  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+d.마감일+'</span> <span class="b soon">임박</span>'; }
+  else { dl = '<span class="deadline">마감 '+d.마감일+'</span>'; }
   const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+s+'</span>').join('');
   const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+s+'</span>').join('');
   el.innerHTML =
@@ -235,25 +290,87 @@ function card(d){
     '<div class="stars" title="'+${JSON.stringify(DISCLAIMER_별점)}+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+(d.미국입시_관련도||'-')+'</span></div>'+
     '<div class="desc">'+(d.핵심내용||'')+'</div>'+
     '<div class="badges">'+kw+'</div>'+
-    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">링크</a>':'')+'</div>';
-  const t=el.querySelector('.thumb');
-  if(t) t.onclick=()=>openLightbox(t.dataset.full);
+    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">'+
+      '공식 페이지 열기<span class="sr-only"> (새 창)</span> ↗</a>':'')+'</div>';
+  const t=el.querySelector('.thumb-btn');
+  if(t) t.onclick=()=>openLightbox(t.dataset.full, t);
   return el;
 }
 function addDays(ymd,n){ const dt=new Date(ymd+'T00:00:00Z'); dt.setUTCDate(dt.getUTCDate()+n);
   return dt.toISOString().slice(0,10); }
 
-function openLightbox(src){ const lb=document.getElementById('lightbox'); document.getElementById('lightboxImg').src=src; lb.classList.add('on'); }
-document.getElementById('lightbox').onclick=function(){ this.classList.remove('on'); };
+// 라이트박스 — Escape로 닫히고, 열 때 안으로 포커스가 가고, 닫으면 부른 자리로 돌아온다.
+let lbOpener=null;
+function openLightbox(src, opener){
+  const lb=document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src=src;
+  lb.classList.add('on');
+  lbOpener = opener || null;
+  document.getElementById('lightboxClose').focus();
+}
+function closeLightbox(){
+  const lb=document.getElementById('lightbox');
+  if(!lb.classList.contains('on')) return;
+  lb.classList.remove('on');
+  document.getElementById('lightboxImg').src='';
+  if(lbOpener){ lbOpener.focus(); lbOpener=null; }
+}
+document.getElementById('lightbox').onclick=function(e){ if(e.target===this) closeLightbox(); };
+document.getElementById('lightboxClose').onclick=closeLightbox;
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
 
+function anyFilter(){
+  return !!(state.q || state.dateStart || state.dateEnd || state.kwAnd || state.showPast
+    || state.grade.size || state.field.size || state.star.size || state.cost.size
+    || state.term.size || state.kw.size);
+}
+// 걸린 조건을 주소에 남긴다 — 좁힌 결과를 공유할 수 있고, 새로고침·뒤로가기로 잃지 않는다.
+const SETS=['grade','field','star','cost','term','kw'];
+function stateToUrl(push){
+  const p=new URLSearchParams();
+  if(state.q) p.set('q',state.q);
+  SETS.forEach(k=>{ if(state[k].size) p.set(k,[...state[k]].join('|')); });
+  if(state.dateStart) p.set('ds',state.dateStart);
+  if(state.dateEnd) p.set('de',state.dateEnd);
+  if(state.kwAnd) p.set('and','1');
+  if(state.showPast) p.set('past','1');
+  const url=location.pathname+(p.toString()?'?'+p:'');
+  if(push) history.pushState(null,'',url); else history.replaceState(null,'',url);
+}
+function urlToState(){
+  const p=new URLSearchParams(location.search);
+  state.q=p.get('q')||'';
+  SETS.forEach(k=>{
+    state[k].clear();
+    const v=p.get(k); if(!v) return;
+    v.split('|').forEach(x=> state[k].add(k==='star'?Number(x):x));
+  });
+  state.dateStart=p.get('ds')||''; state.dateEnd=p.get('de')||'';
+  state.kwAnd=p.get('and')==='1'; state.showPast=p.get('past')==='1';
+}
+function syncControls(){
+  document.getElementById('q').value=state.q;
+  document.getElementById('kwAnd').checked=state.kwAnd;
+  document.getElementById('showPast').checked=state.showPast;
+  document.getElementById('dateStart').value=state.dateStart;
+  document.getElementById('dateEnd').value=state.dateEnd;
+  buildFilters();
+}
+function resetAll(){
+  SETS.forEach(k=>state[k].clear());
+  state.q=''; state.dateStart=''; state.dateEnd=''; state.kwAnd=false; state.showPast=false;
+  syncControls(); render();
+}
 function render(){
   const grid=document.getElementById('grid'); grid.innerHTML='';
   const list=DATA.filter(matches).sort(sortFn);
-  document.getElementById('count').textContent='총 '+list.length+'개 활동';
+  document.getElementById('count').textContent='총 '+list.length+'개 활동'+(anyFilter()?' (필터 적용됨)':'');
   document.getElementById('empty').style.display=list.length?'none':'block';
+  document.getElementById('resetAll').hidden=!anyFilter();
   const frag=document.createDocumentFragment();
   list.forEach(d=>frag.appendChild(card(d)));
   grid.appendChild(frag);
+  stateToUrl(false);
 }
 document.getElementById('q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
 document.getElementById('kwAnd').addEventListener('change', e=>{ state.kwAnd=e.target.checked; render(); });
@@ -262,7 +379,10 @@ const dStart=document.getElementById('dateStart'), dEnd=document.getElementById(
 dStart.addEventListener('change', e=>{ state.dateStart=e.target.value; render(); });
 dEnd.addEventListener('change', e=>{ state.dateEnd=e.target.value; render(); });
 document.getElementById('dateClear').onclick=()=>{ dStart.value=''; dEnd.value=''; state.dateStart=''; state.dateEnd=''; render(); };
-buildFilters(); render();
+document.getElementById('resetAll').onclick=resetAll;
+document.getElementById('resetEmpty').onclick=resetAll;
+window.addEventListener('popstate', ()=>{ urlToState(); syncControls(); render(); });
+urlToState(); syncControls(); render();
 </script>
 </body>
 </html>`;

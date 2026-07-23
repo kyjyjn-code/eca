@@ -8,14 +8,22 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="SDC 대외활동 모음">
 <meta property="og:description" content="초·중·고 대회·공모전·프로그램을 매월 업데이트. 신청 전 공식 페이지에서 최종 확인하세요.">
-<meta property="og:image" content="https://kyjyjn-code.github.io/eca/og-image.png">
-<meta property="og:url" content="https://kyjyjn-code.github.io/eca">
+<meta property="og:image" content="og-image.png">
+
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root{ --blue:#eaf1ff; --blue-d:#3b5ba5; --mint:#e6fbf1; --peach:#fff0e6; --lav:#f0ebff;
-    --ink:#2b3a67; --sub:#5a6b8c; --line:#e7ecf5; --card:#ffffff; --bg:#fbfcff; }
+    --ink:#2b3a67; --sub:#5a6b8c; --line:#e7ecf5; --card:#ffffff; --bg:#fbfcff;
+    /* 조작 요소의 경계는 3:1 이상이어야 한다 — --line(1.15:1)은 장식용 테두리에만 쓴다 */
+    --line-ui:#7B8AA6;
+    /* 흰 글자를 얹거나 본문으로 쓰는 앰버 — #e6a532는 2.1:1로 미달 */
+    --amber-d:#8A6100; }
   *{box-sizing:border-box}
-  body{margin:0;font-family:"Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  body{margin:0;font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  :focus-visible{outline:2px solid var(--blue-d);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;scroll-behavior:auto !important} }
   .wrap{max-width:1080px;margin:0 auto;padding:16px}
   header{padding:24px 0 8px}
   h1{font-size:26px;margin:0 0 4px}
@@ -23,19 +31,29 @@
   .notice{background:var(--blue);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:13px;color:var(--sub)}
   .notice strong{color:var(--ink)}
   .controls{background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
-  input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px}
+  input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line-ui);border-radius:12px;font-size:16px;
+    font-family:inherit;min-height:48px}
+  .flabel{display:block;font-size:13px;font-weight:700;color:var(--blue-d);margin:0 0 5px}
   .filters{margin-top:8px}
   .fgroup{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
   .glabel{flex:0 0 74px;white-space:nowrap;text-align:center;font-size:15px;font-weight:700;color:var(--blue-d);letter-spacing:.02em}
   .chips{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 auto;min-width:0}
-  .datein{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit}
-  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;user-select:none;transition:.12s}
-  .chip:hover{border-color:var(--blue-d)}
-  .chip.on{background:var(--blue-d);color:#fff;border-color:var(--blue-d);font-weight:600;box-shadow:0 1px 5px rgba(59,91,165,.35)}
-  .chip.kw.on{background:#7c5fd3;color:#fff;border-color:#7c5fd3}
-  .chip.star.on{background:#e6a532;color:#fff;border-color:#e6a532}
-  .toggle{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:6px;cursor:pointer}
-  .count{color:var(--sub);font-size:13px;margin:10px 0}
+  .datein{padding:9px 10px;border:1px solid var(--line-ui);border-radius:8px;font-size:14px;font-family:inherit;min-height:44px}
+  .chip{border:1px solid var(--line-ui);background:#fff;color:var(--ink);border-radius:999px;padding:0 15px;
+    min-height:44px;display:inline-flex;align-items:center;font-size:14px;font-family:inherit;
+    cursor:pointer;user-select:none;transition:.12s}
+  .chip:hover{border-color:var(--blue-d);background:var(--blue)}
+  .chip[aria-pressed="true"]{background:var(--blue-d);color:#fff;border-color:var(--blue-d);font-weight:600}
+  .chip[aria-pressed="true"]::before{content:"✓ ";font-weight:700}
+  .chip.kw[aria-pressed="true"]{background:#5b3fa8;border-color:#5b3fa8}
+  .chip.star[aria-pressed="true"]{background:var(--amber-d);border-color:var(--amber-d)}
+  .toggle{font-size:14px;color:var(--ink);display:flex;align-items:center;gap:8px;cursor:pointer;min-height:44px}
+  .toggle input{width:20px;height:20px}
+  .countrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+  .count{color:var(--sub);font-size:14px}
+  .btn-reset{border:1px solid var(--line-ui);background:#fff;color:var(--ink);border-radius:999px;
+    min-height:44px;padding:0 16px;font-size:14px;font-family:inherit;cursor:pointer}
+  .btn-reset:hover{border-color:var(--blue-d);background:var(--blue)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
   .card h3{margin:0;font-size:17px}
@@ -46,18 +64,25 @@
   .b.subject{background:var(--peach)}
   .b.kw{background:var(--lav)}
   .b.sangsi{background:#ffe9ec;color:#b0455a}
-  .stars{color:#e6a532;font-size:14px}
+  .stars{color:var(--amber-d);font-size:14px}
   .desc{font-size:14px}
   .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
   .btn{display:inline-block;background:var(--blue-d);color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-size:13px}
-  .thumb{width:100%;max-height:180px;object-fit:cover;border-radius:10px;cursor:zoom-in;border:1px solid var(--line)}
+  .thumb-btn{padding:0;border:0;background:none;cursor:zoom-in;display:block;width:100%}
+  .thumb{width:100%;max-height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
   .deadline{font-weight:600}
-  .deadline.soon{color:#c0392b}
-  footer{color:var(--sub);font-size:12px;text-align:center;padding:28px 0}
+  .deadline.soon{color:#B02A1B}
+  .b.soon{background:#ffe9ec;color:#8E2417}
+  .b.past{background:#eef0f4;color:#4A5568}
+  .btn{min-height:44px;display:inline-flex;align-items:center}
+  footer{color:var(--sub);font-size:13px;text-align:center;padding:28px 0}
   .lightbox{position:fixed;inset:0;background:rgba(20,26,45,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
-  .lightbox.on{display:flex}
-  .lightbox img{max-width:100%;max-height:100%;border-radius:12px}
+  .lightbox.on{display:flex;flex-direction:column;gap:12px}
+  .lightbox img{max-width:100%;max-height:calc(100% - 60px);border-radius:12px}
+  .lightbox .close{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid #fff;
+    background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-family:inherit;cursor:pointer}
   .empty{padding:40px;text-align:center;color:var(--sub)}
+  .empty .btn-reset{margin-top:14px}
 </style>
 </head>
 <body>
@@ -71,15 +96,16 @@
   <div class="notice">이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다.</div>
 
   <div class="controls">
-    <input id="q" type="search" placeholder="활동명으로 검색">
+    <label class="flabel" for="q">활동명 검색</label>
+    <input id="q" type="search" placeholder="예: 올림피아드" autocomplete="off">
     <div class="filters" id="filters"></div>
     <div class="fgroup">
       <span class="glabel">신청가능일</span>
       <div class="chips" style="align-items:center">
-        <input type="date" id="dateStart" class="datein" aria-label="시작일">
+        <input type="date" id="dateStart" class="datein" aria-label="신청 시작일">
         <span class="meta">~</span>
-        <input type="date" id="dateEnd" class="datein" aria-label="종료일">
-        <button id="dateClear" class="chip" type="button">해제</button>
+        <input type="date" id="dateEnd" class="datein" aria-label="신청 종료일">
+        <button id="dateClear" class="chip" type="button">날짜 해제</button>
         <span class="meta">설정한 날짜/기간에 아직 신청 가능한(마감 전) 활동만 표시 · 상시모집은 항상 포함</span>
       </div>
     </div>
@@ -92,18 +118,34 @@
     </div>
   </div>
 
-  <div class="count" id="count"></div>
+  <div class="countrow">
+    <span class="count" id="count" role="status" aria-live="polite"></span>
+    <button type="button" class="btn-reset" id="resetAll" hidden>필터 전체 해제</button>
+  </div>
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none">조건에 맞는 활동이 없습니다. 필터를 줄여보세요.</div>
+  <div class="empty" id="empty" style="display:none">
+    조건에 맞는 활동이 없습니다.<br>
+    <button type="button" class="btn-reset" id="resetEmpty">필터 전체 해제</button>
+  </div>
 </div>
 
-<div class="lightbox" id="lightbox"><img id="lightboxImg" alt="포스터"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="포스터 크게 보기">
+  <img id="lightboxImg" alt="">
+  <button type="button" class="close" id="lightboxClose">닫기 (Esc)</button>
+</div>
 
-<footer>SDC · 이 페이지의 정보는 참고용이며 신청 전 공식 페이지 확인이 필요합니다.</footer>
+<footer>
+  <div>SDC · 이 페이지의 정보는 참고용이며 신청 전 공식 페이지 확인이 필요합니다.</div>
+  <div>최종 갱신 2026-07-23</div>
+</footer>
 
 <script>
 const DATA = [{"id":"children-product-safety-drawing-contest-2026","활동명":"2026 어린이 제품안전 그림공모전","분야":"환경·예술·공익","과목태그":["예술·디자인"],"키워드":["공모전","무료","개인"],"대상_학년":["초"],"대상_원문":"유치부(2020~2022년생), 초등부(2014~2019년생)","주최":"산업통상부 국가기술표준원, 한국제품안전관리원","마감일":"2026-07-24","신청기간_원문":"2026년 5월 26일(화) ~ 7월 24일(금)","비용_구분":"무료","핵심내용":"제품안전을 주제로 한 그림(8절 도화지 손그림, 포스터·만화 등 자유형식)을 겨루는 정부 주최 어린이 그림공모전.","웹사이트":"https://kips.kr/kips.do","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"global-citizen-photo-essay-2026","활동명":"지금, 세계시민 ON 포토에세이 공모전","분야":"국제·리더십·사회참여","과목태그":["사회·정책","국제·외교","예술·디자인"],"키워드":["공모전","에세이·논문","무료","전국규모","개인"],"대상_학년":["초","중","고"],"대상_원문":"국적과 관계없이 국내에 거주하는 초·중·고생 또는 동일 연령대 청소년","주최":"외교부, 유네스코 아시아태평양 국제이해교육원(유네스코 아태교육원)","마감일":"2026-07-26","신청기간_원문":"2026년 7월 13일 ~ 7월 26일","비용_구분":"무료","핵심내용":"세계시민 가치를 사진과 에세이로 표현하는 외교부·유네스코 아태교육원 공동 주최 청소년 공모전.","웹사이트":"https://www.unescoapceiu.org/","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"the-concord-review-2026","활동명":"The Concord Review (역사 연구논문 저널) 투고","분야":"글쓰기·논문·인문사회","과목태그":["인문·철학","사회·정책"],"키워드":["에세이·논문","연구","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"중등교육(고교) 졸업 이전에 논문을 완성한 학생","주최":"The Concord Review, Inc.","마감일":"2026-08-01","신청기간_원문":"분기별 마감(상시 투고). August 1 (Winter호), November 1 (Spring호), February 1 (Summer호), May 1 (Fall호).","비용_구분":"유료","핵심내용":"고교생 역사 연구논문을 심사·게재하는 국제 학술지.","웹사이트":"https://tcr.org/submit","미국입시_관련도":"높음","SDC_적합도":4},{"id":"environment-love-contest-2026","활동명":"2026 대한민국 환경사랑공모전","분야":"환경·예술·공익","과목태그":["환경","예술·디자인"],"키워드":["공모전","무료","전국규모","개인"],"대상_학년":["초","중","고"],"대상_원문":"신청자격 제한 없음(대한민국 국민 누구나). 일러스트레이션 부문은 학생부(초등부/중·고등부) 별도 운영.","주최":"한국환경공단","마감일":"2026-08-03","신청기간_원문":"2026년 6월 8일(월) ~ 8월 3일(월) 18시 까지","비용_구분":"무료","핵심내용":"사진·에코디자인·일러스트레이션 부문으로 환경 인식을 겨루는 전국 규모 환경 공모전.","웹사이트":"https://xn--289a5d925ap8c64jnzlpiz.kr/","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"hir-academic-writing-contest-2026","활동명":"Harvard International Review Academic Writing Contest 2026","분야":"글쓰기·논문·인문사회","과목태그":["인문·철학","사회·정책","국제·외교"],"키워드":["에세이·논문","공모전","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"7~12학년 학생(미국 외 국가 학생 포함)","주최":"Harvard International Review (HIR)","마감일":"2026-08-24","신청기간_원문":"Summer 2026 마감 August 24, 2026 / Fall-Winter 2026 마감 January 2, 2027","비용_구분":"유료","핵심내용":"국제관계·외교 주제의 단편 학술 아티클을 겨루는 하버드국제리뷰 주최 글쓰기 대회.","웹사이트":"https://hir.harvard.edu/contest/","미국입시_관련도":"높음","SDC_적합도":4},{"id":"fss-financial-contest-2026","활동명":"제21회 금융공모전 (청소년 금융창작물 부문 등)","분야":"환경·예술·공익","과목태그":["경제·금융","미디어·영상"],"키워드":["공모전","무료","전국규모","개인"],"대상_학년":["초","중","고"],"대상_원문":"초·중·고등학교 재학생과 동일 연령대 청소년 (청소년 부문). 대학생·성인·기관 부문도 별도 운영.","주최":"금융감독원","마감일":"2026-09-02","신청기간_원문":"2026년 6월 17일 ~ 9월 2일 오후 5시까지","비용_구분":"무료","핵심내용":"금융에 대한 관심과 이해를 높이기 위해 글짓기·UCC·포스터·만화 등으로 참여하는 금융감독원 주최 전 국민 대상 공모전(청소년 부문 별도 운영).","웹사이트":"https://www.fss.or.kr/edu","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"breakthrough-junior-challenge-2026","활동명":"Breakthrough Junior Challenge 2026","분야":"과학·공학·수학생명·AI","과목태그":["과학","물리·화학","생명·의학","수학","미디어·영상"],"키워드":["공모전","국제대회","개인","무료","미디어·영상"],"대상_학년":["중","고"],"대상_원문":"만 13~18세 학생(2026-05-11 기준 13세 이상, 2026-10-01 기준 만 19세 미만). 개인 참가만 가능.","주최":"Breakthrough Prize Foundation","마감일":"2026-09-15","신청기간_원문":"제출 마감: September 15, 2026","비용_구분":"무료","핵심내용":"생명과학·물리·수학 개념을 짧은 영상으로 설명하는 국제 대회(개인전).","웹사이트":"https://breakthroughjuniorchallenge.org/","미국입시_관련도":"높음","SDC_적합도":5},{"id":"amc-2026","활동명":"AMC (American Mathematics Competitions) 2026","분야":"과학·공학·수학생명·AI","과목태그":["수학"],"키워드":["올림피아드","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"중·고등학생 (AMC 8: 8학년 이하 / AMC 10: 10학년 이하 / AMC 12: 12학년 이하)","주최":"MAA (Mathematical Association of America)","마감일":"2026-09-30","신청기간_원문":"AMC 10/12 등록 마감: Early Bird September 30, 2026 ($55) / Regular October 15, 2026 ($75) / Late October 28, 2026 ($115). AMC 8 등록 마감: Early Bird October 28, 2026 ($55) / Regular January 5, 2027 ($75) / Late January 14, 2027 ($115).","비용_구분":"유료","핵심내용":"MAA가 주최하는 국제 수학경시대회. AMC 8/10/12로 나뉘며 상위자는 AIME·USA(J)MO 선발 경로로 이어진다.","웹사이트":"https://maa.org/amcreg/","미국입시_관련도":"높음","SDC_적합도":4},{"id":"iearn","활동명":"iEARN (International Education and Resource Network) 글로벌 협업 프로젝트","분야":"국제·리더십·사회참여","과목태그":["사회·정책","국제·외교","문화"],"키워드":["온라인","상시모집","팀","국제대회"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 학생·교사(초·중·고 및 청소년 기관)","주최":"iEARN (International Education and Resource Network, 1988년 설립 비영리 국제교육네트워크)","마감일":null,"신청기간_원문":"상시모집(정규 수업·방과후 프로그램으로 연중 참여)","비용_구분":"유료","핵심내용":"140개국 학교가 참여하는 국제 협업·가상교류 프로젝트 네트워크. 한국(iEARN-South Korea)도 참여국.","웹사이트":"https://iearn.org/","미국입시_관련도":"낮음","SDC_적합도":3},{"id":"nasa-citizen-science","활동명":"NASA Citizen Science (시민과학 프로젝트)","분야":"과학·공학·수학생명·AI","과목태그":["과학","공학"],"키워드":["연구","온라인","무료","국제대회","개인"],"대상_학년":["초","중","고"],"대상_원문":"누구나(시민권 불필요). 청소년 포함 전 세계 참여자.","주최":"NASA (미국 항공우주국)","마감일":null,"신청기간_원문":"상시모집(프로젝트별 연중 참여)","비용_구분":"무료","핵심내용":"NASA 연구진과 함께 천문·지구과학 등 실제 과학 프로젝트에 자원 참여하는 시민과학 프로그램.","웹사이트":"https://science.nasa.gov/citizen-science/","미국입시_관련도":"보통","SDC_적합도":4},{"id":"roots-and-shoots","활동명":"Roots & Shoots (제인 구달 청소년 봉사·환경 프로그램)","분야":"스포츠·문화·봉사","과목태그":["환경"],"키워드":["봉사","환경","무료","팀","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 청소년(young people). 초·중·고 포함.","주최":"Jane Goodall Institute (제인 구달 박사 설립)","마감일":null,"신청기간_원문":"상시모집(커뮤니티 프로젝트 연중 기획·참여)","비용_구분":"무료","핵심내용":"제인구달연구소가 운영하는 청소년 주도 지역사회 봉사·환경·동물복지 프로젝트 프로그램(글로벌 챕터).","웹사이트":"https://rootsandshoots.org/","미국입시_관련도":"낮음","SDC_적합도":2},{"id":"globe-program","활동명":"The GLOBE Program (국제 환경 관측·교육 프로그램)","분야":"환경·예술·공익","과목태그":["환경","과학"],"키워드":["연구","캠프·체험","상시모집","무료","국제대회"],"대상_학년":["초","중","고"],"대상_원문":"초등~고등 학생 및 교사(환경 데이터 수집 참여)","주최":"NASA 후원, NSF·NOAA·미 국무부 지원","마감일":null,"신청기간_원문":"상시모집(학교·교사 등록을 통한 연중 데이터 수집)","비용_구분":"무료","핵심내용":"전 세계 학생이 표준 프로토콜로 환경 데이터를 관측·공유하는 NASA 후원 국제 환경 과학·교육 프로그램. 한국(Republic of Korea)도 참여국.","웹사이트":"https://www.globe.gov/","미국입시_관련도":"보통","SDC_적합도":4},{"id":"wharton-investment-competition-2027","활동명":"Wharton Global High School Investment Competition (2026-2027)","분야":"국제·리더십·사회참여","과목태그":["경제·금융"],"키워드":["공모전","국제대회","팀"],"대상_학년":["고"],"대상_원문":"고등학생(9~12학년), 교사 지도 하 4~6인 팀","주최":"Wharton Global Youth Program, University of Pennsylvania","마감일":null,"신청기간_원문":"Registration for the 2026-2027 Competition will open on August 10.","비용_구분":"무료","핵심내용":"모의 주식 포트폴리오를 운용하고 투자전략 보고서를 겨루는 와튼 주최 글로벌 고교 투자대회(팀전).","웹사이트":"https://globalyouth.wharton.upenn.edu/competitions/investment-competition/","미국입시_관련도":"높음","SDC_적합도":5},{"id":"world-scholars-cup-2026","활동명":"World Scholar's Cup 2026 (Korea Round, Seoul Global Round)","분야":"국제·리더십·사회참여","과목태그":["인문·철학","사회·정책","국제·외교"],"키워드":["토론·스피치","공모전","국제대회","팀"],"대상_학년":["초","중","고"],"대상_원문":"초·중·고 학생(팀 참가), 국가/지역별 라운드 참가","주최":"World Scholar's Cup","마감일":null,"신청기간_원문":"공식 웹사이트를 통한 상시 등록(라운드별 조기 마감 가능)","비용_구분":"유료","핵심내용":"토론·에세이·퀴즈·협동 프레젠테이션 등을 겨루는 국제 학술 대회. 한국(서울) 라운드가 매년 개최된다.","웹사이트":"https://www.scholarscup.org/","미국입시_관련도":"보통","SDC_적합도":3},{"id":"zooniverse","활동명":"Zooniverse (온라인 시민과학 연구 참여)","분야":"과학·공학·수학생명·AI","과목태그":["과학","생명·의학"],"키워드":["연구","온라인","무료","국제대회","개인"],"대상_학년":["초","중","고"],"대상_원문":"누구나(전문 배경·훈련 불필요). 16세 미만은 보호자 동의 하 계정 생성 가능.","주최":"The Zooniverse (Adler Planetarium, University of Minnesota, University of Oxford 파트너)","마감일":null,"신청기간_원문":"상시모집(계정 생성 후 언제든 참여)","비용_구분":"무료","핵심내용":"천문·생태·기후 등 실제 연구 데이터를 자원자가 분류·분석하는 세계 최대 시민과학 플랫폼.","웹사이트":"https://www.zooniverse.org/","미국입시_관련도":"보통","SDC_적합도":4}];
-const TODAY = "2026-07-07";
+const BUILT_ON = "2026-07-23";   // 이 페이지를 만든 날 (매월 1일 자동 빌드)
+// 오늘은 '보는 시점'에서 구한다. 빌드 시각으로 고정하면 마감이 지난 활동이
+// 한 달 내내 정상 목록에 남고 '마감 임박' 판정도 어긋난다.
+const TODAY = (function(){ const d=new Date();
+  return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10); })();
 const FIELDS = ["과학·공학·수학생명·AI","국제·리더십·사회참여","글쓰기·논문·인문사회","스포츠·문화·봉사","환경·예술·공익"];
 const GRADES = ["초","중","고"];
 const COSTS = ["무료","소액","유료"];
@@ -116,11 +158,19 @@ const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
 const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
 const allKeywords = uniq(DATA.flatMap(d=>d.키워드||[])).filter(k=>k!=='상시모집').sort(); // 상시모집은 '신청기한' 그룹으로 이동
 
+// 칩은 실제 버튼이어야 한다. span+onclick이면 키보드로 필터를 하나도 걸 수 없다.
+// 선택 상태는 aria-pressed로 노출하고, 색 외에 체크 글리프(CSS ::before)로도 표시한다.
 function chip(label, on, onClick, cls){
-  const el = document.createElement('span');
-  el.className = 'chip ' + (cls||'') + (on?' on':'');
+  const el = document.createElement('button');
+  el.type = 'button';
+  el.className = 'chip ' + (cls||'');
+  el.setAttribute('aria-pressed', on ? 'true' : 'false');
   el.textContent = label;
-  el.onclick = ()=>{ onClick(); el.classList.toggle('on'); render(); }; // 클릭 시 선택 표시 즉시 토글
+  el.onclick = ()=>{
+    onClick();
+    el.setAttribute('aria-pressed', el.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
+    render();
+  };
   return el;
 }
 function buildFilters(){
@@ -176,9 +226,14 @@ function stars(n){ n=Number(n)||0; return '★'.repeat(n)+'☆'.repeat(5-n); }
 function card(d){
   const el=document.createElement('div'); el.className='card';
   let poster='';
-  if(d.포스터){ poster='<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터" data-full="'+d.포스터+'">'; }
-  const dl = d.마감일 ? ('<span class="deadline'+(!isPast(d.마감일)&&d.마감일<=addDays(TODAY,14)?' soon':'')+'">마감 '+d.마감일+'</span>')
-                      : '<span class="b sangsi">상시</span>';
+  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+d.포스터+'">'+
+    '<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
+  // 마감 상태는 색만으로 구분하지 않는다. 임박·마감은 배지 텍스트를 함께 단다.
+  let dl;
+  if(!d.마감일){ dl = '<span class="b sangsi">상시</span>'; }
+  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+d.마감일+'</span> <span class="b past">마감됨</span>'; }
+  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+d.마감일+'</span> <span class="b soon">임박</span>'; }
+  else { dl = '<span class="deadline">마감 '+d.마감일+'</span>'; }
   const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+s+'</span>').join('');
   const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+s+'</span>').join('');
   el.innerHTML =
@@ -189,25 +244,87 @@ function card(d){
     '<div class="stars" title="'+"이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다."+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+(d.미국입시_관련도||'-')+'</span></div>'+
     '<div class="desc">'+(d.핵심내용||'')+'</div>'+
     '<div class="badges">'+kw+'</div>'+
-    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">링크</a>':'')+'</div>';
-  const t=el.querySelector('.thumb');
-  if(t) t.onclick=()=>openLightbox(t.dataset.full);
+    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">'+
+      '공식 페이지 열기<span class="sr-only"> (새 창)</span> ↗</a>':'')+'</div>';
+  const t=el.querySelector('.thumb-btn');
+  if(t) t.onclick=()=>openLightbox(t.dataset.full, t);
   return el;
 }
 function addDays(ymd,n){ const dt=new Date(ymd+'T00:00:00Z'); dt.setUTCDate(dt.getUTCDate()+n);
   return dt.toISOString().slice(0,10); }
 
-function openLightbox(src){ const lb=document.getElementById('lightbox'); document.getElementById('lightboxImg').src=src; lb.classList.add('on'); }
-document.getElementById('lightbox').onclick=function(){ this.classList.remove('on'); };
+// 라이트박스 — Escape로 닫히고, 열 때 안으로 포커스가 가고, 닫으면 부른 자리로 돌아온다.
+let lbOpener=null;
+function openLightbox(src, opener){
+  const lb=document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src=src;
+  lb.classList.add('on');
+  lbOpener = opener || null;
+  document.getElementById('lightboxClose').focus();
+}
+function closeLightbox(){
+  const lb=document.getElementById('lightbox');
+  if(!lb.classList.contains('on')) return;
+  lb.classList.remove('on');
+  document.getElementById('lightboxImg').src='';
+  if(lbOpener){ lbOpener.focus(); lbOpener=null; }
+}
+document.getElementById('lightbox').onclick=function(e){ if(e.target===this) closeLightbox(); };
+document.getElementById('lightboxClose').onclick=closeLightbox;
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
 
+function anyFilter(){
+  return !!(state.q || state.dateStart || state.dateEnd || state.kwAnd || state.showPast
+    || state.grade.size || state.field.size || state.star.size || state.cost.size
+    || state.term.size || state.kw.size);
+}
+// 걸린 조건을 주소에 남긴다 — 좁힌 결과를 공유할 수 있고, 새로고침·뒤로가기로 잃지 않는다.
+const SETS=['grade','field','star','cost','term','kw'];
+function stateToUrl(push){
+  const p=new URLSearchParams();
+  if(state.q) p.set('q',state.q);
+  SETS.forEach(k=>{ if(state[k].size) p.set(k,[...state[k]].join('|')); });
+  if(state.dateStart) p.set('ds',state.dateStart);
+  if(state.dateEnd) p.set('de',state.dateEnd);
+  if(state.kwAnd) p.set('and','1');
+  if(state.showPast) p.set('past','1');
+  const url=location.pathname+(p.toString()?'?'+p:'');
+  if(push) history.pushState(null,'',url); else history.replaceState(null,'',url);
+}
+function urlToState(){
+  const p=new URLSearchParams(location.search);
+  state.q=p.get('q')||'';
+  SETS.forEach(k=>{
+    state[k].clear();
+    const v=p.get(k); if(!v) return;
+    v.split('|').forEach(x=> state[k].add(k==='star'?Number(x):x));
+  });
+  state.dateStart=p.get('ds')||''; state.dateEnd=p.get('de')||'';
+  state.kwAnd=p.get('and')==='1'; state.showPast=p.get('past')==='1';
+}
+function syncControls(){
+  document.getElementById('q').value=state.q;
+  document.getElementById('kwAnd').checked=state.kwAnd;
+  document.getElementById('showPast').checked=state.showPast;
+  document.getElementById('dateStart').value=state.dateStart;
+  document.getElementById('dateEnd').value=state.dateEnd;
+  buildFilters();
+}
+function resetAll(){
+  SETS.forEach(k=>state[k].clear());
+  state.q=''; state.dateStart=''; state.dateEnd=''; state.kwAnd=false; state.showPast=false;
+  syncControls(); render();
+}
 function render(){
   const grid=document.getElementById('grid'); grid.innerHTML='';
   const list=DATA.filter(matches).sort(sortFn);
-  document.getElementById('count').textContent='총 '+list.length+'개 활동';
+  document.getElementById('count').textContent='총 '+list.length+'개 활동'+(anyFilter()?' (필터 적용됨)':'');
   document.getElementById('empty').style.display=list.length?'none':'block';
+  document.getElementById('resetAll').hidden=!anyFilter();
   const frag=document.createDocumentFragment();
   list.forEach(d=>frag.appendChild(card(d)));
   grid.appendChild(frag);
+  stateToUrl(false);
 }
 document.getElementById('q').addEventListener('input', e=>{ state.q=e.target.value; render(); });
 document.getElementById('kwAnd').addEventListener('change', e=>{ state.kwAnd=e.target.checked; render(); });
@@ -216,7 +333,10 @@ const dStart=document.getElementById('dateStart'), dEnd=document.getElementById(
 dStart.addEventListener('change', e=>{ state.dateStart=e.target.value; render(); });
 dEnd.addEventListener('change', e=>{ state.dateEnd=e.target.value; render(); });
 document.getElementById('dateClear').onclick=()=>{ dStart.value=''; dEnd.value=''; state.dateStart=''; state.dateEnd=''; render(); };
-buildFilters(); render();
+document.getElementById('resetAll').onclick=resetAll;
+document.getElementById('resetEmpty').onclick=resetAll;
+window.addEventListener('popstate', ()=>{ urlToState(); syncControls(); render(); });
+urlToState(); syncControls(); render();
 </script>
 </body>
 </html>
