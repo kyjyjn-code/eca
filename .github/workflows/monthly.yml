@@ -1,9 +1,11 @@
 name: Monthly ECA (월간 자동 수집·게시)
 
 on:
-  schedule:
-    - cron: '0 0 1 * *'   # 매월 1일 00:00 UTC = 09:00 KST
-  workflow_dispatch:      # 수동 실행 버튼 (첫 실행·재실행·급할 때)
+  # 자동(cron) 실행은 사용하지 않는다. 오직 아래 수동 버튼으로만 실행한다.
+  # 다시 자동화하려면 아래 두 줄의 주석을 해제한다.
+  # schedule:
+  #   - cron: '0 0 1 * *'   # 매월 1일 00:00 UTC = 09:00 KST
+  workflow_dispatch:      # 수동 실행 버튼 (유일한 실행 경로)
     inputs:
       month:
         description: '대상 월 YYYY-MM (비우면 이번 달)'
