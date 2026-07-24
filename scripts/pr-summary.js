@@ -48,6 +48,6 @@ else out.push('_없음_');
 out.push('');
 
 out.push('---');
-out.push('_승인(머지)하면 GitHub Pages 사이트에 반영됩니다. 최종 확인: HSS/Holyseas 미포함 · "참고용" 고지 노출 · 별점 타당성._');
+out.push('_승인(머지)하면 GitHub Pages 사이트에 반영됩니다. 최종 확인: 금칙 브랜드명 미포함 · "참고용" 고지 노출 · 별점 타당성._');
 
 process.stdout.write(out.join('\n') + '\n');
