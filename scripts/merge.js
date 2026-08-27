@@ -3,7 +3,7 @@
 // - 기존 id → 필드 갱신(최신 수집분 우선), 갱신일 기록
 // - 마감일이 지난 항목 → 마스터에서 제거 (아카이브에는 남김)
 // - 마감일 null 항목 → 자동 제거하지 않음 (링크 검증이 생존 관리)
-// - 병합 리포트(신규/갱신/제거)를 파일로 남겨 게시 에이전트가 PR 요약에 사용
+// - 병합 리포트(신규/갱신/제거)를 파일로 남겨 pr-summary.js 가 PR 요약에 사용
 const fs = require('fs');
 const path = require('path');
 const { P, readJson, writeJson, ensureDir, today, month, args, isExpired, log } = require('./lib');

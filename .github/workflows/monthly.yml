@@ -77,6 +77,10 @@ jobs:
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: node scripts/pr-summary.js > pr-body.md
 
+      # --- 가드레일: CLAUDE.md 0장 절대 원칙을 게시 산출물에서 확인. 걸리면 여기서 멈춘다 ---
+      - name: 가드레일 검사
+        run: node scripts/check-guardrails.js
+
       # --- 안전장치: 게시 건수 확인. 기준(10건) 미만이면 PR을 초안(Draft)으로 만들어 실수 머지 방지 ---
       - name: 게시 건수 게이트
         id: gate

@@ -1,0 +1,84 @@
+{
+  "기준일": "2026-07-24",
+  "월": "2026-07",
+  "curated파일": "2026-07.json",
+  "신규": [
+    {
+      "id": "kjmo-2026",
+      "활동명": "2026 한국주니어수학올림피아드 (KJMO)",
+      "주최": "대한수학회 (한국수학올림피아드 사업)",
+      "마감일": "2026-07-28"
+    }
+  ],
+  "갱신": [
+    {
+      "id": "amc-2026",
+      "활동명": "AMC (American Mathematics Competitions) 2026"
+    },
+    {
+      "id": "breakthrough-junior-challenge-2026",
+      "활동명": "Breakthrough Junior Challenge 2026"
+    },
+    {
+      "id": "zooniverse",
+      "활동명": "Zooniverse (온라인 시민과학 연구 참여)"
+    },
+    {
+      "id": "nasa-citizen-science",
+      "활동명": "NASA Citizen Science (시민과학 프로젝트)"
+    },
+    {
+      "id": "the-concord-review-2026",
+      "활동명": "The Concord Review (역사 연구논문 저널) 투고"
+    },
+    {
+      "id": "hir-academic-writing-contest-2026",
+      "활동명": "Harvard International Review Academic Writing Contest 2026"
+    },
+    {
+      "id": "wharton-investment-competition-2027",
+      "활동명": "Wharton Global High School Investment Competition (2026-2027)"
+    },
+    {
+      "id": "iearn",
+      "활동명": "iEARN (International Education and Resource Network) 글로벌 협업 프로젝트"
+    },
+    {
+      "id": "world-scholars-cup-2026",
+      "활동명": "World Scholar's Cup 2026 (Korea Round, Seoul Global Round)"
+    },
+    {
+      "id": "global-citizen-photo-essay-2026",
+      "활동명": "지금, 세계시민 ON 포토에세이 공모전"
+    },
+    {
+      "id": "duke-of-edinburgh-award-korea",
+      "활동명": "국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)"
+    },
+    {
+      "id": "1365-volunteer-portal",
+      "활동명": "1365 자원봉사포털 청소년 자원봉사"
+    },
+    {
+      "id": "environment-love-contest-2026",
+      "활동명": "2026 대한민국 환경사랑공모전"
+    },
+    {
+      "id": "globe-program",
+      "활동명": "The GLOBE Program (국제 환경 관측·교육 프로그램)"
+    },
+    {
+      "id": "seoul-environmental-education-content-contest-2026",
+      "활동명": "2026년 제3회 서울특별시 환경교육 콘텐츠 공모전"
+    },
+    {
+      "id": "children-product-safety-drawing-contest-2026",
+      "활동명": "2026 어린이 제품안전 그림공모전"
+    },
+    {
+      "id": "fss-financial-contest-2026",
+      "활동명": "제21회 금융공모전 (청소년 금융창작물 부문 등)"
+    }
+  ],
+  "제거_마감경과": []
+}

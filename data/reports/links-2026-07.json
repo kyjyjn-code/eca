@@ -1,0 +1,33 @@
+{
+  "기준일": "2026-07-24",
+  "월": "2026-07",
+  "검사수": 19,
+  "제외": [
+    {
+      "id": "amc-2026",
+      "활동명": "AMC (American Mathematics Competitions) 2026",
+      "웹사이트": "https://maa.org/amcreg/",
+      "사유": "HTTP 403"
+    }
+  ],
+  "복구후보": [
+    {
+      "id": "1365-volunteer-portal",
+      "활동명": "1365 자원봉사포털 청소년 자원봉사"
+    }
+  ],
+  "확인필요": [
+    {
+      "id": "seoul-environmental-education-content-contest-2026",
+      "활동명": "2026년 제3회 서울특별시 환경교육 콘텐츠 공모전",
+      "웹사이트": "https://seec.or.kr/bbs/board.php?bo_table=notice&wr_id=264",
+      "사유": "UNABLE_TO_VERIFY_LEAF_SIGNATURE"
+    },
+    {
+      "id": "duke-of-edinburgh-award-korea",
+      "활동명": "국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)",
+      "웹사이트": "https://www.youth.go.kr/youth/youth/contents/intrlSccesRwardIntroForm.yt",
+      "사유": "fetch failed"
+    }
+  ]
+}

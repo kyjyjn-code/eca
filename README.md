@@ -6,7 +6,7 @@
 ## 구조
 - `data/` — `sources.json`(소스 씨앗), `keywords.json`(키워드 사전), `master.json`(동적 마스터, 사이트의 원천), `raw/`·`curated/`(월별 수집·정리 기록)
 - `scripts/` — 결정적 스크립트 5종 (merge / check-links / fetch-posters / export-excel / build)
-- `.claude/agents/` — 에이전트 3종 (researcher / curator / publisher), `.claude/commands/monthly-eca.md` — 실행 명령
+- `.claude/agents/` — 에이전트 2종 (researcher / curator), `.claude/commands/monthly-eca.md` — 실행 명령
 - `docs/` — GitHub Pages 공개 사이트 (학생이 보는 곳)
 - `records/` — 월별 엑셀 기록 (내부용)
 - `.github/workflows/monthly.yml` — 매월 1일 자동 실행 + 수동 실행 버튼
