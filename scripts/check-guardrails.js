@@ -50,6 +50,7 @@ function scan(file, rules, kind) {
 // 게시되는 산출물만 본다. 설계 문서·에이전트 지시문은 대상이 아니다.
 const TARGETS = [
   path.join(P.docs, 'data.json'),
+  path.join(P.docs, 'upcoming.json'),
   path.join(P.docs, 'index.html'),
   P.master,
   path.join(P.root, 'pr-body.md'),
@@ -78,12 +79,25 @@ if (!/참고용/.test(html)) {
   fail('고지 누락: docs/index.html 에 "참고용" 표기가 없음 (별점·관련도는 참고용임을 밝혀야 함)');
 }
 
+// 5. 공고 예정 고지 (P3-1) — 검사 추가는 허용 원칙에 부합한다(완화·삭제가 아니다).
+// 예정 정보는 씨앗 메타데이터의 추정이지 확인된 사실이 아니다.
+// 어느 공개 산출물이든 "공고 예정" 표시가 있으면 두 고지가 함께 있어야 통과한다.
+for (const f of TARGETS) {
+  const t = textOf(f);
+  if (t === null) continue;
+  if (!/공고\s*예정/.test(t)) continue;
+  const rel = path.relative(P.root, f).split(path.sep).join('/');
+  if (!/전년도\s*기준/.test(t) || !/확정\s*전/.test(t)) {
+    fail(`예정 고지 누락: ${rel} 에 "공고 예정" 표시가 있는데 "전년도 기준"·"확정 전" 고지가 없음`);
+  }
+}
+
 // --- 결과 ---
 const warnOnly = process.argv.includes('--warn-only');
 log(`검사 대상 ${TARGETS.filter((f) => fs.existsSync(f)).length}개 파일 · 마스터 ${master.length}건 · 게시 ${published.length}건`);
 
 if (fails.length === 0) {
-  log('통과 — 금칙 명칭 없음, 보장 표현 없음, 제외 항목 누출 없음, 참고용 고지 있음.');
+  log('통과 — 금칙 명칭 없음, 보장 표현 없음, 제외 항목 누출 없음, 참고용·예정 고지 있음.');
   process.exit(0);
 }
 

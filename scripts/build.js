@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const { P, readJson, writeJson, ensureDir, month, today, log } = require('./lib');
+const { loadSeeds, upcomingFor } = require('./seeds');
 
 // 최종 배포 URL (5단계에서 실제 Pages 주소로 채움). 카카오톡 OG 미리보기는 절대 URL 필요.
 const SITE_URL = (process.env.SDC_SITE_URL || '').replace(/\/$/, '');
@@ -14,6 +15,9 @@ const DISCLAIMER_별점 = '이 별점·관련도는 합격·수상 보장이 아
 const DISCLAIMER_별점_축 = '별점은 미국 입시 활용도·선발성·국제성·비용을 종합한 참고용 지표입니다. 상시 참여형 활동의 교육적 가치를 대체하지 않습니다.';
 
 // 사이트에 내보낼 필드만 추림 (_로 시작하는 내부 필드 제거)
+// 공고 예정은 씨앗 메타데이터의 렌더일 뿐 확인된 사실이 아니다. 두 문구가 가드레일 검사 대상이다.
+const DISCLAIMER_예정 = '공고 예정은 전년도 기준 추정이며 확정 전 정보입니다. 실제 공고·마감은 공식 페이지에서 확인하세요.';
+
 const PUBLIC_FIELDS = ['id', '활동명', '분야', '과목태그', '키워드', '대상_학년', '대상_원문',
   '주최', '마감일', '신청기간_원문', '비용_구분', '핵심내용', '웹사이트', '포스터',
   '미국입시_관련도', 'SDC_적합도', '갱신일', '선발성', '국제성'];
@@ -42,7 +46,7 @@ async function ensureOgImage() {
   log('OG 배너 생성 — docs/og-image.png');
 }
 
-function html(dataJson) {
+function html(dataJson, upcomingJson) {
   const ogImage = SITE_URL ? `${SITE_URL}/og-image.png` : 'og-image.png';
   const ogUrl = SITE_URL || '';
   return `<!DOCTYPE html>
@@ -75,6 +79,26 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
     --past-bg:#eef0f4;   /* 마감됨 배지 배경 */
     --past-t:#4A5568; }  /* 마감됨 배지 글자 */
   *{box-sizing:border-box}
+  /* 숨김은 한 곳에서 정한다 — hidden 의 기본 display:none 은 UA 스타일이라
+     display:flex/grid 를 준 요소에서는 밀린다. 뷰 전환·토글이 조용히 깨지는 원인. */
+  [hidden]{display:none!important}
+  #calendar{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+  #calendar h2{font-size:20px;margin:0 0 8px}
+  .cal-m{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:12px 14px;margin:0 0 10px}
+  .cal-m.none{background:var(--bg);border-style:dashed}
+  .cal-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 4px}
+  .cal-h b{font-size:16px;color:var(--blue-d)}
+  .cal-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;margin:8px 0 0}
+  .cal-lab{flex:0 0 74px;font-size:12px;font-weight:700;color:var(--sub);padding-top:8px}
+  .cal-items{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto;min-width:0}
+  .cal-i{font-size:13px;border:1px solid var(--line-ui);border-radius:999px;padding:6px 13px;
+    background:#fff;color:var(--ink);min-height:34px;display:inline-flex;align-items:center;text-decoration:none}
+  a.cal-i{min-height:44px}
+  a.cal-i:hover{border-color:var(--blue-d);background:var(--blue)}
+  .cal-i.soon{background:var(--warn-bg);border-color:var(--soon-t);color:var(--soon-t)}
+  .cal-i.past{background:var(--past-bg);border-color:var(--past-t);color:var(--past-t)}
+  .cal-i.plan{background:var(--blue);border-color:var(--blue-d)}
+  .cal-note{font-size:12px;color:var(--sub);margin:6px 0 0 84px}
   body{margin:0;font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);
     line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -187,6 +211,12 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   </div>
 </div>
 
+<section id="calendar" class="wrap" aria-labelledby="cal-h">
+  <h2 id="cal-h">연간 일정</h2>
+  <div class="notice">${DISCLAIMER_예정}</div>
+  <div id="calBody"></div>
+</section>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="포스터 크게 보기">
   <img id="lightboxImg" alt="">
   <button type="button" class="close" id="lightboxClose">닫기 (Esc)</button>
@@ -199,6 +229,7 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
 
 <script>
 const DATA = ${dataJson};
+const UPCOMING = ${upcomingJson};
 const BUILT_ON = "${today()}";   // 이 페이지를 만든 날 (매월 1일 자동 빌드)
 // 오늘은 '보는 시점'에서 구한다. 빌드 시각으로 고정하면 마감이 지난 활동이
 // 한 달 내내 정상 목록에 남고 '마감 임박' 판정도 어긋난다.
@@ -211,6 +242,9 @@ const STAR_LABELS = {5:"매우 높음",4:"높음",3:"보통",2:"낮음",1:"매�
 const state = { q:"", grade:new Set(), field:new Set(), star:new Set(), cost:new Set(), term:new Set(), sel:new Set(), kw:new Set(), dateStart:"", dateEnd:"", kwAnd:false, showPast:false };
 
 function uniq(arr){ return [...new Set(arr)]; }
+// card() 가 문자열 연결 + innerHTML 이라 데이터에 꺾쇠·따옴표가 들어오면 마크업이 깨진다.
+// 실제로 활동명에 & 와 작은따옴표가 이미 들어 있다(Roots & Shoots, World Scholar's Cup).
+function esc(v){ return String(v==null?'':v).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 // 분야 필터 = 대분류 5개 + 데이터에 등장한 과목태그 (통합)
 const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
 const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
@@ -293,25 +327,25 @@ function stars(n){ n=Number(n)||0; return '★'.repeat(n)+'☆'.repeat(5-n); }
 function card(d){
   const el=document.createElement('div'); el.className='card';
   let poster='';
-  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+d.포스터+'">'+
-    '<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
+  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+esc(d.포스터)+'">'+
+    '<img class="thumb" src="'+esc(d.포스터)+'" alt="'+esc(d.활동명)+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
   // 마감 상태는 색만으로 구분하지 않는다. 임박·마감은 배지 텍스트를 함께 단다.
   let dl;
   if(!d.마감일){ dl = '<span class="b sangsi">상시</span>'; }
-  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+d.마감일+'</span> <span class="b past">마감됨</span>'; }
-  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+d.마감일+'</span> <span class="b soon">임박</span>'; }
-  else { dl = '<span class="deadline">마감 '+d.마감일+'</span>'; }
-  const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+s+'</span>').join('');
-  const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+s+'</span>').join('');
+  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+esc(d.마감일)+'</span> <span class="b past">마감됨</span>'; }
+  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+esc(d.마감일)+'</span> <span class="b soon">임박</span>'; }
+  else { dl = '<span class="deadline">마감 '+esc(d.마감일)+'</span>'; }
+  const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+esc(s)+'</span>').join('');
+  const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+esc(s)+'</span>').join('');
   el.innerHTML =
     poster +
-    '<h3>'+(d.활동명||'')+'</h3>'+
-    '<div class="badges"><span class="b field">'+(d.분야||'')+'</span>'+subj+'</div>'+
-    '<div class="meta">주최 '+(d.주최||'-')+' · 대상 '+(d.대상_원문||'-')+'</div>'+
-    '<div class="stars" title="'+${JSON.stringify(DISCLAIMER_별점)}+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+(d.미국입시_관련도||'-')+'</span></div>'+
-    '<div class="desc">'+(d.핵심내용||'')+'</div>'+
+    '<h3>'+esc(d.활동명)+'</h3>'+
+    '<div class="badges"><span class="b field">'+esc(d.분야)+'</span>'+subj+'</div>'+
+    '<div class="meta">주최 '+esc(d.주최||'-')+' · 대상 '+esc(d.대상_원문||'-')+'</div>'+
+    '<div class="stars" title="'+${JSON.stringify(DISCLAIMER_별점)}+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+esc(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+esc(d.미국입시_관련도||'-')+'</span></div>'+
+    '<div class="desc">'+esc(d.핵심내용)+'</div>'+
     '<div class="badges">'+kw+'</div>'+
-    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">'+
+    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+esc(d.웹사이트)+'" target="_blank" rel="noopener">'+
       '공식 페이지 열기<span class="sr-only"> (새 창)</span> ↗</a>':'')+'</div>';
   const t=el.querySelector('.thumb-btn');
   if(t) t.onclick=()=>openLightbox(t.dataset.full, t);
@@ -432,8 +466,71 @@ dEnd.addEventListener('change', e=>{ state.dateEnd=e.target.value; render(); });
 document.getElementById('dateClear').onclick=()=>{ dStart.value=''; dEnd.value=''; state.dateStart=''; state.dateEnd=''; render(); };
 document.getElementById('resetAll').onclick=resetAll;
 document.getElementById('resetEmpty').onclick=resetAll;
+
+// 연간 일정 — 게시 활동의 마감월과 씨앗의 공고 예상월을 한 지도에 얹는다.
+// 필터 상태(state)와 섞지 않는다. 조건을 좁혀도 연간 조망은 그대로 남는 편이 쓸모 있다.
+// 예정 카드는 innerHTML 을 쓰지 않고 DOM API 로만 만든다 — 씨앗 데이터는 리서처 검증을 거치지 않았다.
+function calRow(label, nodes){
+  const r=document.createElement('div'); r.className='cal-row';
+  const l=document.createElement('div'); l.className='cal-lab'; l.textContent=label; r.appendChild(l);
+  const w=document.createElement('div'); w.className='cal-items';
+  nodes.forEach(n=>w.appendChild(n)); r.appendChild(w);
+  return r;
+}
+function calLink(url){
+  const el = url ? document.createElement('a') : document.createElement('span');
+  if(url){ el.href=url; el.target='_blank'; el.rel='noopener'; }
+  return el;
+}
+function calDeadline(d){
+  const el=calLink(d.웹사이트);
+  const past=isPast(d.마감일);
+  const soon=!past && d.마감일 <= addDays(TODAY,14);
+  el.className='cal-i'+(past?' past':(soon?' soon':''));
+  el.textContent=d.활동명+' · 마감 '+d.마감일.slice(5).split('-').join('/')+(past?' (마감됨)':'');
+  return el;
+}
+function calPlan(u, m){
+  const el=calLink(u.웹사이트);
+  el.className='cal-i plan';
+  el.textContent=u.활동명+' · 예상 '+m+'월';
+  el.title='공고 예정 · 예상 '+m+'월 (전년도 기준, 확정 전)';
+  return el;
+}
+function renderCalendar(){
+  const body=document.getElementById('calBody');
+  if(!body) return;
+  body.innerHTML='';
+  const 이번달=Number(TODAY.slice(5,7));
+  for(let m=1;m<=12;m++){
+    const 마감=DATA.filter(d=>d.마감일 && Number(d.마감일.slice(5,7))===m)
+      .sort((a,b)=>a.마감일<b.마감일?-1:1);
+    const 예정=UPCOMING.filter(u=>(u.예상_공고월||[]).indexOf(m)!==-1);
+    const box=document.createElement('div');
+    box.className='cal-m'+((마감.length||예정.length)?'':' none');
+    const h=document.createElement('div'); h.className='cal-h';
+    const b=document.createElement('b'); b.textContent=m+'월'; h.appendChild(b);
+    if(m===이번달){ const t=document.createElement('span'); t.className='b soon'; t.textContent='이번 달'; h.appendChild(t); }
+    const cnt=document.createElement('span'); cnt.className='meta';
+    const parts=[];
+    if(마감.length) parts.push('마감 '+마감.length+'건');
+    if(예정.length) parts.push('공고 예상 '+예정.length+'건');
+    cnt.textContent = parts.length ? parts.join(' · ') : '등록된 일정 없음';
+    h.appendChild(cnt);
+    box.appendChild(h);
+    if(마감.length) box.appendChild(calRow('이달 마감', 마감.map(calDeadline)));
+    if(예정.length){
+      box.appendChild(calRow('공고 예상', 예정.map(u=>calPlan(u,m))));
+      const n=document.createElement('div'); n.className='cal-note';
+      n.textContent='전년도 기준 추정 · 확정 전';
+      box.appendChild(n);
+    }
+    body.appendChild(box);
+  }
+}
+
 window.addEventListener('popstate', ()=>{ urlToState(); syncControls(); render(); });
-urlToState(); syncControls(); render();
+urlToState(); syncControls(); render(); renderCalendar();
 </script>
 </body>
 </html>`;
@@ -450,17 +547,26 @@ async function main() {
   const publicData = published.map(toPublic);
   const dataJson = JSON.stringify(publicData);
 
+  // 공고 예정 — 씨앗 메타데이터의 렌더다. master 수록이 아니다.
+  // data.json 의 배열 형태를 지키려고 별도 파일로 낸다(예정을 섞으면 배열이 객체가 되어
+  // 교사앱 직독이 깨진다 — 계약 D7). 화면은 인라인으로 그리므로 이 파일을 fetch 하지 않는다.
+  const seeds = loadSeeds(readJson(path.join(P.data, 'sources.json'), {}));
+  const upcoming = upcomingFor(seeds, master.map((x) => x.id), m);
+  const upcomingJson = JSON.stringify(upcoming);
+
   writeJson(path.join(P.docs, 'data.json'), publicData);
-  fs.writeFileSync(path.join(P.docs, 'index.html'), html(dataJson), 'utf8');
+  writeJson(path.join(P.docs, 'upcoming.json'), upcoming);
+  fs.writeFileSync(path.join(P.docs, 'index.html'), html(dataJson, upcomingJson), 'utf8');
 
   // 아카이브 스냅샷
   const archiveDir = path.join(P.archive, m);
   ensureDir(archiveDir);
-  fs.writeFileSync(path.join(archiveDir, 'index.html'), html(dataJson), 'utf8');
+  fs.writeFileSync(path.join(archiveDir, 'index.html'), html(dataJson, upcomingJson), 'utf8');
   writeJson(path.join(archiveDir, 'data.json'), publicData);
+  writeJson(path.join(archiveDir, 'upcoming.json'), upcoming);
 
   if (!SITE_URL) log('참고: SDC_SITE_URL 미설정 → OG:image 는 상대경로. 5단계에서 실제 Pages 주소로 설정하면 카톡 미리보기가 완전해집니다.');
-  log(`빌드 완료 — 게시 ${published.length}건 → docs/index.html, docs/data.json (아카이브: ${m})`);
+  log(`빌드 완료 — 게시 ${published.length}건 · 공고 예정 ${upcoming.length}건 → docs/index.html, docs/data.json, docs/upcoming.json (아카이브: ${m})`);
 }
 
 main();

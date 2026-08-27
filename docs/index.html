@@ -28,6 +28,26 @@
     --past-bg:#eef0f4;   /* 마감됨 배지 배경 */
     --past-t:#4A5568; }  /* 마감됨 배지 글자 */
   *{box-sizing:border-box}
+  /* 숨김은 한 곳에서 정한다 — hidden 의 기본 display:none 은 UA 스타일이라
+     display:flex/grid 를 준 요소에서는 밀린다. 뷰 전환·토글이 조용히 깨지는 원인. */
+  [hidden]{display:none!important}
+  #calendar{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+  #calendar h2{font-size:20px;margin:0 0 8px}
+  .cal-m{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:12px 14px;margin:0 0 10px}
+  .cal-m.none{background:var(--bg);border-style:dashed}
+  .cal-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 4px}
+  .cal-h b{font-size:16px;color:var(--blue-d)}
+  .cal-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;margin:8px 0 0}
+  .cal-lab{flex:0 0 74px;font-size:12px;font-weight:700;color:var(--sub);padding-top:8px}
+  .cal-items{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto;min-width:0}
+  .cal-i{font-size:13px;border:1px solid var(--line-ui);border-radius:999px;padding:6px 13px;
+    background:#fff;color:var(--ink);min-height:34px;display:inline-flex;align-items:center;text-decoration:none}
+  a.cal-i{min-height:44px}
+  a.cal-i:hover{border-color:var(--blue-d);background:var(--blue)}
+  .cal-i.soon{background:var(--warn-bg);border-color:var(--soon-t);color:var(--soon-t)}
+  .cal-i.past{background:var(--past-bg);border-color:var(--past-t);color:var(--past-t)}
+  .cal-i.plan{background:var(--blue);border-color:var(--blue-d)}
+  .cal-note{font-size:12px;color:var(--sub);margin:6px 0 0 84px}
   body{margin:0;font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);
     line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -140,6 +160,12 @@
   </div>
 </div>
 
+<section id="calendar" class="wrap" aria-labelledby="cal-h">
+  <h2 id="cal-h">연간 일정</h2>
+  <div class="notice">공고 예정은 전년도 기준 추정이며 확정 전 정보입니다. 실제 공고·마감은 공식 페이지에서 확인하세요.</div>
+  <div id="calBody"></div>
+</section>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="포스터 크게 보기">
   <img id="lightboxImg" alt="">
   <button type="button" class="close" id="lightboxClose">닫기 (Esc)</button>
@@ -152,6 +178,7 @@
 
 <script>
 const DATA = [{"id":"environment-love-contest-2026","활동명":"2026 대한민국 환경사랑공모전","분야":"환경·예술·공익","과목태그":["환경","예술·디자인"],"키워드":["공모전","무료","전국규모","개인"],"대상_학년":["초","중","고"],"대상_원문":"신청자격 제한 없음(대한민국 국민 누구나). 일러스트레이션 부문은 학생부(초등부/중·고등부) 별도 운영.","주최":"한국환경공단","마감일":"2026-08-03","신청기간_원문":"2026년 6월 8일(월) ~ 8월 3일(월) 18시까지","비용_구분":"무료","핵심내용":"사진·에코디자인·일러스트레이션 부문으로 환경 인식을 겨루는 전국 규모 환경 공모전.","웹사이트":"https://xn--289a5d925ap8c64jnzlpiz.kr/","미국입시_관련도":"낮음","SDC_적합도":2,"갱신일":"2026-08-27","선발성":true,"국제성":false},{"id":"seoul-environmental-education-content-contest-2026","활동명":"2026년 제3회 서울특별시 환경교육 콘텐츠 공모전","분야":"환경·예술·공익","과목태그":["환경","미디어·영상"],"키워드":["공모전","무료","팀","개인"],"대상_학년":["초","중","고"],"대상_원문":"환경교육에 관심이 있는 전 국민 누구나(개인 또는 팀). 학생 포함.","주최":"서울특별시환경교육센터 (후원: 기후에너지환경부, 서울특별시)","마감일":"2026-08-04","신청기간_원문":"2026년 3월 31일(화) ~ 8월 4일(화) 18시까지 (기존 수집 정보, 이번 재확인 시 접속 불가로 변동 확인 불가)","비용_구분":"무료","핵심내용":"자원순환(생활폐기물 감축·지속가능한 소비 실천)을 주제로 한 교구·영상(롱폼/숏폼) 콘텐츠를 겨루는 서울시 환경교육 공모전.","웹사이트":"https://seec.or.kr/bbs/board.php?bo_table=notice&wr_id=264","미국입시_관련도":"낮음","SDC_적합도":2,"갱신일":"2026-08-27","선발성":true,"국제성":false},{"id":"hir-academic-writing-contest-2026","활동명":"Harvard International Review Academic Writing Contest 2026","분야":"글쓰기·논문·인문사회","과목태그":["인문·철학","사회·정책","국제·외교"],"키워드":["에세이·논문","공모전","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"7~12학년 학생(미국 외 국가 학생 포함)","주최":"Harvard International Review (HIR)","마감일":"2026-08-24","신청기간_원문":"Summer 2026 마감 August 24, 2026 / Fall-Winter 2026 마감 January 2, 2027","비용_구분":"유료","핵심내용":"국제관계·외교 주제의 단편 학술 아티클을 겨루는 하버드국제리뷰 주최 글쓰기 대회.","웹사이트":"https://hir.harvard.edu/contest/","미국입시_관련도":"높음","SDC_적합도":4,"갱신일":"2026-08-01","선발성":true,"국제성":true},{"id":"fss-financial-contest-2026","활동명":"제21회 금융공모전 (청소년 금융창작물 부문 등)","분야":"환경·예술·공익","과목태그":["경제·금융","미디어·영상"],"키워드":["공모전","무료","전국규모","개인"],"대상_학년":["초","중","고"],"대상_원문":"초·중·고등학교 재학생과 동일 연령대 청소년 (청소년 부문). 대학생·성인·기관 부문도 별도 운영.","주최":"금융감독원","마감일":"2026-09-02","신청기간_원문":"2026년 6월 17일 ~ 9월 2일 오후 5시까지","비용_구분":"무료","핵심내용":"금융에 대한 관심과 이해를 높이기 위해 글짓기·UCC·포스터·만화 등으로 참여하는 금융감독원 주최 전 국민 대상 공모전(청소년 부문 별도 운영).","웹사이트":"https://www.fss.or.kr/edu","미국입시_관련도":"낮음","SDC_적합도":2,"갱신일":"2026-08-27","선발성":true,"국제성":false},{"id":"breakthrough-junior-challenge-2026","활동명":"Breakthrough Junior Challenge 2026","분야":"과학·공학·수학생명·AI","과목태그":["과학","물리·화학","생명·의학","수학","미디어·영상"],"키워드":["공모전","국제대회","개인","무료","미디어·영상"],"대상_학년":["중","고"],"대상_원문":"만 13~18세 학생(2026-05-11 기준 13세 이상, 2026-10-01 기준 만 19세 미만). 개인 참가만 가능.","주최":"Breakthrough Prize Foundation","마감일":"2026-09-15","신청기간_원문":"제출 마감: September 15, 2026","비용_구분":"무료","핵심내용":"생명과학·물리·수학 개념을 짧은 영상으로 설명하는 국제 대회(개인전).","웹사이트":"https://breakthroughjuniorchallenge.org/","미국입시_관련도":"높음","SDC_적합도":5,"갱신일":"2026-07-07","선발성":true,"국제성":true},{"id":"amc-2026","활동명":"AMC (American Mathematics Competitions) 2026","분야":"과학·공학·수학생명·AI","과목태그":["수학"],"키워드":["올림피아드","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"중·고등학생 (AMC 8: 8학년 이하 / AMC 10: 10학년 이하 / AMC 12: 12학년 이하)","주최":"MAA (Mathematical Association of America)","마감일":"2026-09-30","신청기간_원문":"AMC 10/12 등록 마감: Early Bird September 30, 2026 ($55) / Regular October 15, 2026 ($75) / Late October 28, 2026 ($115). AMC 8 등록 마감: Early Bird October 28, 2026 ($55) / Regular January 5, 2027 ($75) / Late January 14, 2027 ($115).","비용_구분":"유료","핵심내용":"MAA가 주최하는 국제 수학경시대회. AMC 8/10/12로 나뉘며 상위자는 AIME·USA(J)MO 선발 경로로 이어진다.","웹사이트":"https://maa.org/amcreg/","미국입시_관련도":"높음","SDC_적합도":4,"갱신일":"2026-07-07","선발성":true,"국제성":true},{"id":"the-concord-review-2026","활동명":"The Concord Review (역사 연구논문 저널) 투고","분야":"글쓰기·논문·인문사회","과목태그":["인문·철학","사회·정책"],"키워드":["에세이·논문","연구","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"중등교육(고교) 졸업 이전에 논문을 완성한 학생","주최":"The Concord Review, Inc.","마감일":"2026-11-01","신청기간_원문":"분기별 마감(상시 투고, rolling admissions). Winter호 August 1, Spring호 November 1, Summer호 February 1, Fall호 May 1.","비용_구분":"유료","핵심내용":"고교생 역사 연구논문을 심사·게재하는 국제 학술지. 분기별 rolling 마감이라 8/1 마감이 지나도 다음 11/1(Spring호) 마감으로 계속 투고 가능.","웹사이트":"https://tcr.org/submit","미국입시_관련도":"높음","SDC_적합도":4,"갱신일":"2026-08-01","선발성":true,"국제성":true},{"id":"1365-volunteer-portal","활동명":"1365 자원봉사포털 청소년 자원봉사","분야":"스포츠·문화·봉사","과목태그":["사회·정책"],"키워드":["봉사","온라인","상시모집","무료","개인"],"대상_학년":["초","중","고"],"대상_원문":"청소년(초·중·고 포함) 및 일반 국민","주최":"행정안전부 (재단법인 한국중앙자원봉사센터 운영)","마감일":null,"신청기간_원문":"상시모집","비용_구분":"무료","핵심내용":"전국 자원봉사 정보를 통합 제공하는 정부 포털. 청소년자원봉사 두볼(Dovol) 시스템으로 NEIS 연계 실적 전송을 지원한다.","웹사이트":"https://www.1365.go.kr/vols/main.do","미국입시_관련도":"낮음","SDC_적합도":1,"갱신일":"2026-08-27","선발성":false,"국제성":false},{"id":"duke-of-edinburgh-award-korea","활동명":"국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)","분야":"스포츠·문화·봉사","과목태그":["사회·정책"],"키워드":["봉사","캠프·체험","상시모집","국제대회","개인"],"대상_학년":["중","고"],"대상_원문":"14세 이상 24세 이하 청소년","주최":"The Duke of Edinburgh's International Award Foundation(국제본부) / 한국청소년활동진흥원(국내 운영기관)","마감일":null,"신청기간_원문":"상시모집(e청소년 포털을 통한 연중 접수) - 기존 수집 정보, 이번 재확인 시 접속 불가로 변동 확인 불가","비용_구분":"소액","핵심내용":"1956년 영국에서 창설되어 130여 개국에서 운영되는 국제 청소년 자기성장 프로그램. 봉사·자기개발·신체단련·탐험 활동을 등급별로 수행해 포상을 받는다.","웹사이트":"https://www.youth.go.kr/youth/youth/contents/intrlSccesRwardIntroForm.yt","미국입시_관련도":"보통","SDC_적합도":3,"갱신일":"2026-08-27","선발성":false,"국제성":true},{"id":"iearn","활동명":"iEARN (International Education and Resource Network) 글로벌 협업 프로젝트","분야":"국제·리더십·사회참여","과목태그":["사회·정책","국제·외교","문화"],"키워드":["온라인","상시모집","팀","국제대회"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 학생·교사(초·중·고 및 청소년 기관)","주최":"iEARN (International Education and Resource Network, 1988년 설립 비영리 국제교육네트워크)","마감일":null,"신청기간_원문":"상시모집(정규 수업·방과후 프로그램으로 연중 참여)","비용_구분":"유료","핵심내용":"140개국 학교가 참여하는 국제 협업·가상교류 프로젝트 네트워크. 한국(iEARN-South Korea)도 참여국.","웹사이트":"https://iearn.org/","미국입시_관련도":"낮음","SDC_적합도":1,"갱신일":"2026-08-27","선발성":false,"국제성":true},{"id":"nasa-citizen-science","활동명":"NASA Citizen Science (시민과학 프로젝트)","분야":"과학·공학·수학생명·AI","과목태그":["과학","공학"],"키워드":["연구","온라인","무료","국제대회","개인"],"대상_학년":["초","중","고"],"대상_원문":"누구나(시민권 불필요). 청소년 포함 전 세계 참여자.","주최":"NASA (미국 항공우주국)","마감일":null,"신청기간_원문":"상시모집(프로젝트별 연중 참여)","비용_구분":"무료","핵심내용":"NASA 연구진과 함께 천문·지구과학 등 실제 과학 프로젝트에 자원 참여하는 시민과학 프로그램.","웹사이트":"https://science.nasa.gov/citizen-science/","미국입시_관련도":"보통","SDC_적합도":3,"갱신일":"2026-08-27","선발성":false,"국제성":true},{"id":"roots-and-shoots","활동명":"Roots & Shoots (제인 구달 청소년 봉사·환경 프로그램)","분야":"스포츠·문화·봉사","과목태그":["환경"],"키워드":["봉사","환경","무료","팀","상시모집"],"대상_학년":["초","중","고"],"대상_원문":"전 세계 청소년(young people). 초·중·고 포함.","주최":"Jane Goodall Institute (제인 구달 박사 설립)","마감일":null,"신청기간_원문":"상시모집(커뮤니티 프로젝트 연중 기획·참여)","비용_구분":"무료","핵심내용":"제인구달연구소가 운영하는 청소년 주도 지역사회 봉사·환경·동물복지 프로젝트 프로그램(글로벌 챕터).","웹사이트":"https://rootsandshoots.org/","미국입시_관련도":"낮음","SDC_적합도":2,"갱신일":"2026-07-07","선발성":false,"국제성":true},{"id":"globe-program","활동명":"The GLOBE Program (국제 환경 관측·교육 프로그램)","분야":"환경·예술·공익","과목태그":["환경","과학"],"키워드":["연구","캠프·체험","상시모집","무료","국제대회"],"대상_학년":["초","중","고"],"대상_원문":"초등~고등 학생 및 교사(환경 데이터 수집 참여)","주최":"NASA 후원, NSF·NOAA·미 국무부 지원","마감일":null,"신청기간_원문":"상시모집(학교·교사 등록을 통한 연중 데이터 수집)","비용_구분":"무료","핵심내용":"전 세계 학생이 표준 프로토콜로 환경 데이터를 관측·공유하는 NASA 후원 국제 환경 과학·교육 프로그램. 한국(Republic of Korea)도 참여국.","웹사이트":"https://www.globe.gov/","미국입시_관련도":"보통","SDC_적합도":3,"갱신일":"2026-08-27","선발성":false,"국제성":true},{"id":"wharton-investment-competition-2027","활동명":"Wharton Global High School Investment Competition (2026-2027)","분야":"국제·리더십·사회참여","과목태그":["경제·금융"],"키워드":["공모전","국제대회","팀"],"대상_학년":["고"],"대상_원문":"고등학생(9~12학년), 교사 지도 하 4~6인 팀","주최":"Wharton Global Youth Program, University of Pennsylvania","마감일":null,"신청기간_원문":"Registration for the 2026-2027 Competition will open on August 10.","비용_구분":"무료","핵심내용":"모의 주식 포트폴리오를 운용하고 투자전략 보고서를 겨루는 와튼 주최 글로벌 고교 투자대회(팀전).","웹사이트":"https://globalyouth.wharton.upenn.edu/competitions/investment-competition/","미국입시_관련도":"높음","SDC_적합도":5,"갱신일":"2026-07-07","선발성":true,"국제성":true},{"id":"world-scholars-cup-2026","활동명":"World Scholar's Cup 2026 (Korea Round, Seoul Global Round)","분야":"국제·리더십·사회참여","과목태그":["인문·철학","사회·정책","국제·외교"],"키워드":["토론·스피치","공모전","국제대회","팀"],"대상_학년":["초","중","고"],"대상_원문":"초·중·고 학생(팀 참가), 국가/지역별 라운드 참가","주최":"World Scholar's Cup","마감일":null,"신청기간_원문":"공식 웹사이트를 통한 상시 등록(라운드별 조기 마감 가능)","비용_구분":"유료","핵심내용":"토론·에세이·퀴즈·협동 프레젠테이션 등을 겨루는 국제 학술 대회. 한국(서울) 라운드가 매년 개최된다.","웹사이트":"https://www.scholarscup.org/","미국입시_관련도":"보통","SDC_적합도":3,"갱신일":"2026-07-07","선발성":true,"국제성":true},{"id":"zooniverse","활동명":"Zooniverse (온라인 시민과학 연구 참여)","분야":"과학·공학·수학생명·AI","과목태그":["과학","생명·의학"],"키워드":["연구","온라인","무료","국제대회","개인"],"대상_학년":["초","중","고"],"대상_원문":"누구나(전문 배경·훈련 불필요). 16세 미만은 보호자 동의 하 계정 생성 가능.","주최":"The Zooniverse (Adler Planetarium, University of Minnesota, University of Oxford 파트너)","마감일":null,"신청기간_원문":"상시모집(계정 생성 후 언제든 참여)","비용_구분":"무료","핵심내용":"천문·생태·기후 등 실제 연구 데이터를 자원자가 분류·분석하는 세계 최대 시민과학 플랫폼.","웹사이트":"https://www.zooniverse.org/","미국입시_관련도":"보통","SDC_적합도":3,"갱신일":"2026-08-27","선발성":false,"국제성":true}];
+const UPCOMING = [{"활동명":"Ross Mathematics Program","분야":"선발형 여름 프로그램","예상_공고월":[1],"웹사이트":""},{"활동명":"John Locke Institute Essay Competition","분야":"글쓰기·논문·인문사회","예상_공고월":[6],"웹사이트":"https://www.johnlockeinstitute.com/essay-competition"},{"활동명":"RSI (Research Science Institute)","분야":"선발형 여름 프로그램","예상_공고월":[11],"웹사이트":""},{"활동명":"SSP (Summer Science Program)","분야":"선발형 여름 프로그램","예상_공고월":[11],"웹사이트":""}];
 const BUILT_ON = "2026-08-27";   // 이 페이지를 만든 날 (매월 1일 자동 빌드)
 // 오늘은 '보는 시점'에서 구한다. 빌드 시각으로 고정하면 마감이 지난 활동이
 // 한 달 내내 정상 목록에 남고 '마감 임박' 판정도 어긋난다.
@@ -164,6 +191,9 @@ const STAR_LABELS = {5:"매우 높음",4:"높음",3:"보통",2:"낮음",1:"매�
 const state = { q:"", grade:new Set(), field:new Set(), star:new Set(), cost:new Set(), term:new Set(), sel:new Set(), kw:new Set(), dateStart:"", dateEnd:"", kwAnd:false, showPast:false };
 
 function uniq(arr){ return [...new Set(arr)]; }
+// card() 가 문자열 연결 + innerHTML 이라 데이터에 꺾쇠·따옴표가 들어오면 마크업이 깨진다.
+// 실제로 활동명에 & 와 작은따옴표가 이미 들어 있다(Roots & Shoots, World Scholar's Cup).
+function esc(v){ return String(v==null?'':v).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 // 분야 필터 = 대분류 5개 + 데이터에 등장한 과목태그 (통합)
 const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
 const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
@@ -246,25 +276,25 @@ function stars(n){ n=Number(n)||0; return '★'.repeat(n)+'☆'.repeat(5-n); }
 function card(d){
   const el=document.createElement('div'); el.className='card';
   let poster='';
-  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+d.포스터+'">'+
-    '<img class="thumb" src="'+d.포스터+'" alt="'+(d.활동명||'')+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
+  if(d.포스터){ poster='<button type="button" class="thumb-btn" data-full="'+esc(d.포스터)+'">'+
+    '<img class="thumb" src="'+esc(d.포스터)+'" alt="'+esc(d.활동명)+' 포스터 — 눌러서 크게 보기">'+'</button>'; }
   // 마감 상태는 색만으로 구분하지 않는다. 임박·마감은 배지 텍스트를 함께 단다.
   let dl;
   if(!d.마감일){ dl = '<span class="b sangsi">상시</span>'; }
-  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+d.마감일+'</span> <span class="b past">마감됨</span>'; }
-  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+d.마감일+'</span> <span class="b soon">임박</span>'; }
-  else { dl = '<span class="deadline">마감 '+d.마감일+'</span>'; }
-  const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+s+'</span>').join('');
-  const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+s+'</span>').join('');
+  else if(isPast(d.마감일)){ dl = '<span class="deadline">마감 '+esc(d.마감일)+'</span> <span class="b past">마감됨</span>'; }
+  else if(d.마감일 <= addDays(TODAY,14)){ dl = '<span class="deadline soon">마감 '+esc(d.마감일)+'</span> <span class="b soon">임박</span>'; }
+  else { dl = '<span class="deadline">마감 '+esc(d.마감일)+'</span>'; }
+  const subj=(d.과목태그||[]).map(s=>'<span class="b subject">'+esc(s)+'</span>').join('');
+  const kw=(d.키워드||[]).map(s=>'<span class="b kw">'+esc(s)+'</span>').join('');
   el.innerHTML =
     poster +
-    '<h3>'+(d.활동명||'')+'</h3>'+
-    '<div class="badges"><span class="b field">'+(d.분야||'')+'</span>'+subj+'</div>'+
-    '<div class="meta">주최 '+(d.주최||'-')+' · 대상 '+(d.대상_원문||'-')+'</div>'+
-    '<div class="stars" title="'+"이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다."+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+(d.미국입시_관련도||'-')+'</span></div>'+
-    '<div class="desc">'+(d.핵심내용||'')+'</div>'+
+    '<h3>'+esc(d.활동명)+'</h3>'+
+    '<div class="badges"><span class="b field">'+esc(d.분야)+'</span>'+subj+'</div>'+
+    '<div class="meta">주최 '+esc(d.주최||'-')+' · 대상 '+esc(d.대상_원문||'-')+'</div>'+
+    '<div class="stars" title="'+"이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다."+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+esc(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+esc(d.미국입시_관련도||'-')+'</span></div>'+
+    '<div class="desc">'+esc(d.핵심내용)+'</div>'+
     '<div class="badges">'+kw+'</div>'+
-    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+d.웹사이트+'" target="_blank" rel="noopener">'+
+    '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+esc(d.웹사이트)+'" target="_blank" rel="noopener">'+
       '공식 페이지 열기<span class="sr-only"> (새 창)</span> ↗</a>':'')+'</div>';
   const t=el.querySelector('.thumb-btn');
   if(t) t.onclick=()=>openLightbox(t.dataset.full, t);
@@ -385,8 +415,71 @@ dEnd.addEventListener('change', e=>{ state.dateEnd=e.target.value; render(); });
 document.getElementById('dateClear').onclick=()=>{ dStart.value=''; dEnd.value=''; state.dateStart=''; state.dateEnd=''; render(); };
 document.getElementById('resetAll').onclick=resetAll;
 document.getElementById('resetEmpty').onclick=resetAll;
+
+// 연간 일정 — 게시 활동의 마감월과 씨앗의 공고 예상월을 한 지도에 얹는다.
+// 필터 상태(state)와 섞지 않는다. 조건을 좁혀도 연간 조망은 그대로 남는 편이 쓸모 있다.
+// 예정 카드는 innerHTML 을 쓰지 않고 DOM API 로만 만든다 — 씨앗 데이터는 리서처 검증을 거치지 않았다.
+function calRow(label, nodes){
+  const r=document.createElement('div'); r.className='cal-row';
+  const l=document.createElement('div'); l.className='cal-lab'; l.textContent=label; r.appendChild(l);
+  const w=document.createElement('div'); w.className='cal-items';
+  nodes.forEach(n=>w.appendChild(n)); r.appendChild(w);
+  return r;
+}
+function calLink(url){
+  const el = url ? document.createElement('a') : document.createElement('span');
+  if(url){ el.href=url; el.target='_blank'; el.rel='noopener'; }
+  return el;
+}
+function calDeadline(d){
+  const el=calLink(d.웹사이트);
+  const past=isPast(d.마감일);
+  const soon=!past && d.마감일 <= addDays(TODAY,14);
+  el.className='cal-i'+(past?' past':(soon?' soon':''));
+  el.textContent=d.활동명+' · 마감 '+d.마감일.slice(5).split('-').join('/')+(past?' (마감됨)':'');
+  return el;
+}
+function calPlan(u, m){
+  const el=calLink(u.웹사이트);
+  el.className='cal-i plan';
+  el.textContent=u.활동명+' · 예상 '+m+'월';
+  el.title='공고 예정 · 예상 '+m+'월 (전년도 기준, 확정 전)';
+  return el;
+}
+function renderCalendar(){
+  const body=document.getElementById('calBody');
+  if(!body) return;
+  body.innerHTML='';
+  const 이번달=Number(TODAY.slice(5,7));
+  for(let m=1;m<=12;m++){
+    const 마감=DATA.filter(d=>d.마감일 && Number(d.마감일.slice(5,7))===m)
+      .sort((a,b)=>a.마감일<b.마감일?-1:1);
+    const 예정=UPCOMING.filter(u=>(u.예상_공고월||[]).indexOf(m)!==-1);
+    const box=document.createElement('div');
+    box.className='cal-m'+((마감.length||예정.length)?'':' none');
+    const h=document.createElement('div'); h.className='cal-h';
+    const b=document.createElement('b'); b.textContent=m+'월'; h.appendChild(b);
+    if(m===이번달){ const t=document.createElement('span'); t.className='b soon'; t.textContent='이번 달'; h.appendChild(t); }
+    const cnt=document.createElement('span'); cnt.className='meta';
+    const parts=[];
+    if(마감.length) parts.push('마감 '+마감.length+'건');
+    if(예정.length) parts.push('공고 예상 '+예정.length+'건');
+    cnt.textContent = parts.length ? parts.join(' · ') : '등록된 일정 없음';
+    h.appendChild(cnt);
+    box.appendChild(h);
+    if(마감.length) box.appendChild(calRow('이달 마감', 마감.map(calDeadline)));
+    if(예정.length){
+      box.appendChild(calRow('공고 예상', 예정.map(u=>calPlan(u,m))));
+      const n=document.createElement('div'); n.className='cal-note';
+      n.textContent='전년도 기준 추정 · 확정 전';
+      box.appendChild(n);
+    }
+    body.appendChild(box);
+  }
+}
+
 window.addEventListener('popstate', ()=>{ urlToState(); syncControls(); render(); });
-urlToState(); syncControls(); render();
+urlToState(); syncControls(); render(); renderCalendar();
 </script>
 </body>
 </html>

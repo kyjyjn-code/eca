@@ -78,6 +78,12 @@ jobs:
           path: data/raw/
           retention-days: 14
 
+      # --- 1.6단계: 학교 단위 접수 대회를 검토 큐에 쌓는다 ---
+      - name: 기관 접수 검토 큐 갱신
+        env:
+          SDC_MONTH: ${{ steps.month.outputs.value }}
+        run: node scripts/update-review-queue.js
+
       # --- LLM 단계: 큐레이션 (판정·가공) ---
       - name: 큐레이션
         env:

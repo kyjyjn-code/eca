@@ -13,6 +13,8 @@
     "test": "node --test",
     "make-targets": "node scripts/make-targets.js",
     "check-coverage": "node scripts/check-coverage.js",
+    "update-review-queue": "node scripts/update-review-queue.js",
+    "score": "node scripts/score.js",
     "compute-kpi": "node scripts/compute-kpi.js",
     "check-guardrails": "node scripts/check-guardrails.js",
     "pr-summary": "node scripts/pr-summary.js",
