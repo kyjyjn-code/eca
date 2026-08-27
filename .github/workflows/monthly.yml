@@ -58,7 +58,7 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: |
-          claude -p "당신은 SDC ECA 리서치 에이전트입니다. 먼저 .claude/agents/researcher.md 를 읽고 그 지시문을 '그대로' 따르세요(특히 '증분 수집' 절을 반드시 준수: data/master.json 을 먼저 읽고, 신규+마감 30일 이내 임박+제외/확인필요 항목만 조사하며, 마감이 먼/상시인 정상 게시 항목은 재조사하지 마세요). data/master.json, data/sources.json, data/keywords.json, CLAUDE.md 를 참고하세요. 이번 달은 ${SDC_MONTH}. 조사한 항목은 공식 페이지 WebFetch로 확인하고 근거_원문을 남겨 data/raw/${SDC_MONTH}.json (객체 배열)에 저장하세요. 사실 정보 칸만 채우고 판정 칸은 비웁니다. 결과 보장 표현 금지, HSS/Holyseas 언급 절대 금지, 한국 학생 지원 자격 확인. 오직 data/raw 에만 쓰세요." \
+          claude -p "SDC ECA 리서치 에이전트입니다. .claude/agents/researcher.md 를 읽고 그대로 따르세요. 이번 회차에 처리할 대상은 data/raw/${SDC_MONTH}.targets.json 에 전부 열거돼 있습니다 — A(미수록 씨앗)·B(시즌)·C(순회 소스)·D(쿼리)·G(교사 제보)는 신규 발굴, E·F 는 재확인입니다. 신규 발굴은 매월 무조건 수행하며, 전 항목의 처리 결과를 기록하기 전에는 종료할 수 없습니다. 산출물은 data/raw/${SDC_MONTH}.json 과 data/raw/${SDC_MONTH}.coverage.json 둘입니다. 기록 규약은 templates/coverage-template.md 를 따릅니다. 오직 data/raw 에만 쓰세요." \
             --dangerously-skip-permissions
 
       # --- 1.5단계: 기록 검증 게이트. 기록이 없으면 여기서 멈춘다 ---
@@ -84,7 +84,7 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           SDC_MONTH: ${{ steps.month.outputs.value }}
         run: |
-          claude -p "당신은 SDC ECA 큐레이터 에이전트입니다. .claude/agents/curator.md 를 읽고 그대로 따르세요. data/keywords.json, CLAUDE.md(별점 계산식) 도 준수하세요. data/raw/${SDC_MONTH}.json 을 읽어 판정 칸(대상_학년·마감일·비용_구분·과목태그·키워드·미국입시_관련도·SDC_적합도)을 채워 data/curated/${SDC_MONTH}.json (객체 배열)로 저장하세요. 키워드는 keywords.json 사전 안에서만. 별점은 4기준 계산식 그대로. HSS/Holyseas 금지. 웹검색·git 금지, 오직 data/curated 에만 쓰세요." \
+          claude -p "SDC ECA 큐레이터 에이전트입니다. .claude/agents/curator.md 를 읽고 그대로 따르세요. data/raw/${SDC_MONTH}.json 을 읽어 판정 칸을 채워 data/curated/${SDC_MONTH}.json (객체 배열)으로 저장하세요. 웹 접근·git 금지, 오직 data/curated 에만 쓰세요." \
             --dangerously-skip-permissions
 
       # --- 결정적 스크립트 (병합·링크검증·포스터·엑셀·빌드·계측) ---

@@ -490,31 +490,54 @@
           "YYYY 중고등 수학 올림피아드 요강",
           "YYYY 학생 SW AI 경진대회",
           "대학 영재원 YYYY 모집",
-          "학회 주최 YYYY 학생 대회"
+          "학회 주최 YYYY 학생 대회",
+          "YYYY international science competition high school open to international students",
+          "YYYY math olympiad open to homeschooled students",
+          "YYYY STEM research program high school international eligible"
         ],
         "국제·리더십·사회참여": [
           "YYYY 청소년 모의유엔 MUN 접수",
           "YYYY 고등학생 경제 대회 공모",
           "YYYY 청소년 리더십 프로그램 모집",
-          "youth YYYY economics competition Korea eligible"
+          "youth YYYY economics competition Korea eligible",
+          "YYYY model united nations high school international delegates",
+          "YYYY global leadership program teens open to international students",
+          "YYYY business case competition high school homeschooled eligible"
         ],
         "글쓰기·논문·인문사회": [
           "YYYY 청소년 에세이 공모전 요강",
           "YYYY 학생 논문 대회 접수",
           "YYYY 독후감 글짓기 공모 중고등",
-          "YYYY high school essay competition international"
+          "YYYY high school essay competition international",
+          "YYYY youth research journal submission open to international students",
+          "YYYY history writing contest high school homeschooled eligible",
+          "YYYY essay prize secondary school worldwide alternative education"
         ],
         "스포츠·문화·봉사": [
           "YYYY 청소년 봉사활동 공모 모집",
           "YYYY 학생 문화 예술 공모전",
-          "YYYY 청소년 영상 UCC 공모"
+          "YYYY 청소년 영상 UCC 공모",
+          "YYYY youth volunteer program international students eligible",
+          "YYYY global service learning teens open to international",
+          "YYYY youth film video contest international entries"
         ],
         "환경·예술·공익": [
           "YYYY 청소년 환경 공모전 접수",
           "YYYY 학생 공익 포스터 그림 공모",
-          "YYYY 환경교육 콘텐츠 공모 요강"
+          "YYYY 환경교육 콘텐츠 공모 요강",
+          "YYYY youth environmental contest open to international students",
+          "YYYY climate action award teens worldwide eligible",
+          "YYYY student art design competition international entries homeschooled"
         ]
-      }
+      },
+      "소스탐색": [
+        "청소년 대회 공모전 공고 모음 사이트",
+        "학생 경진대회 공고 게시판 재단 협회",
+        "청소년 활동 정보 포털 공공기관",
+        "youth competition listing site for high school students",
+        "student competition directory homeschool eligible international"
+      ],
+      "소스탐색_설명": "분기월(1·4·7·10)에만 실행한다. 개별 활동을 수집하는 쿼리가 아니라, 활동 공고를 모아 제공하는 허브·게시판을 찾는 쿼리다. 발견한 후보는 sources.json 에 바로 추가하지 않고 coverage 의 소스관찰에 기록하며, 순회 소스 승격은 회고 제안과 사람 승인으로만 결정된다."
     },
     "정기순회_소스": {
       "설명": "즉흥 검색보다 안정적인 발굴을 위해 매월 신규 발굴 시 아래 허브·공지 페이지를 직접 순회(WebFetch)해 새 공고를 확인한다. 증분 수집 규칙(신규+임박+재확인만 상세 조사)은 그대로 적용한다.",
@@ -616,6 +639,10 @@
       {
         "활동명": "주니어카이스트 교육캠프",
         "사유": "과정 수강생 한정이라 지원자격 필터 배제"
+      },
+      {
+        "활동명": "UKMT (영국 수학 경시대회, United Kingdom Mathematics Trust)",
+        "사유": "개인 접수 불가 — 학교 단위 접수만 받아 지원자격 필터 미달. 근거: 내부 확인(2026-05). 기관 접수로 열 수 있는지는 data/review/기관접수검토.md 에서 별도로 추적한다."
       }
     ],
     "개별확인_필요": [

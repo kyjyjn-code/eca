@@ -627,8 +627,44 @@
     ],
     "영문": [
       {
+        "targets_id": "D:영문:2026 international science competition high school open to international students",
+        "쿼리": "2026 international science competition high school open to international students",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 math olympiad open to homeschooled students",
+        "쿼리": "2026 math olympiad open to homeschooled students",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 STEM research program high school international eligible",
+        "쿼리": "2026 STEM research program high school international eligible",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "영문"
+      },
+      {
         "targets_id": "D:영문:youth 2026 economics competition Korea eligible",
         "쿼리": "youth 2026 economics competition Korea eligible",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 model united nations high school international delegates",
+        "쿼리": "2026 model united nations high school international delegates",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 global leadership program teens open to international students",
+        "쿼리": "2026 global leadership program teens open to international students",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 business case competition high school homeschooled eligible",
+        "쿼리": "2026 business case competition high school homeschooled eligible",
         "대분류": "국제·리더십·사회참여",
         "언어": "영문"
       },
@@ -636,6 +672,60 @@
         "targets_id": "D:영문:2026 high school essay competition international",
         "쿼리": "2026 high school essay competition international",
         "대분류": "글쓰기·논문·인문사회",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 youth research journal submission open to international students",
+        "쿼리": "2026 youth research journal submission open to international students",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 history writing contest high school homeschooled eligible",
+        "쿼리": "2026 history writing contest high school homeschooled eligible",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 essay prize secondary school worldwide alternative education",
+        "쿼리": "2026 essay prize secondary school worldwide alternative education",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 youth volunteer program international students eligible",
+        "쿼리": "2026 youth volunteer program international students eligible",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 global service learning teens open to international",
+        "쿼리": "2026 global service learning teens open to international",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 youth film video contest international entries",
+        "쿼리": "2026 youth film video contest international entries",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 youth environmental contest open to international students",
+        "쿼리": "2026 youth environmental contest open to international students",
+        "대분류": "환경·예술·공익",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 climate action award teens worldwide eligible",
+        "쿼리": "2026 climate action award teens worldwide eligible",
+        "대분류": "환경·예술·공익",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 student art design competition international entries homeschooled",
+        "쿼리": "2026 student art design competition international entries homeschooled",
+        "대분류": "환경·예술·공익",
         "언어": "영문"
       }
     ]
