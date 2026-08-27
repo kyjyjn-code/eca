@@ -7,12 +7,14 @@ const ExcelJS = require('exceljs');
 const { P, readJson, ensureDir, month, today, daysBetween, log } = require('./lib');
 
 const HEADERS = ['id', '활동명', '분야', '과목태그', '대상_원문', '주최', '마감일',
-  '비용_구분', '미국입시_관련도', 'SDC_적합도', '키워드', '웹사이트', '핵심내용', '게시상태'];
+  '비용_구분', '선발성', '국제성', '미국입시_관련도', 'SDC_적합도', '키워드', '웹사이트', '핵심내용', '게시상태'];
 
 function rowFrom(item) {
   return HEADERS.map((h) => {
     const v = item[h];
     if (Array.isArray(v)) return v.join(', ');
+    if (h === '선발성') return v === undefined ? '' : (v ? '선발형' : '상시·개방형');
+    if (h === '국제성') return v === undefined ? '' : (v ? '국제' : '국내');
     if (h === '마감일') return v || '상시';
     if (h === 'SDC_적합도') return typeof v === 'number' ? '★'.repeat(v) : (v || '');
     return v == null ? '' : v;

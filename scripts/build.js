@@ -11,11 +11,12 @@ const SITE_URL = (process.env.SDC_SITE_URL || '').replace(/\/$/, '');
 
 const DISCLAIMER_일반 = '본 정보는 수집 시점 기준이며, 일정·요강은 변경될 수 있습니다. 신청 전 반드시 공식 페이지에서 최종 확인하세요.';
 const DISCLAIMER_별점 = '이 별점·관련도는 합격·수상 보장이 아닌 SDC 참고용입니다.';
+const DISCLAIMER_별점_축 = '별점은 미국 입시 활용도·선발성·국제성·비용을 종합한 참고용 지표입니다. 상시 참여형 활동의 교육적 가치를 대체하지 않습니다.';
 
 // 사이트에 내보낼 필드만 추림 (_로 시작하는 내부 필드 제거)
 const PUBLIC_FIELDS = ['id', '활동명', '분야', '과목태그', '키워드', '대상_학년', '대상_원문',
   '주최', '마감일', '신청기간_원문', '비용_구분', '핵심내용', '웹사이트', '포스터',
-  '미국입시_관련도', 'SDC_적합도', '갱신일'];
+  '미국입시_관련도', 'SDC_적합도', '갱신일', '선발성', '국제성'];
 
 function toPublic(item) {
   const o = {};
@@ -149,7 +150,7 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   </header>
 
   <div class="notice"><strong>안내.</strong> ${DISCLAIMER_일반}</div>
-  <div class="notice">${DISCLAIMER_별점}</div>
+  <div class="notice">${DISCLAIMER_별점} ${DISCLAIMER_별점_축}</div>
 
   <div class="controls">
     <label class="flabel" for="q">활동명 검색</label>
@@ -207,13 +208,15 @@ const FIELDS = ["과학·공학·수학생명·AI","국제·리더십·사회참
 const GRADES = ["초","중","고"];
 const COSTS = ["무료","소액","유료"];
 const STAR_LABELS = {5:"매우 높음",4:"높음",3:"보통",2:"낮음",1:"매우 낮음"};
-const state = { q:"", grade:new Set(), field:new Set(), star:new Set(), cost:new Set(), term:new Set(), kw:new Set(), dateStart:"", dateEnd:"", kwAnd:false, showPast:false };
+const state = { q:"", grade:new Set(), field:new Set(), star:new Set(), cost:new Set(), term:new Set(), sel:new Set(), kw:new Set(), dateStart:"", dateEnd:"", kwAnd:false, showPast:false };
 
 function uniq(arr){ return [...new Set(arr)]; }
 // 분야 필터 = 대분류 5개 + 데이터에 등장한 과목태그 (통합)
 const allSubjects = uniq(DATA.flatMap(d=>d.과목태그||[])).sort();
 const FIELD_OPTIONS = FIELDS.concat(allSubjects.filter(s=>!FIELDS.includes(s)));
-const allKeywords = uniq(DATA.flatMap(d=>d.키워드||[])).filter(k=>k!=='상시모집').sort(); // 상시모집은 '신청기한' 그룹으로 이동
+const allKeywords = uniq(DATA.flatMap(d=>d.키워드||[])).filter(k=>k!=='상시모집').sort();
+// 선발성 칸이 채워지기 전 회차에서는 이 필터를 아예 그리지 않는다
+const hasSel = DATA.some(d=>typeof d.선발성==='boolean'); // 상시모집은 '신청기한' 그룹으로 이동
 
 // 칩은 실제 버튼이어야 한다. span+onclick이면 키보드로 필터를 하나도 걸 수 없다.
 // 선택 상태는 aria-pressed로 노출하고, 색 외에 체크 글리프(CSS ::before)로도 표시한다.
@@ -246,6 +249,7 @@ function buildFilters(){
   mk('star','별점', [5,4,3,2,1], state.star, 'star', v=>'★'+v+' '+STAR_LABELS[v]);
   mk('cost','비용', COSTS, state.cost);
   mk('term','신청기한', ['상시','임박'], state.term, '', v=> v==='상시'?'상시모집':'마감 임박(2주)');
+  if(hasSel) mk('sel','유형', ['선발형','상시형'], state.sel, '', v=> v==='선발형'?'선발형(심사·경쟁)':'상시형(누구나 참여)');
   if(allKeywords.length) mk('kw','키워드', allKeywords, state.kw, 'kw');
 }
 
@@ -264,6 +268,10 @@ function matches(d){
     const isS = !d.마감일;
     const isSoon = d.마감일 && !isPast(d.마감일) && d.마감일 <= addDays(TODAY,14);
     if(!((state.term.has('상시') && isS) || (state.term.has('임박') && isSoon))) return false;
+  }
+  if(state.sel.size){ // 유형: 선발형(심사·경쟁) / 상시형(신청만으로 참여)
+    if(typeof d.선발성!=='boolean') return false;
+    if(!state.sel.has(d.선발성?'선발형':'상시형')) return false;
   }
   // 날짜/기간: 설정한 날(또는 기간 시작일)에 아직 신청 가능한(마감 전) 것만. 상시(null)는 항상 통과.
   const ws = state.dateStart || state.dateEnd;
@@ -344,7 +352,7 @@ document.getElementById('lightbox').addEventListener('keydown', function(e){
 function anyFilter(){
   return !!(state.q || state.dateStart || state.dateEnd || state.kwAnd || state.showPast
     || state.grade.size || state.field.size || state.star.size || state.cost.size
-    || state.term.size || state.kw.size);
+    || state.term.size || state.sel.size || state.kw.size);
 }
 // 빈 상태에서 "지금 어떤 조건이 결과를 0으로 만들었는지" 단서를 만든다
 function activeSummary(){
@@ -355,6 +363,7 @@ function activeSummary(){
   if(state.star.size) parts.push('별점('+[...state.star].sort((a,b)=>b-a).map(v=>'★'+v).join('·')+')');
   if(state.cost.size) parts.push('비용('+[...state.cost].join('·')+')');
   if(state.term.size) parts.push('신청기한('+[...state.term].map(t=>t==='상시'?'상시모집':'임박').join('·')+')');
+  if(state.sel.size) parts.push('유형('+[...state.sel].join('·')+')');
   if(state.kw.size) parts.push('키워드('+[...state.kw].join('·')+(state.kwAnd?' 모두':'')+')');
   if(state.dateStart||state.dateEnd) parts.push('신청가능일('+(state.dateStart||'')+'~'+(state.dateEnd||'')+')');
   if(state.showPast) parts.push('지난 것 포함');
@@ -362,7 +371,7 @@ function activeSummary(){
 }
 // 걸린 조건을 주소에 남긴다 — 좁힌 결과를 공유·새로고침해도 유지된다.
 // (필터 변경은 replaceState라 히스토리를 쌓지 않는다: '뒤로가기'는 이전 필터가 아니라 페이지를 벗어난다.)
-const SETS=['grade','field','star','cost','term','kw'];
+const SETS=['grade','field','star','cost','term','sel','kw'];
 function stateToUrl(push){
   const p=new URLSearchParams();
   if(state.q) p.set('q',state.q);

@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { P, readJson, writeJson, ensureDir, today, month, args, isExpired, log } = require('./lib');
+const { apply: 별점적용 } = require('./score');
 
 function pickCuratedFile() {
   const a = args();
@@ -31,7 +32,7 @@ function main() {
   const masterById = new Map(master.map((x) => [x.id, x]));
 
   const report = { 기준일: ref, 월: m, curated파일: curatedFile ? path.basename(curatedFile) : null,
-    신규: [], 갱신: [], 제거_마감경과: [] };
+    신규: [], 갱신: [], 제거_마감경과: [], 별점_보정: [], 별점_미판정: [] };
 
   // 1) 당월 curated 병합
   const curated = curatedFile ? readJson(curatedFile, []) : [];
@@ -68,7 +69,19 @@ function main() {
     }
   }
 
-  // 3) 정렬: 마감일 오름차순, null(상시)은 맨 뒤, 그다음 활동명
+  // 3) 별점 재계산 — 네 축이 데이터 칸이므로 별점은 순수 함수다.
+  //    큐레이터가 매긴 값은 자문이고, 계산값이 이긴다. 다르면 리포트에 남겨 사람이 본다.
+  //    판정 근거가 없는(미판정축이 있는) 항목은 기존 별점을 그대로 보존한다.
+  for (const item of kept) {
+    const r = 별점적용(item);
+    if (r.미판정축.length) {
+      report.별점_미판정.push({ id: item.id, 활동명: item.활동명, 미판정축: r.미판정축 });
+    } else if (r.변경됨) {
+      report.별점_보정.push({ id: item.id, 활동명: item.활동명, 큐레이터: r.이전, 계산: r.이후, 축: r.축 });
+    }
+  }
+
+  // 4) 정렬: 마감일 오름차순, null(상시)은 맨 뒤, 그다음 활동명
   kept.sort((x, y) => {
     const dx = x.마감일 || '9999-99-99';
     const dy = y.마감일 || '9999-99-99';
@@ -78,18 +91,20 @@ function main() {
 
   writeJson(P.master, kept);
 
-  // 4) 제거분 아카이브 (마감경과 항목 보존)
+  // 5) 제거분 아카이브 (마감경과 항목 보존)
   if (removed.length) {
     const archiveDir = path.join(P.archive, m);
     ensureDir(archiveDir);
     writeJson(path.join(archiveDir, 'removed-expired.json'), removed);
   }
 
-  // 5) 리포트 저장
+  // 6) 리포트 저장
   ensureDir(P.reports);
   writeJson(path.join(P.reports, `merge-${m}.json`), report);
 
   log(`병합 완료 — 신규 ${report.신규.length} / 갱신 ${report.갱신.length} / 제거(마감경과) ${report.제거_마감경과.length} / 마스터 총 ${kept.length}건`);
+  if (report.별점_보정.length) log(`  별점 보정 ${report.별점_보정.length}건 (큐레이터 값과 계산값이 다름 — PR 본문에 표로 실린다)`);
+  if (report.별점_미판정.length) log(`  별점 미판정 ${report.별점_미판정.length}건 (선발성·국제성 근거 없음 — 기존 별점 보존)`);
 }
 
 main();
