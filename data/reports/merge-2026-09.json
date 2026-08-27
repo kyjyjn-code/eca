@@ -1,0 +1,64 @@
+{
+  "기준일": "2026-08-27",
+  "월": "2026-09",
+  "curated파일": "2026-09.json",
+  "신규": [
+    {
+      "id": "kcs-chemistry-creator-2026",
+      "활동명": "2026년 대한화학회 화학 크리에이터 대회 (화학 인포그래픽·시화)",
+      "주최": "대한화학회 (후원: 교육부)",
+      "마감일": "2026-09-18"
+    },
+    {
+      "id": "koreaz-contest-2026",
+      "활동명": "제2회 KOREAZ 콘텐츠 공모전 (외교부 글로벌 캠페인)",
+      "주최": "외교부",
+      "마감일": "2026-10-25"
+    },
+    {
+      "id": "arteffect-summer-2026",
+      "활동명": "ARTEFFECT 2026 Summer Competition (Unsung Heroes 학생 미술 공모전)",
+      "주최": "ARTEFFECT (Lowell Milken Center for Unsung Heroes / Lowell Milken Family Foundation 산하 501(c)(3) 비영리기관)",
+      "마감일": "2026-09-15"
+    },
+    {
+      "id": "usaco",
+      "활동명": "USACO (USA Computing Olympiad) 온라인 대회",
+      "주최": "USA Computing Olympiad (USACO)",
+      "마감일": null
+    }
+  ],
+  "갱신": [
+    {
+      "id": "breakthrough-junior-challenge-2026",
+      "활동명": "Breakthrough Junior Challenge 2026"
+    },
+    {
+      "id": "amc-2026",
+      "활동명": "AMC (American Mathematics Competitions) 2026"
+    },
+    {
+      "id": "fss-financial-contest-2026",
+      "활동명": "제21회 금융공모전 (청소년 금융창작물 부문 등)"
+    }
+  ],
+  "제거_마감경과": [
+    {
+      "id": "environment-love-contest-2026",
+      "활동명": "2026 대한민국 환경사랑공모전",
+      "마감일": "2026-08-03"
+    },
+    {
+      "id": "seoul-environmental-education-content-contest-2026",
+      "활동명": "2026년 제3회 서울특별시 환경교육 콘텐츠 공모전",
+      "마감일": "2026-08-04"
+    },
+    {
+      "id": "hir-academic-writing-contest-2026",
+      "활동명": "Harvard International Review Academic Writing Contest 2026",
+      "마감일": "2026-08-24"
+    }
+  ],
+  "별점_보정": [],
+  "별점_미판정": []
+}

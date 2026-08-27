@@ -1,0 +1,21 @@
+{
+  "기준일": "2026-08-27",
+  "월": "2026-09",
+  "검사수": 17,
+  "제외": [],
+  "복구후보": [],
+  "확인필요": [
+    {
+      "id": "amc-2026",
+      "활동명": "AMC (American Mathematics Competitions) 2026",
+      "웹사이트": "https://maa.org/amcreg/",
+      "사유": "HTTP 403"
+    },
+    {
+      "id": "duke-of-edinburgh-award-korea",
+      "활동명": "국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)",
+      "웹사이트": "https://www.youth.go.kr/youth/youth/contents/intrlSccesRwardIntroForm.yt",
+      "사유": "fetch failed"
+    }
+  ]
+}

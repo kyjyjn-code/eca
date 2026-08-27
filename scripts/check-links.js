@@ -27,6 +27,14 @@ function isTrusted(url) {
 function isHardDead(reason) {
   return /HTTP 404|HTTP 410|URL 형식/.test(String(reason || ''));
 }
+// 서버가 "안 준다"고 한 경우 — 페이지가 없다는 뜻이 아니다.
+// 401/403 은 봇 차단이 대부분이고, 429 는 요청 과다다. 도메인 신뢰 여부와 무관하게
+// 제외하지 않고 '확인 필요'로만 남긴다.
+// 2026-09 회차에서 maa.org 가 403 을 내 AMC 가 통째로 제외됐다 — 사이트는 멀쩡했다.
+// 멀쩡한 대회를 봇 차단 때문에 목록에서 지우는 것이, 죽은 링크를 하루 더 두는 것보다 나쁘다.
+function isBlocked(reason) {
+  return /HTTP 401|HTTP 403|HTTP 429/.test(String(reason || ''));
+}
 
 async function checkUrl(url) {
   if (!url || typeof url !== 'string' || !/^https?:\/\//i.test(url)) {
@@ -79,8 +87,8 @@ async function main() {
     const linkAutoExcluded = prevExcluded && item.게시상태.includes('링크오류');
 
     if (!web.ok) {
-      if (isTrusted(item.웹사이트) && !isHardDead(web.reason)) {
-        // 신뢰 도메인 + 일시/차단 오류 → 제외하지 않고 게시 유지, '확인 필요'로만 표시
+      if (isBlocked(web.reason) || (isTrusted(item.웹사이트) && !isHardDead(web.reason))) {
+        // 차단(401·403·429) 이거나, 신뢰 도메인의 일시 오류 → 게시 유지하고 '확인 필요'로만 표시
         if (!item.게시상태 || item.게시상태.startsWith('제외')) item.게시상태 = '게시';
         item._링크확인필요 = web.reason;
         report.확인필요.push({ id: item.id, 활동명: item.활동명, 웹사이트: item.웹사이트, 사유: web.reason });

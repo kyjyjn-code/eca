@@ -98,6 +98,10 @@ ${ogUrl ? `<meta property="og:url" content="${ogUrl}">` : ''}
   .cal-i.soon{background:var(--warn-bg);border-color:var(--soon-t);color:var(--soon-t)}
   .cal-i.past{background:var(--past-bg);border-color:var(--past-t);color:var(--past-t)}
   .cal-i.plan{background:var(--blue);border-color:var(--blue-d)}
+  /* 접수 기간 원문. 마감일 한 줄만으로는 '이 날짜가 얼리버드인지 최종인지'를 알 수 없다. */
+  .term{font-size:12.5px;color:var(--sub);line-height:1.55;margin:12px 0 0;padding-top:10px;
+    border-top:1px solid var(--line)}
+  .term b{color:var(--ink);font-weight:600;margin-right:4px}
   .cal-note{font-size:12px;color:var(--sub);margin:6px 0 0 84px}
   body{margin:0;font-family:"Pretendard","Segoe UI","Malgun Gothic",sans-serif;background:var(--bg);color:var(--ink);
     line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
@@ -345,6 +349,7 @@ function card(d){
     '<div class="stars" title="'+${JSON.stringify(DISCLAIMER_별점)}+'">'+stars(d.SDC_적합도)+' <span class="meta">중요도 '+esc(STAR_LABELS[Number(d.SDC_적합도)]||'-')+' · 미국입시 '+esc(d.미국입시_관련도||'-')+'</span></div>'+
     '<div class="desc">'+esc(d.핵심내용)+'</div>'+
     '<div class="badges">'+kw+'</div>'+
+    (d.신청기간_원문 ? '<div class="term"><b>접수</b>'+esc(d.신청기간_원문)+'</div>' : '')+
     '<div class="row">'+dl+(d.웹사이트?'<a class="btn" href="'+esc(d.웹사이트)+'" target="_blank" rel="noopener">'+
       '공식 페이지 열기<span class="sr-only"> (새 창)</span> ↗</a>':'')+'</div>';
   const t=el.querySelector('.thumb-btn');

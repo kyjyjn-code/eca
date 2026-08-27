@@ -268,5 +268,258 @@
     "매트릭스_빈칸수": 1,
     "병합": null,
     "coverage_있음": false
+  },
+  {
+    "회차": "2026-09",
+    "산출일": "2026-08-27",
+    "게시건수": 17,
+    "마스터건수": 17,
+    "신규발굴": 4,
+    "씨앗커버리지": {
+      "수록": 8,
+      "전체": 41,
+      "비율": 0.195
+    },
+    "타깃처리율": {
+      "처리": 79,
+      "필요": 79,
+      "비율": 1
+    },
+    "확인수준충족": {
+      "표기": 7,
+      "전체": 7,
+      "비율": 1
+    },
+    "확인수준분포": {
+      "요강원문": 5,
+      "공고요약": 2
+    },
+    "링크": {
+      "검사수": 17,
+      "제외": 0,
+      "복구": 0,
+      "확인필요": 2,
+      "생존율": 1
+    },
+    "별점분포": {
+      "1": 2,
+      "2": 2,
+      "3": 7,
+      "4": 3,
+      "5": 3
+    },
+    "최대밴드비중": 0.412,
+    "선발형비율": {
+      "선발형": 10,
+      "상시형": 7,
+      "판정됨": 17,
+      "전체": 17
+    },
+    "미국입시_높음_비중": 0.294,
+    "필터별배제": {
+      "지원자격": 4,
+      "주최성": 2,
+      "만료": 4,
+      "상업성": 2,
+      "출처": 1,
+      "학교단위접수": 1
+    },
+    "쿼리수확": {
+      "상위": [
+        {
+          "쿼리": "영문:2026 international science competition high school open to international students",
+          "후보수": 3
+        },
+        {
+          "쿼리": "영문:2026 youth environmental contest open to international students",
+          "후보수": 3
+        },
+        {
+          "쿼리": "국문:2026 청소년 과학 대회 접수",
+          "후보수": 2
+        },
+        {
+          "쿼리": "국문:2026 청소년 에세이 공모전 요강",
+          "후보수": 2
+        },
+        {
+          "쿼리": "국문:2026 청소년 영상 UCC 공모",
+          "후보수": 2
+        }
+      ],
+      "영건_쿼리": [
+        "국문:2026 중고등 수학 올림피아드 요강",
+        "국문:2026 학생 SW AI 경진대회",
+        "국문:대학 영재원 2026 모집",
+        "국문:학회 주최 2026 학생 대회",
+        "국문:2026 청소년 봉사활동 공모 모집",
+        "국문:2026 청소년 환경 공모전 접수",
+        "국문:2026 환경교육 콘텐츠 공모 요강",
+        "영문:2026 model united nations high school international delegates",
+        "영문:2026 global leadership program teens open to international students",
+        "영문:2026 youth research journal submission open to international students",
+        "영문:2026 history writing contest high school homeschooled eligible",
+        "영문:2026 youth volunteer program international students eligible",
+        "영문:2026 global service learning teens open to international"
+      ],
+      "실행": 34,
+      "전체": 34
+    },
+    "도메인수확": {
+      "ctysc.or.kr": 2,
+      "kitpa.org": 2,
+      "namu.wiki": 1,
+      "swuniv.kr": 1,
+      "kyosu.net": 1,
+      "ki-it.or.kr": 1,
+      "ncyok.or.kr": 1,
+      "contestkorea.com": 5,
+      "hankyung.com": 1,
+      "pascharconsulting.com": 1,
+      "glc.yonsei.ac.kr": 1,
+      "daesan.or.kr": 1,
+      "all-con.co.kr": 1,
+      "ilovecontest.com": 2,
+      "wevity.com": 3,
+      "jb0479.or.kr": 1,
+      "art-culture.co.kr": 1,
+      "linkareer.com": 1,
+      "netongs.com": 1,
+      "kchem.org": 1,
+      "keep.go.kr": 1,
+      "seec.or.kr": 1,
+      "societyforscience.org": 1,
+      "highschoolcompetition.org": 1,
+      "en.wikipedia.org": 1,
+      "stemedresearch.siu.edu": 1,
+      "competitionsciences.org": 1,
+      "riseglobaleducation.com": 2,
+      "economicsolympiad.org": 2,
+      "2026.ieo-official.org": 1,
+      "bestdelegate.com": 1,
+      "wamunc.com": 1,
+      "experiencegla.com": 2,
+      "immerse.education": 1,
+      "highschoolcasecomp.org": 2,
+      "studentcompetitions.com": 1,
+      "culawreview.org": 2,
+      "essaycomp.org": 1,
+      "yrjournal.org": 1,
+      "nationalww2museum.org": 1,
+      "jfklibrary.org": 1,
+      "lumiere-education.com": 2,
+      "cambridge-research.org": 1,
+      "horizoninspires.com": 1,
+      "unv.org": 1,
+      "volunteerhq.org": 1,
+      "rusticpathways.com": 1,
+      "unric.org": 2,
+      "wipo.int": 1,
+      "oneearthfilmfest.org": 1,
+      "theearthprize.org": 1,
+      "globalenvironmentchallenge.org": 2,
+      "bowseat.org": 1,
+      "theworldaround.org": 1,
+      "actionfornature.org": 1,
+      "arteffectlmc.org": 1,
+      "cooperhewitt.org": 2,
+      "mcee.go.kr": 1,
+      "chemistrycontest.kr": 1,
+      "spacecenter.org": 1
+    },
+    "커버리지_매트릭스": {
+      "과학·공학·수학생명·AI": {
+        "초": {
+          "선발형": 1,
+          "상시형": 2,
+          "미상": 0
+        },
+        "중": {
+          "선발형": 4,
+          "상시형": 2,
+          "미상": 0
+        },
+        "고": {
+          "선발형": 4,
+          "상시형": 2,
+          "미상": 0
+        }
+      },
+      "국제·리더십·사회참여": {
+        "초": {
+          "선발형": 2,
+          "상시형": 1,
+          "미상": 0
+        },
+        "중": {
+          "선발형": 2,
+          "상시형": 1,
+          "미상": 0
+        },
+        "고": {
+          "선발형": 3,
+          "상시형": 1,
+          "미상": 0
+        }
+      },
+      "글쓰기·논문·인문사회": {
+        "초": {
+          "선발형": 0,
+          "상시형": 0,
+          "미상": 0
+        },
+        "중": {
+          "선발형": 1,
+          "상시형": 0,
+          "미상": 0
+        },
+        "고": {
+          "선발형": 1,
+          "상시형": 0,
+          "미상": 0
+        }
+      },
+      "스포츠·문화·봉사": {
+        "초": {
+          "선발형": 0,
+          "상시형": 2,
+          "미상": 0
+        },
+        "중": {
+          "선발형": 0,
+          "상시형": 3,
+          "미상": 0
+        },
+        "고": {
+          "선발형": 0,
+          "상시형": 3,
+          "미상": 0
+        }
+      },
+      "환경·예술·공익": {
+        "초": {
+          "선발형": 1,
+          "상시형": 1,
+          "미상": 0
+        },
+        "중": {
+          "선발형": 2,
+          "상시형": 1,
+          "미상": 0
+        },
+        "고": {
+          "선발형": 2,
+          "상시형": 1,
+          "미상": 0
+        }
+      }
+    },
+    "매트릭스_빈칸수": 1,
+    "병합": {
+      "신규": 4,
+      "갱신": 3,
+      "제거": 3
+    },
+    "coverage_있음": true
   }
 ]

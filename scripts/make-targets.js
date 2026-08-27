@@ -39,10 +39,14 @@ function 우선순위(대분류들, kpi) {
   const rec = Array.isArray(kpi) && kpi.length ? kpi[kpi.length - 1] : null;
   const mx = rec && rec.커버리지_매트릭스;
   if (!mx) return 대분류들;
+  // 한 칸 = (대분류 × 학년대). 그 칸의 선발형·상시형·미상 합이 0 이면 빈 칸이다.
+  // compute-kpi.js 의 빈칸수() 와 같은 판정이어야 한다 —
+  // 예전 구현은 Object.values(cells) 가 객체 배열이라 항상 truthy 여서 전 대분류가 0 이 됐고,
+  // 우선 배치가 아무 일도 하지 않았다(2026-09 회고가 잡아냈다).
   const 빈칸수 = (분야) => {
     const cells = mx[분야];
     if (!cells) return 0;
-    return Object.values(cells).filter((v) => !v).length;
+    return Object.values(cells).filter((c) => !c || ((c.선발형 || 0) + (c.상시형 || 0) + (c.미상 || 0)) === 0).length;
   };
   return 대분류들.slice().sort((a, b) => 빈칸수(b) - 빈칸수(a));
 }
@@ -67,6 +71,17 @@ function main() {
   for (const s of seeds) {
     if (!s.canonical_slug) { 경고.push('canonical_slug 없는 씨앗: ' + s.활동명); continue; }
     if (s.유형 === '탐색범주') continue;
+    // 씨앗의 유형과 마스터에 실제로 담긴 id 모양이 어긋나면 영원히 "미수록"으로 남는다.
+    // 예: 유형은 회차형인데 마스터에는 연도 없는 상시형 id 로 담긴 경우(2026-09 의 usaco).
+    // 조용히 숨지 않게 경고로 드러낸다.
+    const 상시id = masterIds.includes(s.canonical_slug);
+    const 회차id = masterIds.some((id) => id.startsWith(s.canonical_slug + '-'));
+    if (s.유형 === '회차형' && 상시id && !회차id) {
+      경고.push('유형 불일치: ' + s.canonical_slug + ' 은 회차형인데 마스터에 상시형 id 로 담겨 있다 (sources.json 의 유형을 확인)');
+    }
+    if (s.유형 === '상시형' && !상시id && 회차id) {
+      경고.push('유형 불일치: ' + s.canonical_slug + ' 은 상시형인데 마스터에 회차형 id 로 담겨 있다 (sources.json 의 유형을 확인)');
+    }
     if (!isMissing(s, masterIds, 회차)) continue;
     A.push({
       targets_id: targetsId('A', s.canonical_slug),
