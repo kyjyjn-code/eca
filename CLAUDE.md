@@ -31,21 +31,34 @@
 
 매월 1일, 공신력 있는 초·중·고 대상 대회·공모전·프로그램(ECA)을 자동 수집하여 동적 마스터 데이터에 병합·정리·게시하고, 학생에게는 고정 링크 하나만 공유하면 학생이 직접 조건을 걸러 자신에게 맞는 활동을 찾게 하는 시스템. 게시 플랫폼은 **GitHub Pages**.
 
-### 파이프라인 (매월 1일)
-1. 리서치 에이전트 → `data/raw/YYYY-MM.json`
-2. 큐레이터 에이전트 → `data/curated/YYYY-MM.json`
-3. `scripts/merge.js` → `data/master.json` 병합 + 병합 리포트
-4. `scripts/check-links.js` → 링크 생존 확인 + 게시상태 갱신 + 리포트
-5. `scripts/fetch-posters.js` → 포스터 다운로드·압축 (`docs/posters/`)
-6. `scripts/export-excel.js` → `records/YYYY-MM_ECA_기록.xlsx` + 아카이브 복사
-7. `scripts/build.js` → `docs/index.html` + `docs/data.json` + 아카이브 스냅샷
-8. `scripts/pr-summary.js` → 변경 요약(`pr-body.md`)
-9. `scripts/check-guardrails.js` → **게시 직전 가드레일 검사. 실패 시 게시 중단**
-10. 게시용 PR 생성 (GitHub Actions `create-pull-request`)
-11. 담당자 승인(머지) → Pages 배포
+### 파이프라인 (매월)
 
-> 8~10단계는 **LLM이 아니라 결정적 스크립트와 액션이 담당**한다. 판단이 필요 없는 일이기 때문이다.
-> 0장의 절대 원칙은 사람의 최종 확인에만 기대지 않고 9단계에서 기계적으로 검사한다.
+| # | 단계 | 주체 | 산출·역할 |
+|---|---|---|---|
+| **0.5** | `scripts/make-targets.js` | 스크립트 | `data/raw/YYYY-MM.targets.json` — 이번 회차에 처리할 대상을 **전부 열거**한다 |
+| 1 | 리서치 에이전트 | **LLM** | `data/raw/YYYY-MM.json` + `YYYY-MM.coverage.json` |
+| **1.5** | `scripts/check-coverage.js` | 스크립트 · **게이트** | 기록 누락이면 **exit 1**. 통과하면 사람이 읽는 `coverage.md` 를 렌더 |
+| **1.6** | `scripts/update-review-queue.js` | 스크립트 | 학교 단위 접수 대회를 `data/review/기관접수검토.md` 로 누적 |
+| 2 | 큐레이터 에이전트 | **LLM** | `data/curated/YYYY-MM.json` |
+| 3 | `scripts/merge.js` | 스크립트 | `data/master.json` 병합 + 별점 재계산 + 병합 리포트 |
+| 4 | `scripts/check-links.js` | 스크립트 | 링크 생존 확인 + 게시상태 갱신 + 리포트 |
+| 5 | `scripts/fetch-posters.js` | 스크립트 | 포스터 다운로드·압축 (`docs/posters/`) |
+| 6 | `scripts/export-excel.js` | 스크립트 | `records/YYYY-MM_ECA_기록.xlsx` + 아카이브 복사 |
+| 7 | `scripts/build.js` | 스크립트 | `docs/index.html` · `docs/data.json` · `docs/upcoming.json` + 아카이브 스냅샷 |
+| **7.5** | `scripts/compute-kpi.js` | 스크립트 | `data/retro/kpi.json` 에 당월 레코드 upsert |
+| 8 | `scripts/pr-summary.js` | 스크립트 | 변경 요약(`pr-body.md`) |
+| 9 | `scripts/check-guardrails.js` | 스크립트 · **게이트** | 게시 직전 가드레일 검사. 실패 시 게시 중단 |
+| 10 | 게시용 PR 생성 | 액션 | `create-pull-request` |
+| 11 | 담당자 승인(머지) | 사람 | → Pages 배포 |
+| **12** | 회고 에이전트 (`retro`) | **LLM** | `data/retro/YYYY-MM.md` — **월간 세션에서만 실행한다(CI 아님)** |
+
+> **LLM 은 세 곳뿐이다** — 리서치·큐레이션·회고. 나머지는 전부 결정적 스크립트라 매월 동일 품질이다.
+> 0장의 절대 원칙은 사람의 최종 확인에만 기대지 않고 **1.5·9 두 게이트가 기계적으로 검사**한다.
+> 회고를 CI 에 넣지 않는 이유: 실패 지점이 그 달 산출물 뒤에 붙어 회차를 통째로 날릴 수 있고,
+> 회고의 가치는 사람이 읽고 채택을 결정하는 대화에 있다. 생략은 `freshness.yml` 이 감시한다.
+>
+> **별도 워크플로 `freshness.yml`** — 매월 20일. LLM 호출이 없어 비용 0.
+> 당월 회차 미실행 / 7일 이상 방치된 열린 PR / 계측은 끝났는데 회고가 없음을 Issue 로 알린다.
 
 ---
 
@@ -95,8 +108,13 @@
 | `게시상태` | `게시` / `제외` (제외 시 사유 병기: 링크오류·요건미달 등) | 링크검증 스크립트·게시자 |
 
 ### id 규칙 (v3)
-- 형식: `활동명영문슬러그-연도(또는 회차)`. 예: `amc-2026`, `kmo-2026`, `hmun-2026`.
+- **회차형** — `슬러그-개최연도`. 예: `amc-2026`, `kmo-2026`. 매년 다시 열리는 활동.
+- **상시형** — 연도 없이 `슬러그`. 예: `iearn`, `1365-volunteer-portal`. 연중 열려 있는 활동.
 - **수집월은 id에 넣지 않는다.** 같은 활동이 다음 달에 재수집되어도 동일 id가 되어 병합 시 자동 갱신 처리된다.
+- **기존 id 는 바꾸지 않는다.** 씨앗의 `canonical_slug` 를 기존 id 에 맞춘다(그 반대가 아니다).
+- **개최연도가 달력연도보다 앞설 수 있다.** 예: `wharton-investment-competition-2027` 은
+  2026-2027 시즌 대회다. 미수록 판정은 이 때문에 달력연도 단순 비교가 아니라
+  **수록된 개최연도의 최댓값과 시즌연도를 비교**한다(`scripts/seeds.js`).
 
 ### 마감일 null 규칙 (v3)
 - 상시모집·마감 미정 활동은 `마감일`을 `null`로 두고 `신청기간_원문`에 원문을 남긴다.
@@ -146,10 +164,12 @@
 
 | 에이전트 | 허용 | 금지 |
 |---|---|---|
-| researcher | 웹검색, `data/raw` 쓰기 | 게시·git·큐레이션 |
-| curator | `data/raw` 읽기, `data/curated` 쓰기 | 웹검색·게시 |
+| researcher | 웹검색·WebFetch, `data/raw` 쓰기 | 게시·git·큐레이션, `master.json`·`sources.json` 수정 |
+| curator | `data/raw` 읽기, `data/curated` 쓰기 | **웹검색**·게시·git |
+| retro | 저장소 전체 읽기, **`data/retro` 쓰기** | **웹검색**·git·그 외 모든 파일 수정 |
 
 > 게시 단계에는 에이전트가 없다. `scripts/check-guardrails.js` + GitHub Actions가 담당한다.
+> 세 에이전트 모두 **자기 산출물 밖으로는 쓰지 못한다.** 이것이 권한의 핵심이다.
 
 - 에이전트에는 최대 턴 제한을 두어 폭주·비용을 방지한다.
 
@@ -173,7 +193,42 @@
 
 ---
 
-## 8. 실행 환경
+## 8. 자기진화 — 제안 온리 (2026-08-27 신설)
+
+**계측(스크립트) → 회고(LLM) → 제안 → 반영(사람) → 효과 추적(다음 달 회고).**
+
+### 권한 규정 (D1)
+
+- **회고 에이전트는 제안만 한다. 반영은 사람이 한다.** 쓰기 범위는 `data/retro/` 뿐이다.
+- 웹 접근 금지 — 진단과 제안은 **저장소 기록만**을 근거로 한다.
+- git 조작 금지.
+- **제안은 월 최대 3건.** 사람이 10분 안에 읽고 결정할 수 있는 양을 넘지 않는다.
+
+### 숫자는 스크립트가 잰다
+
+`scripts/compute-kpi.js` 가 지표를 산출하고 회고는 **해석만** 한다.
+에이전트가 자기 성적표를 스스로 매기지 못하게 하는 것이 원칙이다.
+산출할 수 없는 지표는 `0` 이 아니라 `null` 로 둔다 — **"0건"과 "못 쟀다"는 다르다.**
+
+### changelog 규칙
+
+반영한 제안은 사람이 `data/retro/changelog.md` 에 한 줄 적는다.
+회고는 그 기재 누락을 지적하고, 반영된 변경의 기대 효과 대비 실제 KPI 변화를 다음 달에 추적한다.
+효과가 없거나 악화면 롤백을 제안한다. 이 파일이 **"변경 → 효과 검증 → 유지/롤백" 폐쇄 루프**를 만든다.
+
+### 보호 원칙 — 자기진화 대상에서 제외되는 것
+
+**안전 장치는 스스로 느슨해지지 않는다.** 회고는 아래를 완화·삭제하는 제안을 낼 수 없다.
+
+1. **가드레일 검사** — 금칙 명칭 · 결과 보장 표현 · 제외 항목 누출 · 참고용 고지 · 예정 고지.
+   **추가는 허용, 완화·삭제는 금지.**
+2. **3층 검증 필터** — "발굴 수를 늘리기 위해" 필터를 낮추는 제안을 금지한다.
+   필터 조정 제안은 `배제후보` 기록을 근거로만 한다.
+3. **0장의 절대 원칙 6개** — 어떤 제안으로도 바꾸지 않는다.
+
+---
+
+## 9. 실행 환경
 
 - OS: Windows. 셸은 PowerShell(기본) 및 Bash(POSIX) 병용.
 - Node.js 기반 스크립트 5종. 외부 표준 패키지 사용 허용(`sharp`, `exceljs` 등).
