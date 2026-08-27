@@ -31,6 +31,10 @@ jobs:
       - name: 의존성 설치
         run: npm ci
 
+      # 리서치 LLM 호출 앞에 두는 가장 싼 게이트. 여기서 깨지면 비싼 단계를 돌지 않는다.
+      - name: 테스트
+        run: npm test
+
       - name: 대상 월 결정
         id: month
         run: |
@@ -42,6 +46,12 @@ jobs:
       - name: Claude Code CLI 설치
         run: npm install -g @anthropic-ai/claude-code
 
+      # --- 0.5단계: 대상 열거 (날짜 연산과 대상 산정을 LLM 에서 제거) ---
+      - name: 대상 열거
+        env:
+          SDC_MONTH: ${{ steps.month.outputs.value }}
+        run: node scripts/make-targets.js
+
       # --- LLM 단계: 리서치 (사실 정보 수집) ---
       - name: 리서치
         env:
@@ -50,6 +60,23 @@ jobs:
         run: |
           claude -p "당신은 SDC ECA 리서치 에이전트입니다. 먼저 .claude/agents/researcher.md 를 읽고 그 지시문을 '그대로' 따르세요(특히 '증분 수집' 절을 반드시 준수: data/master.json 을 먼저 읽고, 신규+마감 30일 이내 임박+제외/확인필요 항목만 조사하며, 마감이 먼/상시인 정상 게시 항목은 재조사하지 마세요). data/master.json, data/sources.json, data/keywords.json, CLAUDE.md 를 참고하세요. 이번 달은 ${SDC_MONTH}. 조사한 항목은 공식 페이지 WebFetch로 확인하고 근거_원문을 남겨 data/raw/${SDC_MONTH}.json (객체 배열)에 저장하세요. 사실 정보 칸만 채우고 판정 칸은 비웁니다. 결과 보장 표현 금지, HSS/Holyseas 언급 절대 금지, 한국 학생 지원 자격 확인. 오직 data/raw 에만 쓰세요." \
             --dangerously-skip-permissions
+
+      # --- 1.5단계: 기록 검증 게이트. 기록이 없으면 여기서 멈춘다 ---
+      - name: 기록 검증
+        id: coverage
+        env:
+          SDC_MONTH: ${{ steps.month.outputs.value }}
+        run: node scripts/check-coverage.js
+
+      # 게이트가 리서치 뒤에 있으므로, 실패하면 비싼 산출물이 러너와 함께 사라진다.
+      # 실패했을 때만 data/raw 를 통째로 올려 두어 사람이 보고 고칠 수 있게 한다.
+      - name: 리서치 산출물 보존 (검증 실패 시)
+        if: failure() && steps.coverage.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-${{ steps.month.outputs.value }}
+          path: data/raw/
+          retention-days: 14
 
       # --- LLM 단계: 큐레이션 (판정·가공) ---
       - name: 큐레이션
@@ -60,7 +87,7 @@ jobs:
           claude -p "당신은 SDC ECA 큐레이터 에이전트입니다. .claude/agents/curator.md 를 읽고 그대로 따르세요. data/keywords.json, CLAUDE.md(별점 계산식) 도 준수하세요. data/raw/${SDC_MONTH}.json 을 읽어 판정 칸(대상_학년·마감일·비용_구분·과목태그·키워드·미국입시_관련도·SDC_적합도)을 채워 data/curated/${SDC_MONTH}.json (객체 배열)로 저장하세요. 키워드는 keywords.json 사전 안에서만. 별점은 4기준 계산식 그대로. HSS/Holyseas 금지. 웹검색·git 금지, 오직 data/curated 에만 쓰세요." \
             --dangerously-skip-permissions
 
-      # --- 결정적 스크립트 (병합·링크검증·포스터·엑셀·빌드) ---
+      # --- 결정적 스크립트 (병합·링크검증·포스터·엑셀·빌드·계측) ---
       - name: 결정적 파이프라인
         env:
           SDC_MONTH: ${{ steps.month.outputs.value }}
@@ -71,6 +98,7 @@ jobs:
           node scripts/fetch-posters.js
           node scripts/export-excel.js
           node scripts/build.js
+          node scripts/compute-kpi.js
 
       - name: PR 변경 요약 생성
         env:
@@ -108,5 +136,9 @@ jobs:
             data/master.json
             data/raw
             data/curated
+            data/reports
+            data/retro
+            data/review
+            templates
             docs
             records

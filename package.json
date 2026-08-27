@@ -10,7 +10,13 @@
     "fetch-posters": "node scripts/fetch-posters.js",
     "export-excel": "node scripts/export-excel.js",
     "build": "node scripts/build.js",
-    "pipeline": "node scripts/merge.js && node scripts/check-links.js && node scripts/fetch-posters.js && node scripts/export-excel.js && node scripts/build.js"
+    "test": "node --test",
+    "make-targets": "node scripts/make-targets.js",
+    "check-coverage": "node scripts/check-coverage.js",
+    "compute-kpi": "node scripts/compute-kpi.js",
+    "check-guardrails": "node scripts/check-guardrails.js",
+    "pr-summary": "node scripts/pr-summary.js",
+    "pipeline": "node scripts/merge.js && node scripts/check-links.js && node scripts/fetch-posters.js && node scripts/export-excel.js && node scripts/build.js && node scripts/compute-kpi.js"
   },
   "dependencies": {
     "exceljs": "^4.4.0",

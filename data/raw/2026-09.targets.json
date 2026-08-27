@@ -1,0 +1,688 @@
+{
+  "회차": "2026-09",
+  "기준일": "2026-09-01",
+  "분기월_여부": false,
+  "기록규약": {
+    "설명": "coverage.json 에는 아래 열거값만 쓴다. check-coverage.js 가 같은 목록으로 기계 검증한다.",
+    "결과": [
+      "수록",
+      "배제",
+      "시즌아님",
+      "확인불가"
+    ],
+    "탈락필터": [
+      "주최성",
+      "지원자격",
+      "학교단위접수",
+      "규모·역사",
+      "상업성",
+      "출처",
+      "만료",
+      "중복"
+    ],
+    "포스터": [
+      "있음",
+      "없음"
+    ],
+    "확인수준": [
+      "요강원문",
+      "공고요약",
+      "연도불명"
+    ]
+  },
+  "A_미수록_씨앗": [
+    {
+      "targets_id": "A:science-policing-idea-contest",
+      "canonical_slug": "science-policing-idea-contest",
+      "이름": "과학치안 아이디어 공모전",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "과학치안진흥센터",
+      "url": "https://kipot.or.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:math-kangaroo-korea",
+      "canonical_slug": "math-kangaroo-korea",
+      "이름": "국제수학캥거루",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "국제수학캥거루 한국조직위원회",
+      "url": "https://www.mathkangaroo.co.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:biosafety-debate",
+      "canonical_slug": "biosafety-debate",
+      "이름": "바이오 토론대회",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "한국바이오안전성정보센터",
+      "url": "https://www.biosafety.or.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:bohun-academic-thesis",
+      "canonical_slug": "bohun-academic-thesis",
+      "이름": "보훈학술논문공모전",
+      "유형": "회차형",
+      "분류": "글쓰기·논문·인문사회",
+      "주최": "국가보훈부 보훈교육연구원",
+      "url": "https://www.bohun.or.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:samsung-junior-sw-contest",
+      "canonical_slug": "samsung-junior-sw-contest",
+      "이름": "삼성 주니어 SW 창작대회 / 대학 캠프 프로그램",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "대학·기업 주관",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "서울대 생명·환경과학교육센터 등 캠프형 포함. 주니어카이스트 교육캠프는 수강생 한정이라 배제(배제_및_회색지대 참고)"
+    },
+    {
+      "targets_id": "A:siwff-iteens-jury",
+      "canonical_slug": "siwff-iteens-jury",
+      "이름": "아이틴즈 청소년 심사단",
+      "유형": "회차형",
+      "분류": "스포츠·문화·봉사",
+      "주최": "서울국제여성영화제",
+      "url": "https://siwff.or.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:children-product-safety-drawing-contest",
+      "canonical_slug": "children-product-safety-drawing-contest",
+      "이름": "어린이 제품안전 그림공모전",
+      "유형": "회차형",
+      "분류": "환경·예술·공익",
+      "주최": "한국제품안전관리원",
+      "url": "https://www.kips.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "초등 대상"
+    },
+    {
+      "targets_id": "A:apctp-science-book-report",
+      "canonical_slug": "apctp-science-book-report",
+      "이름": "올해의 과학도서 독후감 대회",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "아시아태평양이론물리센터(APCTP)",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "공식 도메인 확인 후 연결"
+    },
+    {
+      "targets_id": "A:weber-essay-contest",
+      "canonical_slug": "weber-essay-contest",
+      "이름": "윌리엄 E. 웨버 대령 에세이 콘테스트",
+      "유형": "회차형",
+      "분류": "글쓰기·논문·인문사회",
+      "주최": "한미동맹재단",
+      "url": "https://www.kusaf.org",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:national-science-exhibition",
+      "canonical_slug": "national-science-exhibition",
+      "이름": "전국과학전람회",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "국립중앙과학관/한국과학창의재단",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "ISEF 경로 포함 가능성 확인"
+    },
+    {
+      "targets_id": "A:national-youth-volunteer-contest",
+      "canonical_slug": "national-youth-volunteer-contest",
+      "이름": "전국청소년자원봉사대회",
+      "유형": "회차형",
+      "분류": "스포츠·문화·봉사",
+      "주최": "KB라이프생명 사회공헌재단",
+      "url": "https://www.kblifefoundation.or.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:korea-astronomy-olympiad",
+      "canonical_slug": "korea-astronomy-olympiad",
+      "이름": "천문올림피아드",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "한국천문학회",
+      "url": "https://www.kasolym.org",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:ncc-youth-nosmoking-contest",
+      "canonical_slug": "ncc-youth-nosmoking-contest",
+      "이름": "청소년 금연 포스터·웹툰 공모전",
+      "유형": "회차형",
+      "분류": "환경·예술·공익",
+      "주최": "국립암센터",
+      "url": "https://www.ncc.re.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:youth-mock-national-assembly",
+      "canonical_slug": "youth-mock-national-assembly",
+      "이름": "청소년 모의국회",
+      "유형": "회차형",
+      "분류": "국제·리더십·사회참여",
+      "주최": "국회/공공기관",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:chuncheon-youth-english-speech",
+      "canonical_slug": "chuncheon-youth-english-speech",
+      "이름": "춘천시 청소년 영어 스피치 대회",
+      "유형": "회차형",
+      "분류": "영어 (과목태그)",
+      "주최": "춘천시·강원일보",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "공식 공고 페이지 확인 후 연결"
+    },
+    {
+      "targets_id": "A:kpho",
+      "canonical_slug": "kpho",
+      "이름": "한국물리올림피아드 KPhO",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "한국물리학회",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:kbo",
+      "canonical_slug": "kbo",
+      "이름": "한국생물올림피아드 KBO",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "생물올림피아드위원회",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:kmc",
+      "canonical_slug": "kmc",
+      "이름": "한국수학교육평가원 KMC",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "한국수학교육평가원",
+      "url": "https://www.kmct.co.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:kmo",
+      "canonical_slug": "kmo",
+      "이름": "한국수학올림피아드 KMO",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "대한수학회",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "국내 대표 수학 올림피아드"
+    },
+    {
+      "targets_id": "A:koi",
+      "canonical_slug": "koi",
+      "이름": "한국정보올림피아드 KOI",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "과학기술정보통신부/한국과학창의재단",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:kcho",
+      "canonical_slug": "kcho",
+      "이름": "한국화학올림피아드 KChO",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "대한화학회",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:ieo",
+      "canonical_slug": "ieo",
+      "이름": "IEO (International Economics Olympiad)",
+      "유형": "회차형",
+      "분류": "경제·비즈니스 (과목태그 경제·금융)",
+      "주최": "IEO",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "한국 대표 선발 경로 확인"
+    },
+    {
+      "targets_id": "A:john-locke",
+      "canonical_slug": "john-locke",
+      "이름": "John Locke Institute Essay Competition",
+      "유형": "회차형",
+      "분류": "글쓰기·논문·인문사회",
+      "주최": "John Locke Institute",
+      "url": "https://www.johnlockeinstitute.com/essay-competition",
+      "예상_공고월": [
+        6
+      ],
+      "이번달_공고예상": false,
+      "확인필요": false,
+      "비고": "국제 에세이, 개인"
+    },
+    {
+      "targets_id": "A:koreaz-contest",
+      "canonical_slug": "koreaz-contest",
+      "이름": "KOREAZ 콘텐츠 공모전 등",
+      "유형": "회차형",
+      "분류": "영어 (과목태그)",
+      "주최": "외교부 국민소통 공모전",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "공식 공고 페이지 확인 후 연결"
+    },
+    {
+      "targets_id": "A:peec-language-festival",
+      "canonical_slug": "peec-language-festival",
+      "이름": "Language Festival 영어 말하기",
+      "유형": "회차형",
+      "분류": "국제·리더십·사회참여",
+      "주최": "평택시국제교류재단",
+      "url": "https://www.peec.go.kr",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:nsda",
+      "canonical_slug": "nsda",
+      "이름": "National Speech & Debate Association 대회",
+      "유형": "회차형",
+      "분류": "영어 (과목태그)",
+      "주최": "NSDA",
+      "url": "https://www.speechanddebate.org",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:nec",
+      "canonical_slug": "nec",
+      "이름": "NEC (National Economics Challenge)",
+      "유형": "회차형",
+      "분류": "경제·비즈니스 (과목태그 경제·금융)",
+      "주최": "Council for Economic Education",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "한국 학생 지원 가능 여부 반드시 확인 후 수록"
+    },
+    {
+      "targets_id": "A:ross-mathematics-program",
+      "canonical_slug": "ross-mathematics-program",
+      "이름": "Ross Mathematics Program",
+      "유형": "회차형",
+      "분류": "선발형 여름 프로그램 (키워드 여름프로그램)",
+      "주최": "Ross Program",
+      "url": "",
+      "예상_공고월": [
+        1
+      ],
+      "이번달_공고예상": false,
+      "확인필요": false,
+      "비고": "국제 학생 지원 가능 여부 확인"
+    },
+    {
+      "targets_id": "A:rsi",
+      "canonical_slug": "rsi",
+      "이름": "RSI (Research Science Institute)",
+      "유형": "회차형",
+      "분류": "선발형 여름 프로그램 (키워드 여름프로그램)",
+      "주최": "CEE/MIT",
+      "url": "",
+      "예상_공고월": [
+        11
+      ],
+      "이번달_공고예상": false,
+      "확인필요": false,
+      "비고": "마감 주로 겨울, 시간차 수집. 국제 학생(한국 거주) 지원 가능 여부 확인"
+    },
+    {
+      "targets_id": "A:ssp",
+      "canonical_slug": "ssp",
+      "이름": "SSP (Summer Science Program)",
+      "유형": "회차형",
+      "분류": "선발형 여름 프로그램 (키워드 여름프로그램)",
+      "주최": "SSP",
+      "url": "",
+      "예상_공고월": [
+        11
+      ],
+      "이번달_공고예상": false,
+      "확인필요": false,
+      "비고": "국제 학생 지원 가능 여부 확인"
+    },
+    {
+      "targets_id": "A:toefl-junior-challenge",
+      "canonical_slug": "toefl-junior-challenge",
+      "이름": "TOEFL Junior Challenge",
+      "유형": "회차형",
+      "분류": "영어 (과목태그)",
+      "주최": "ETS",
+      "url": "https://www.toefljunior.com",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    },
+    {
+      "targets_id": "A:unyec",
+      "canonical_slug": "unyec",
+      "이름": "UN청소년환경총회",
+      "유형": "회차형",
+      "분류": "국제·리더십·사회참여",
+      "주최": "UN청소년환경총회",
+      "url": "http://unyec.org",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "모의유엔형 환경총회, 환경·안전·공익과 교차"
+    },
+    {
+      "targets_id": "A:usaco",
+      "canonical_slug": "usaco",
+      "이름": "USACO",
+      "유형": "회차형",
+      "분류": "과학·공학·수학생명·AI",
+      "주최": "USA Computing Olympiad",
+      "url": "http://www.usaco.org",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": "코딩, 한국 학생 온라인 참여 가능"
+    },
+    {
+      "targets_id": "A:ymca-youth-leadership",
+      "canonical_slug": "ymca-youth-leadership",
+      "이름": "YMCA 청소년 리더십 프로그램",
+      "유형": "상시형",
+      "분류": "국제·리더십·사회참여",
+      "주최": "YMCA",
+      "url": "",
+      "예상_공고월": null,
+      "이번달_공고예상": false,
+      "확인필요": true,
+      "비고": ""
+    }
+  ],
+  "B_시즌캘린더_당월": [
+    {
+      "targets_id": "B:9-1",
+      "항목": "가을 학기 국내 대회 집중"
+    }
+  ],
+  "C_순회소스": [
+    {
+      "targets_id": "C:e청소년(여성가족부)",
+      "이름": "e청소년(여성가족부)",
+      "url": "https://www.youth.go.kr",
+      "용도": "청소년 프로그램·공모 공고"
+    },
+    {
+      "targets_id": "C:1365 자원봉사포털",
+      "이름": "1365 자원봉사포털",
+      "url": "https://www.1365.go.kr",
+      "용도": "봉사·공익 활동"
+    },
+    {
+      "targets_id": "C:대한수학회 공지",
+      "이름": "대한수학회 공지",
+      "url": "https://www.kms.or.kr",
+      "용도": "수학 대회 씨앗의 공식 공고 갱신"
+    },
+    {
+      "targets_id": "C:한국과학창의재단",
+      "이름": "한국과학창의재단",
+      "url": "https://www.kofac.re.kr",
+      "용도": "과학·SW 대회·전람회 공고"
+    },
+    {
+      "targets_id": "C:환경부 공모·알림",
+      "이름": "환경부 공모·알림",
+      "url": "https://www.me.go.kr",
+      "용도": "환경 공모전 공고"
+    }
+  ],
+  "D_쿼리세트": {
+    "국문": [
+      {
+        "targets_id": "D:국문:2026 청소년 과학 대회 접수",
+        "쿼리": "2026 청소년 과학 대회 접수",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 중고등 수학 올림피아드 요강",
+        "쿼리": "2026 중고등 수학 올림피아드 요강",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 학생 SW AI 경진대회",
+        "쿼리": "2026 학생 SW AI 경진대회",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:대학 영재원 2026 모집",
+        "쿼리": "대학 영재원 2026 모집",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:학회 주최 2026 학생 대회",
+        "쿼리": "학회 주최 2026 학생 대회",
+        "대분류": "과학·공학·수학생명·AI",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 모의유엔 MUN 접수",
+        "쿼리": "2026 청소년 모의유엔 MUN 접수",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 고등학생 경제 대회 공모",
+        "쿼리": "2026 고등학생 경제 대회 공모",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 리더십 프로그램 모집",
+        "쿼리": "2026 청소년 리더십 프로그램 모집",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 에세이 공모전 요강",
+        "쿼리": "2026 청소년 에세이 공모전 요강",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 학생 논문 대회 접수",
+        "쿼리": "2026 학생 논문 대회 접수",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 독후감 글짓기 공모 중고등",
+        "쿼리": "2026 독후감 글짓기 공모 중고등",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 봉사활동 공모 모집",
+        "쿼리": "2026 청소년 봉사활동 공모 모집",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 학생 문화 예술 공모전",
+        "쿼리": "2026 학생 문화 예술 공모전",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 영상 UCC 공모",
+        "쿼리": "2026 청소년 영상 UCC 공모",
+        "대분류": "스포츠·문화·봉사",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 청소년 환경 공모전 접수",
+        "쿼리": "2026 청소년 환경 공모전 접수",
+        "대분류": "환경·예술·공익",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 학생 공익 포스터 그림 공모",
+        "쿼리": "2026 학생 공익 포스터 그림 공모",
+        "대분류": "환경·예술·공익",
+        "언어": "국문"
+      },
+      {
+        "targets_id": "D:국문:2026 환경교육 콘텐츠 공모 요강",
+        "쿼리": "2026 환경교육 콘텐츠 공모 요강",
+        "대분류": "환경·예술·공익",
+        "언어": "국문"
+      }
+    ],
+    "영문": [
+      {
+        "targets_id": "D:영문:youth 2026 economics competition Korea eligible",
+        "쿼리": "youth 2026 economics competition Korea eligible",
+        "대분류": "국제·리더십·사회참여",
+        "언어": "영문"
+      },
+      {
+        "targets_id": "D:영문:2026 high school essay competition international",
+        "쿼리": "2026 high school essay competition international",
+        "대분류": "글쓰기·논문·인문사회",
+        "언어": "영문"
+      }
+    ]
+  },
+  "E_재확인_마감임박": [
+    {
+      "targets_id": "E:fss-financial-contest-2026",
+      "id": "fss-financial-contest-2026",
+      "활동명": "제21회 금융공모전 (청소년 금융창작물 부문 등)",
+      "마감일": "2026-09-02",
+      "사유": "마감 30일 이내"
+    },
+    {
+      "targets_id": "E:breakthrough-junior-challenge-2026",
+      "id": "breakthrough-junior-challenge-2026",
+      "활동명": "Breakthrough Junior Challenge 2026",
+      "마감일": "2026-09-15",
+      "사유": "마감 30일 이내"
+    },
+    {
+      "targets_id": "E:amc-2026",
+      "id": "amc-2026",
+      "활동명": "AMC (American Mathematics Competitions) 2026",
+      "마감일": "2026-09-30",
+      "사유": "마감 30일 이내"
+    }
+  ],
+  "F_재확인_제외복구": [
+    {
+      "targets_id": "F:seoul-environmental-education-content-contest-2026",
+      "id": "seoul-environmental-education-content-contest-2026",
+      "활동명": "2026년 제3회 서울특별시 환경교육 콘텐츠 공모전",
+      "게시상태": "게시",
+      "사유": "링크 확인 필요: UNABLE_TO_VERIFY_LEAF_SIGNATURE"
+    },
+    {
+      "targets_id": "F:duke-of-edinburgh-award-korea",
+      "id": "duke-of-edinburgh-award-korea",
+      "활동명": "국제청소년성취포상제 (The Duke of Edinburgh's International Award, Korea)",
+      "게시상태": "게시",
+      "사유": "링크 확인 필요: fetch failed"
+    }
+  ],
+  "G_교사제보": [],
+  "목표": {
+    "신규_선발형_최소": 3,
+    "주의": "목표 미달은 실패가 아니다. 검증 필터를 완화해 목표를 채우는 것을 금지한다. 근거 없는 1건은 0건보다 나쁘다. 미달 시 coverage.json 의 신규0건_사유 또는 총평에 사유를 남기는 것으로 갈음한다."
+  },
+  "_경고": []
+}

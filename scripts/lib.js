@@ -2,7 +2,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
+// 저장소 루트. 테스트가 픽스처 폴더로 갈아끼울 수 있게 SDC_ROOT 를 허용한다
+// (SDC_TODAY·SDC_MONTH 와 같은 관례). 실운영에서 잘못 켜지면 아래 경고로 즉시 보인다.
+const ROOT = path.resolve(process.env.SDC_ROOT || path.join(__dirname, '..'));
+if (process.env.SDC_ROOT) console.log('[lib.js] 경고: SDC_ROOT 로 루트가 재지정됨 —', ROOT);
 const P = {
   root: ROOT,
   data: path.join(ROOT, 'data'),

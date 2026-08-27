@@ -15,13 +15,16 @@ function pickCuratedFile() {
   if (fs.existsSync(byMonth)) return byMonth;
   // 지정 월 파일이 없으면 curated 폴더에서 가장 최근 파일
   if (!fs.existsSync(P.curated)) return null;
-  const files = fs.readdirSync(P.curated).filter((f) => f.endsWith('.json')).sort();
+  // YYYY-MM.json 형식만 후보로 본다 — curated 폴더에 다른 파일이 생겨도
+  // 그것을 당월 큐레이션 결과로 오인하지 않기 위함.
+  const files = fs.readdirSync(P.curated).filter((f) => /^\d{4}-\d{2}\.json$/.test(f)).sort();
   return files.length ? path.join(P.curated, files[files.length - 1]) : null;
 }
 
 function main() {
   const ref = today();
-  const m = month();
+  // --month 를 주면 입력·리포트·수집월이 모두 그 달을 따른다 (소급 실행용).
+  const m = args().month || month();
   const curatedFile = pickCuratedFile();
 
   const master = readJson(P.master, []);
